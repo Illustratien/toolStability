@@ -1,0 +1,29 @@
+Package: toolStability
+Type: Package
+Title: Tool for Stability Indices calculation
+Version: 0.1.0
+Authors@R: c(person('Tien-Cheng','Wang', email ='tien.wang@gem.uni-hannover.de', role=c('aut','cre')),
+	person('Tsu-Wei','Chen',email='chen@gem.uni-hannover.de',role='aut'))
+Author: Tien-Cheng Wang [aut, cre],
+	Tsu-Wei Chen [aut]
+Maintainer: Tien-Cheng <tien.wang@gem.uni-hannover.de>
+Description: This package is aim at bring the user friendly tool for calculating
+    and evaluate the stability of crops. (now is still developing)
+    #Use four spaces when indenting paragraphs within the Description.
+Depends: R (>= 3.1.0)
+Imports: dplyr,
+	 magrittr,
+	 data.table,
+	 ggplot2,
+	 Rdpack
+RdMacros: Rdpack
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+LazyLoad: true
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
