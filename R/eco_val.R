@@ -1,6 +1,7 @@
 # definied the global variable just for checking purpose when check the package
 utils::globalVariables(c("X", "Xi.bar","Genotype","sqr","."),
                        package="toolStability")
+
 #' @title Ecovalance
 #'
 #' @description
@@ -10,7 +11,7 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","sqr","."),
 #' This function calculate contribution of a genotype to the GE-interactions with dynamic concept, by
 #' squared and summed across all environments for each genotype.
 #'
-#' \deqn{W_{i} = \Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2
+#' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar{X}_{i.})^2}{E-1}}
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
 #'

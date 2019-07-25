@@ -11,7 +11,7 @@ utils::globalVariables(c("X", "Xi.bar","Xj.bar","Genotype","","."),
 #' interaction. The stability variance is a linear combination of the ecovalence.
 #'
 #' \deqn{\sigma^{2}_{i} = \frac{1}{(G-1)(G-2)(E-1)}\big[
-#' \Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2-\Simga_{i}\Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2
+#' \sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2-\sum_{i}\sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2
 #' \big]}
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
