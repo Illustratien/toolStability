@@ -27,8 +27,7 @@ data(Data)
 eco_valance <- eco_val(Data,'Yield','Genotype','Environment')
 }
 \references{
-Wricke, G. "Uber eine Methode zur Erfassung der okologischen Streubreite in Feldverzuchen."
- \emph{Z. pflanzenzuchtg} 47 (1962): 92-96.
+\insertRef{wricke1962}{toolStability}
 }
 \author{
 Tien Cheng Wang (\email{tien.wang@gem.uni-hannover.de})

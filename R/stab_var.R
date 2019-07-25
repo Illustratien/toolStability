@@ -28,12 +28,13 @@ utils::globalVariables(c("X", "Xi.bar","Xj.bar","Genotype","","."),
 #' @importFrom magrittr %>%
 #' @return a dataframe with stability variance indices
 #' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
-#' @references Shukla, G. K. "Some statistical aspects of partitioning genotype environmental components of variability."
-#'  \emph{Heredity} 29.2 (1972): 237-245.
-#'
 #' @examples
 #' data(Data)
 #' stab_variance <- stab_var(Data,'Yield','Genotype','Environment')
+#'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{shukla1972}{toolStability}
 #'
 stab_var <- function(data,trait,Genotype,Environment){
 # preprocessed the raw data

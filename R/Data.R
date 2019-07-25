@@ -9,9 +9,9 @@
 #' @format dataframe
 #'
 #' @keywords datasets
-#'
-#' @references Casadebaig P, Zheng B, Chapman S, Huth N, Faivre R, et al. (2016) Plosone 11(1), e0146385
-#' (\href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146385}{Plosone})
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{10.1371/journal.pone.0146385}{toolStability}
 #'
 #'
 #' @examples

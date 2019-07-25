@@ -40,8 +40,7 @@ stab_variance <- stab_var(Data,'Yield','Genotype','Environment')
 
 }
 \references{
-Shukla, G. K. "Some statistical aspects of partitioning genotype environmental components of variability."
- \emph{Heredity} 29.2 (1972): 237-245.
+\insertRef{shukla1972}{toolStability}
 }
 \author{
 Tien Cheng Wang (\email{tien.wang@gem.uni-hannover.de})

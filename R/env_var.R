@@ -20,11 +20,11 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' @param Environment a variable lableing different environmental parameters
 #' @export
 #' @importFrom magrittr %>%
+#' @importFrom Rdpack reprompt
 #' @return a dataframe with environmental variance indices
 #' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
-#' @references Roemer, J. "Sinde die ertagdreichen Sorten ertagissicherer."
-#'  \emph{Mitt DLG} 32.1 (1917): 87-89.
-#'
+#' @references
+#' \insertRef{roemer1917}{toolStability}
 #' @examples
 #' data(Data)
 #' env_variance <- env_var(Data,'Yield','Genotype','Environment')

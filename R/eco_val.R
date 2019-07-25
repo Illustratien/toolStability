@@ -22,9 +22,10 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","sqr","."),
 #' @export
 #' @importFrom magrittr %>%
 #' @return a dataframe with environmental variance indices
+#' @importFrom Rdpack reprompt
 #' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
-#' @references Wricke, G. "Uber eine Methode zur Erfassung der okologischen Streubreite in Feldverzuchen."
-#'  \emph{Z. pflanzenzuchtg} 47 (1962): 92-96.
+#' @references
+#' \insertRef{wricke1962}{toolStability}
 #'
 #' @examples
 #' data(Data)
