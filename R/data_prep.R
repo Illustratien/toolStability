@@ -50,8 +50,8 @@ data_prep <- function(data,trait,Genotype,Environment){
     data.table(key='Environment')
 
   # Combine genotypic and environmental data
-  data <- merge(data, EM, by="Environment")
   data <- merge(data, GM, by="Genotype")
+  data <- merge(data, EM, by="Environment")
 
 return(data)
 }
