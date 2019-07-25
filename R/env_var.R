@@ -1,5 +1,5 @@
 # definied the global variable just for checking purpose when check the package
-utils::globalVariables(c("XX", "mean.x","Genotype","d2","."),
+utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
                        package="toolStability")
 #' @title Environmental variance
 #'
@@ -34,9 +34,9 @@ env_var <- function(data,trait,Genotype,Environment){
   Data <- data_prep(data,trait,Genotype,Environment)
 
   Data<- Data%>%
-  dplyr::select(XX,mean.x,Genotype)%>%
-  dplyr::group_by(Genotype)%>%
-  dplyr::mutate(.,d2=(XX-mean.x)^2)%>%
-  dplyr::summarise(envvar = sum(d2, na.rm=TRUE)/(length(d2)-1))
+    dplyr::select(X,Xi.bar,Genotype)%>%
+    dplyr::group_by(Genotype)%>%
+    dplyr::mutate(.,d2=(X-Xi.bar)^2)%>%
+    dplyr::summarise(env.var = sum(d2, na.rm=TRUE)/(length(d2)-1))
   return(Data)
 }

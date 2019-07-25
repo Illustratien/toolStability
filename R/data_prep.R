@@ -26,28 +26,28 @@
 #' str(result)#dataframe
 
 data_prep <- function(data,trait,Genotype,Environment){
-# use 'XX' as abbreviation for simplyfying purpose
+# use 'X' as abbreviation for simplyfying purpose
 # in the latter equation for stability indices calculation
-  names(data)[names(data) == trait] <- 'XX'
-  data <- data%>%data.table(key='Genotype,Environment,XX')
+  names(data)[names(data) == trait] <- 'X'
+  data <- data%>%data.table(key='Genotype,Environment,X')
   # Genotypic mean, sd, cv, log 10 of variance and mean
   GM <- data%>%
     dplyr::group_by(Genotype)%>%
     dplyr::summarise(
-      mean=mean(data$XX),sd=sd(data$XX),cv=sd(data$XX)/mean(data$XX),
-      logvar=log10(var(data$XX)),logmean=log10(mean(data$XX)))%>%
+      Xi.bar=mean(data$X),
+      Xi.sd=sd(data$X),
+      Xi.cv=sd(data$X)/mean(data$X),
+      Xi.logvar=log10(var(data$X)),
+      Xi.logmean=log10(mean(data$X)))%>%
     data.table(key='Genotype')
 
   # Environmental mean, Xj
   EM<- data%>%
     dplyr::group_by(Environment)%>%
     dplyr::summarise(
-      mean=mean(data$XX), max=max(data$XX))%>%
+      Xj.bar=mean(data$X),
+      Xj.max=max(data$X))%>%
     data.table(key='Environment')
-
-  # Rename the environmental statistics to differentiate from genotypic values
-  names(EM)[names(EM) == "XX.mean"] <- 'XXj'
-  names(EM)[names(EM) == "XX.max"] <- 'Xj.max'
 
   # Combine genotypic and environmental data
   data <- merge(data, EM, by="Environment")
