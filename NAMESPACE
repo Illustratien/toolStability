@@ -3,6 +3,7 @@
 export(data_prep)
 export(eco_val)
 export(env_var)
+export(stab_var)
 importFrom(data.table,data.table)
 importFrom(magrittr,"%>%")
 importFrom(stats,sd)
