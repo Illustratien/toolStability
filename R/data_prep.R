@@ -10,7 +10,7 @@
 #' Mean and maximum value were calculated for each environment.
 #' @param data a dataframe containing at least three column of trait of interest,
 #' genotype, and environment information.
-#' @param trait the interested values to analysize.
+#' @param trait name of the interested column in the dataframe to analysize.
 #' @param Genotype genetic varieties
 #' @param Environment environmental parameters
 #' @export

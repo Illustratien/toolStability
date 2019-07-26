@@ -22,8 +22,9 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","sqr","."),
 #' @param Environment a variable lableing different environmental parameters
 #' @export
 #' @importFrom magrittr %>%
-#' @return a dataframe with environmental variance indices
 #' @importFrom Rdpack reprompt
+#'
+#' @return a dataframe with ecovalance indices
 #' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
 #' @references
 #' \insertRef{wricke1962}{toolStability}

@@ -10,7 +10,7 @@ data_prep(data, trait, Genotype, Environment)
 \item{data}{a dataframe containing at least three column of trait of interest,
 genotype, and environment information.}
 
-\item{trait}{the interested values to analysize.}
+\item{trait}{name of the interested column in the dataframe to analysize.}
 
 \item{Genotype}{genetic varieties}
 
