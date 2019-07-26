@@ -21,6 +21,7 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' @param Environment a variable lableing different environmental parameters
 #' @export
 #' @importFrom magrittr %>%
+#' @importFrom dplyr select group_by mutate summarise
 #' @importFrom Rdpack reprompt
 #' @return a dataframe with environmental variance indices
 #' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
