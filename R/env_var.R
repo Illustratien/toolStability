@@ -4,14 +4,13 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' @title Environmental variance
 #'
 #' @description
-#' \code{env_var} calculate variance of a genotype across environments.
+#' \code{env_var} is used to calculate variance of a genotype across environments.
+#' @keywords static stability
 #'
 #' @details
-#' This function calculate environmental variance of genotypes with static concept. By detecting all
-#' deviation from the genotypic mean.
+#' Environmental variance (Roemer 1917) is calculated based on suming up all deviation from genotypic mean for each genotype.
+#' The larger the environmental variance of one genotype is, the lower the stability.
 #'
-#' The larger he environmental variance
-#' one genotype is, the lower the stability.
 #' \deqn{S^{2}_{xi} = \frac{\sum{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
