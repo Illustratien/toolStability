@@ -11,17 +11,15 @@
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
-#' @param data a dataframe containing at least three column of trait of interest,
-#'  genotype, and environment information.
-#' @param trait the interested variable to be analysize.
-#' @param Genotype a variable labeling different genotypic varieties
-#' @param Environment a variable lableing different environmental parameters
+#' @param trait numeric vector of interested trait to be analysized.
+#' @param genotype a character or factor vector labeling different genotypic varieties
+#' @param ... data table with precalculated statistic procuded by \code{\link{stability_indices_table}}of to be passed
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by mutate summarise
 #' @importFrom Rdpack reprompt
-#' @return a dataframe with environmental variance indices
-#' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
+#' @return a data table with environmental variance indices
+#' @author Tien Cheng Wang
 #' @references
 #' \insertRef{roemer1917}{toolStability}
 #' @examples
