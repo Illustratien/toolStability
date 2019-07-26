@@ -8,7 +8,9 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #'
 #' @details
 #' This function calculate environmental variance of genotypes with static concept. By detecting all
-#' deviation from the genotypic mean. \cr The larger he environmental variance
+#' deviation from the genotypic mean.
+#'
+#' The larger he environmental variance
 #' one genotype is, the lower the stability.
 #' \deqn{S^{2}_{xi} = \frac{\sum{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
