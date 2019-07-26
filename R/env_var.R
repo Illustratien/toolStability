@@ -33,11 +33,25 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 env_var <- function(data,trait,Genotype,Environment){
   # preprocessed the raw data
   Data <- data_prep(data,trait,Genotype,Environment)
+environmental_variance <- function(trait,genotype,...){
+  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+  if(nargs()==2){# condition of only input trait and genotype
+    # combine vectors into data table
+    Data <- data.table(X=trait,Genotype=genotype)
+    #calculate environmental variance
+    res <- summarise(
+           mutate(
+           group_by(Data,Genotype),
+            Xi.bar=mean(X),deviation=(X-Xi.bar)^2),#mutate
+             env.var = sum(deviation, na.rm=TRUE)/(length(deviation)-1)#summarise
+    )
 
-  Data<- Data%>%
-    dplyr::select(X,Xi.bar,Genotype)%>%
-    dplyr::group_by(Genotype)%>%
-    dplyr::mutate(.,d2=(X-Xi.bar)^2)%>%
-    dplyr::summarise(env.var = sum(d2, na.rm=TRUE)/(length(d2)-1))
-  return(Data)
+    # res<- Data%>%
+    #   group_by(Genotype)%>%
+    #   mutate(.,Xi.bar=mean(X),deviation=(X-Xi.bar)^2)%>%
+    #   summarise(env.var = sum(deviation, na.rm=TRUE)/(length(deviation)-1))
+  }else{
+    print('haha')
+  }
+  return(res)
 }
