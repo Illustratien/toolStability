@@ -17,7 +17,7 @@ genotype, and environment information.}
 \item{Environment}{a variable lableing different environmental parameters}
 }
 \value{
-a dataframe with environmental variance indices
+a dataframe with ecovalance indices
 }
 \description{
 \code{eco_val} calculate genetic and environmental interaction.
