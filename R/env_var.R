@@ -1,6 +1,3 @@
-# definied the global variable just for checking purpose when check the package
-utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
-                       package="toolStability")
 #' @title Environmental variance
 #'
 #' @description
@@ -31,8 +28,6 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' data(Data)
 #' environmental_variance <- env_var(Data$'Yield',Data$Genotype,Data$environment)
 
-  # preprocessed the raw data
-  Data <- data_prep(data,trait,Genotype,Environment)
 environmental_variance <- function(trait,genotype,...){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
   if(nargs()==2){# condition of only input trait and genotype
