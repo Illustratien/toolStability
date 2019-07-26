@@ -18,9 +18,8 @@ knitr::opts_chunk$set(
 library(toolStability)
 ```
 
-```r
-\deqn{W_{i} = \Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2
+
+W_i = \Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2
  where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
  in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
 
-```
