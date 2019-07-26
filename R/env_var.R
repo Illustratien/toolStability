@@ -11,7 +11,7 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' Environmental variance (Roemer 1917) is calculated based on suming up all deviation from genotypic mean for each genotype.
 #' The larger the environmental variance of one genotype is, the lower the stability.
 #'
-#' \deqn{S^{2}_{xi} = \frac{\sum{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
+#' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
 #' @param data a dataframe containing at least three column of trait of interest,
