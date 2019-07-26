@@ -28,9 +28,8 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","d2","."),
 #' \insertRef{roemer1917}{toolStability}
 #' @examples
 #' data(Data)
-#' env_variance <- env_var(Data,'Yield','Genotype','Environment')
+#' environmental_variance <- env_var(Data$'Yield',Data$Genotype,Data$environment)
 
-env_var <- function(data,trait,Genotype,Environment){
   # preprocessed the raw data
   Data <- data_prep(data,trait,Genotype,Environment)
 environmental_variance <- function(trait,genotype,...){
