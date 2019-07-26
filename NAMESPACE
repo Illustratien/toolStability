@@ -2,7 +2,7 @@
 
 export(data_prep)
 export(eco_val)
-export(env_var)
+export(environmental_variance)
 export(stab_var)
 importFrom(Rdpack,reprompt)
 importFrom(data.table,data.table)
