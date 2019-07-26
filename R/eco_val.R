@@ -35,8 +35,9 @@ utils::globalVariables(c("X", "Xi.bar","Genotype","sqr","."),
 eco_val <- function(data,trait,Genotype,Environment){
   # preprocessed the raw data
   Data <- data_prep(data,trait,Genotype,Environment)
-
   X..bar=mean(Data$X)
+
+  # calculating the stability index ecovalance
   Data<- Data%>%
     dplyr::select(X,Xi.bar,Xj.bar,Genotype)%>%
     dplyr::group_by(Genotype)%>%
