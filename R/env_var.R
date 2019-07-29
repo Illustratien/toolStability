@@ -24,27 +24,14 @@
 #' \insertRef{roemer1917}{toolStability}
 #' @examples
 #' data(Data)
-#' environmental_variance <- env_var(Data$'Yield',Data$Genotype,Data$environment)
+#' env.var <- environmental_variance(Data$'Yield',Data$Genotype)
 
-environmental_variance <- function(trait,genotype,...){
+environmental_variance <- function(trait,genotype){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
-  if(nargs()==2){# condition of only input trait and genotype
     # combine vectors into data table
     Data <- data.table(X=trait,Genotype=genotype)
     #calculate environmental variance
-    res <- summarise(
-           mutate(
-           group_by(Data,Genotype),
-            Xi.bar=mean(X),deviation=(X-Xi.bar)^2),#mutate
-             env.var = sum(deviation, na.rm=TRUE)/(length(deviation)-1)#summarise
-    )
-
-    # res<- Data%>%
-    #   group_by(Genotype)%>%
-    #   mutate(.,Xi.bar=mean(X),deviation=(X-Xi.bar)^2)%>%
-    #   summarise(env.var = sum(deviation, na.rm=TRUE)/(length(deviation)-1))
-  }else{
-    print('haha')
-  }
+    res <- summarise(group_by(Data,Genotype),#end of group_by
+      env.var = sum(var(X), na.rm=TRUE)/(length(unique(Genotype)-1)))#end of summarise
   return(res)
 }
