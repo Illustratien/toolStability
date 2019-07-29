@@ -11,16 +11,23 @@
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
+#'
 #' @param trait numeric vector of interested trait to be analysized.
 #' @param genotype a character or factor vector labeling different genotypic varieties
+#'
 #' @return a data table with environmental variance indices
+#'
 #' @author Tien Cheng Wang
+#'
 #' @references
 #' \insertRef{roemer1917}{toolStability}
+#'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by summarise
 #' @importFrom Rdpack reprompt
+#'
 #' @export
+#'
 #' @examples
 #' data(Data)
 #' env.var <- environmental_variance(Data$'Yield',Data$Genotype)
