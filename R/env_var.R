@@ -1,7 +1,7 @@
 #' @title Environmental variance
 #'
 #' @description
-#' \code{env_var} is used to calculate variance of a genotype across environments.
+#' \code{environmental_variance} is used to calculate variance of a genotype across environments.
 #' @keywords static stability
 #'
 #' @details
