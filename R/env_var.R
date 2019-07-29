@@ -2,6 +2,7 @@
 #'
 #' @description
 #' \code{environmental_variance} is used to calculate variance of a genotype across environments.
+#'
 #' @keywords static stability
 #'
 #' @details
