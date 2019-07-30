@@ -18,7 +18,7 @@
 #' @importFrom stats sd var
 #' @importFrom data.table data.table
 #' @return a dataframe with descriptive statics
-#' @author Tien Cheng Wang (\email{tien.wang@@gem.uni-hannover.de})
+#' @author Tien Cheng Wang
 #'
 #' @examples
 #' data(Data)
