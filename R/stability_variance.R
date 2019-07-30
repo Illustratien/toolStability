@@ -1,0 +1,76 @@
+#' @title Stability variance
+#'
+#' @description
+#' \code{stability_variance} calculate variance of a genotype across environments.
+#'
+#' @keywords dynamic stability
+#'
+#' @details
+#' Stability variance is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
+#' Variety with low stability variance is considered as stable.
+#'
+#' \deqn{\sigma^{2}_{i} = \frac{1}{(G-1)(G-2)(E-1)}\big[
+#' \sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2-\sum_{i}\sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2
+#' \big]}
+#' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
+#' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
+#' denoting marginal means of genotype i and environemnt j,respectively. \cr
+#' \eqn{bar(X)_{..}} denote the overall mean of X.
+#'
+#'
+#' @param trait numeric vector of interested trait to be analysized.
+#' @param genotype a character or factor vector labeling different genotypic varieties
+#' @param environment a character or factor vector labeling different environments
+#'
+#' @return a data table with environmental variance indices
+#'
+#' @author Tien Cheng Wang
+#'
+#' @references
+#' \insertRef{shukla1972}{toolStability}
+#'
+#' @importFrom dplyr group_by summarise mutate
+#' @importFrom data.table data.table
+#' @importFrom Rdpack reprompt
+#'
+#' @export
+#'
+#' @examples
+#' data(Data)
+#' stability.variance <- stability_variance(Data$Yield,Data$Genotype,Data$Environment)
+#'
+stability_variance <- function(trait,genotype,environment){
+  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+
+  # combine vectors into data table
+  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+
+  X..bar=mean(trait)               # overall mean of X
+  G <- length(unique(genotype))    # number of genotypes
+  E <- length(unique(environment)) # number of environments
+
+  #genotypic mean
+  gen <- data.table(
+    summarise(
+      group_by(Data,Genotype), Xi.bar=mean(X)), key='Genotype')
+
+  #environmental mean
+  env <- data.table(
+    summarise(
+      group_by(Data,Environment),Xj.bar=mean(X)),key='Environment')
+
+  #combine genotypic and environmental mean to the original data
+  Data <- inner_join(Data,gen,by="Genotype")
+  Data <- inner_join(Data,env,by="Environment")
+
+  #calculate stability variance
+  res <- mutate(   #create stability.variance
+         summarise(# calculate wi
+         mutate(   #calculate sqr
+         group_by(Data[ , -which(names(Data) %in% "Environment")],Genotype),
+           sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
+           wi= sum(sqr, na.rm=TRUE)),      #end of summarise
+           stability.variance=sqrt((G*(G-1)*wi-sum(wi,na.rm=TRUE))/((E-1)*(G-2)*(G-2))))#end of mutate
+
+return(res[ ,c("Genotype","stability.variance")] )
+}
