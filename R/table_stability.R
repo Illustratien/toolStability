@@ -1,0 +1,125 @@
+#' @title Table stability
+#'
+#' @description
+#' \code{table_stability} export all the stability indicies in the package.
+#'
+#' @keywords static, dynamic, regression and nonparametric approach
+#'
+#' @details
+#' @seealso \link{\code{adjusted_correlation_coefficient}}
+#' @seealso \link{\code{coefficient_determination}}
+#' @seealso \link{\code{coefficient_regression}}
+#' @seealso \link{\code{deviation_mean_squares}}
+#' @seealso \link{\code{ecovalence}}
+#' @seealso \link{\code{environmental_variance}}
+#' @seealso \link{\code{genotypic_stability}}
+#' @seealso \link{\code{genotypic_superiority_measure}}
+#' @seealso \link{\code{mean_rank_difference}}
+#' @seealso \link{\code{stability_variance}}
+#' @seealso \link{\code{variance_of_rank}}
+#'
+#' @param trait numeric vector of interested trait to be analysized.
+#' @param genotype a character or factor vector labeling different genotypic varieties
+#' @param environment a character or factor vector labeling different environments
+#'
+#' @return a data table with environmental variance indices
+#'
+#' @author Tien Cheng Wang
+#'
+#' @references
+#' \insertRef{doering2018}{toolStability}
+#' \insertRef{pinthus1973}{toolStability}
+#' \insertRef{finlay1963}{toolStability}
+#' \insertRef{eberhart1966}{toolStability}
+#' \insertRef{wricke1962}{toolStability}
+#' \insertRef{roemer1917}{toolStability}
+#' \insertRef{hanson1970}{toolStability}
+#' \insertRef{lin1988}{toolStability}
+#' \insertRef{shukla1972}{toolStability}
+#' \insertRef{nassar1987}{toolStability}
+#'
+#' @importFrom dplyr group_by summarise mutate
+#' @importFrom data.table data.table
+#' @importFrom Rdpack reprompt
+#'
+#' @export
+#'
+#' @examples
+#' data(Data)
+#' table.stability <- table_stability(Data$Yield,Data$Genotype,Data$Environment)
+#'
+table_stability<- function(trait,genotype,environment){
+  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+  # combine vectors into data table
+  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  # overall mean of X
+  X..bar <- mean(trait)
+  G1 <- length(unique(genotype))
+  E1 <- length(unique(environment))
+
+  # for calculating mean.rank.difference
+  abs.dev.sum <- function(x){
+    # calculating sum of absolute difference
+    # for every combination of j< j'
+    res <- c()
+    n <- length(x)
+    for (i in seq(1,n-1)){
+      res <- sum(res,abs(x[(i+1):n]-x[i]))
+    }
+    res <- res*2/(n*(n-1))
+    return(res)
+  }
+
+  # calculate doefficient determination
+  res <- summarise(
+    mutate(
+      group_by(
+        ungroup(
+          mutate(
+            group_by(
+              ungroup(
+                mutate(
+                  group_by(
+                    Data,Genotype),
+                  corrected.X=X-mean(X))),
+              Environment),          # for each environment
+            Xj.bar=mean(X),
+            Xj.max=max(X),
+            corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min"))),# first calculate environmental mean
+        Genotype),                               # for each genotype
+      Xi.bar=mean(X),                            # then calculate genotypic mean
+      E=length(X),                               # number of environment
+      s2d1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-2),
+      s2d2=((Xj.bar-X..bar)^2)/(E-2),
+      Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
+      Bi2=(Xj.bar-X..bar)^2,
+      deviation=((X-Xi.bar)^2)/(E-1),
+      sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
+    Xi.bar=mean(X),
+    Xi.logvar=log10(var(X,na.rm = TRUE)),
+    Xi.logmean=log10(mean(X,na.rm=TRUE)),
+    ecovalence= mean(sqr, na.rm=TRUE),
+    Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
+    s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
+    s2xi=sum(deviation,na.rm=TRUE),
+    coefficient.determination=1-(s2di/s2xi),
+    coefficient.regression=1+sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE),
+    deviation.mean.squares=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
+    environmental.variance = sum(deviation, na.rm=TRUE),
+    bmin=sum(Bi,na.rm=TRUE),
+    genotypic.stability=sum(X-Xi.bar-bmin*Xj.bar+bmin*X..bar),
+    genotypic.superiority.measure=sum(X-Xj.max)^2/(2*length(X)),
+    mean.rank=mean(corrected.rank),
+    variance.of.rank=sum((corrected.rank-mean.rank)^2/(length(X)-1)),
+    wi= sum(sqr, na.rm=TRUE),
+    stability.variance=sqrt((G1*(G1-1)*wi-sum(wi,na.rm=TRUE))/((E1-1)*(G1-2)*(G1-2))),
+    mean.rank.difference= abs.dev.sum(corrected.rank))
+
+  b= sum((res$Xi.logmean-mean(res$Xi.logmean))*(res$Xi.logvar-mean(res$Xi.logvar)))/sum((res$Xi.logmean-mean(res$Xi.logmean))^2)
+  res$adjusted.coefficient.correlation=100*(1/res$Xi.bar)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
+
+nam.list <- c('coefficient.determination','coefficient.regression','deviation.mean.squares','environmental.variance',
+              'genotypic.stability','genotypic.superiority.measure','variance.of.rank','stability.variance','mean.rank.difference',
+              'adjusted.coefficient.correlation','ecovalence')
+  return(res[,nam.list])
+}
