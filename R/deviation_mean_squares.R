@@ -56,28 +56,16 @@ deviation_mean_squares <- function(trait,genotype,environment){
   Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
   
   X..bar=mean(trait)               # overall mean of X
-  G <- length(unique(genotype))    # number of genotypes
-  E <- length(unique(environment)) # number of environments
-  
-  #genotypic mean
-  gen <- data.table(
-    summarise(
-      group_by(Data,Genotype), Xi.bar=mean(X)), key='Genotype')
-  
-  #environmental mean
-  env <- data.table(
-    summarise(
-      group_by(Data,Environment),Xj.bar=mean(X)),key='Environment')
-  
-  #combine genotypic and environmental mean to the original data
-  Data <- inner_join(Data,gen,by="Genotype")
-  Data <- inner_join(Data,env,by="Environment")
-  
-  #calculate stability variance
-  res<-summarise(
+  res <- summarise(
     mutate(
-      group_by(Data,Genotype),
-      E=length(X),
+      group_by(
+        ungroup(
+          mutate(
+            group_by(Data,Environment),          # for each environment
+            Xj.bar=mean(X))),                    # first calculate environmental mean
+        Genotype),                               # for each genotype
+      Xi.bar=mean(X),                            # then calculate genotypic mean
+      E=length(X),                               # number of environment
       s2d1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-2),
       s2d2=((Xj.bar-X..bar)^2)/(E-2),
       Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),

@@ -46,31 +46,20 @@ stability_variance <- function(trait,genotype,environment){
   Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
 
   X..bar=mean(trait)               # overall mean of X
-  G <- length(unique(genotype))    # number of genotypes
-  E <- length(unique(environment)) # number of environments
-
-  #genotypic mean
-  gen <- data.table(
-    summarise(
-      group_by(Data,Genotype), Xi.bar=mean(X)), key='Genotype')
-
-  #environmental mean
-  env <- data.table(
-    summarise(
-      group_by(Data,Environment),Xj.bar=mean(X)),key='Environment')
-
-  #combine genotypic and environmental mean to the original data
-  Data <- inner_join(Data,gen,by="Genotype")
-  Data <- inner_join(Data,env,by="Environment")
-
-  #calculate stability variance
-  res <- mutate(   #create stability.variance
-         summarise(# calculate wi
-         mutate(   #calculate sqr
-         group_by(Data[ , -which(names(Data) %in% "Environment")],Genotype),
-           sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
-           wi= sum(sqr, na.rm=TRUE)),      #end of summarise
-           stability.variance=sqrt((G*(G-1)*wi-sum(wi,na.rm=TRUE))/((E-1)*(G-2)*(G-2))))#end of mutate
+  G <- length(unique(genotype))
+  res <- summarise(
+    mutate(
+      group_by(
+        ungroup(
+          mutate(
+            group_by(Data,Environment),          # for each environment
+            Xj.bar=mean(X))),                    # first calculate environmental mean
+        Genotype),                               # for each genotype
+      Xi.bar=mean(X),                            # then calculate genotypic mean
+      E=length(X),                               # number of environment
+      sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
+    wi= sum(sqr, na.rm=TRUE)),
+    stability.variance=sqrt((G*(G-1)*wi-sum(wi,na.rm=TRUE))/((E-1)*(G-2)*(G-2))))#end of mutate  sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
 
 return(res[ ,c("Genotype","stability.variance")] )
 }

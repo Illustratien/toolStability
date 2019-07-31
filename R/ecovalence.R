@@ -38,28 +38,17 @@
 ecovalence <- function(trait, genotype,environment){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
   X..bar=mean(trait)
-  # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
-
-  #genotypic mean
-  gen <- data.table(
-         summarise(
-         group_by(Data,Genotype), Xi.bar=mean(X)), key='Genotype')
-
-  #environmental mean
-  env <- data.table(
-         summarise(
-         group_by(Data,Environment),Xj.bar=mean(X)),key='Environment')
-
-  #combine genotypic and environmental mean to the original data
-  Data <- inner_join(Data,gen,by="Genotype")
-  Data <- inner_join(Data,env,by="Environment")
-
-  #calculate ecovalence
   res <- summarise(
-  mutate(group_by(Data[ , -which(names(Data) %in% "Environment")],Genotype),
-         sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
-  ecovalence= mean(sqr, na.rm=TRUE))
+    mutate(
+      group_by(
+        ungroup(
+          mutate(
+            group_by(Data,Environment),          # for each environment
+            Xj.bar=mean(X))),                    # first calculate environmental mean
+        Genotype),                               # for each genotype
+      Xi.bar=mean(X),                            # then calculate genotypic mean
+      sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
+    ecovalence= mean(sqr, na.rm=TRUE))
 
   return(res)
 }
