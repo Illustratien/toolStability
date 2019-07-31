@@ -7,7 +7,7 @@
 #'
 #' @details
 #' Coefficient of regression is calculatd based on regression function.
-#' Variety with low stability variance is considered as stable.
+#' Variety with low coefficient of regression is considered as stable.
 #' Under the linear model
 #' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
 #' where Y is the predicted phenotypic values, \eqn{g_{i}}, \eqn{e_{j}} and \eqn{\mu} denoting
