@@ -24,10 +24,10 @@
 #'
 #' Environmental variance (\link(\code(environmental_variance)))can be expressed as :
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }
-#' 
+#'
 #' Coefficient of determination may be expressed as:
 #' \deqn{ r^{2}_{i} = 1 - \frac{s^{2}_{di}}{s^{2}_{xi}}}
-#' 
+#'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
 #' denoting marginal means of genotype i and environemnt j,respectively. \cr
@@ -57,7 +57,6 @@
 #'
 coefficient_determination <- function(trait,genotype,environment){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
-  
   # combine vectors into data table
   Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
     mutate(
@@ -77,7 +76,7 @@ coefficient_determination <- function(trait,genotype,environment){
     Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
     s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
     s2xi=sum(dev,na.rm=TRUE),
-    coefficient.determination=1-(s2di/s2xi))
-  
+    coefficient.determination=1-(s2di/s2xi))    # final product
+
   return(res[ ,c("Genotype","coefficient.determination")] )
 }
