@@ -59,6 +59,10 @@ coefficient_determination <- function(trait,genotype,environment){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
   # combine vectors into data table
   Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  # overall mean of X
+  X..bar=mean(trait)
+  # calculate doefficient determination
+  res <- summarise(
     mutate(
       group_by(
         ungroup(

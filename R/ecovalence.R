@@ -50,5 +50,5 @@ ecovalence <- function(trait, genotype,environment){
       sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
     ecovalence= mean(sqr, na.rm=TRUE))
 
-  return(res)
+  return(res[,c('Genotype','ecovalence')])
 }
