@@ -95,26 +95,42 @@ table_stability<- function(data,trait,genotype,environment,lambda){
     sqr=(X-Xi.bar-Xj.bar+X..bar)^2,
     sqr1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-1),
     Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
-    s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
-    s2xi=sum(deviation,na.rm=TRUE),
-    coefficient.determination=1-(s2di/s2xi),
-    coefficient.regression=1+sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE),
-    deviation.mean.squares=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
-    environmental.variance = sum(deviation, na.rm=TRUE),
-    bmin=sum(Bi,na.rm=TRUE),
-    genotypic.stability=sum(X-Xi.bar-bmin*Xj.bar+bmin*X..bar),
-    genotypic.superiority.measure=sum(X-Xj.max)^2/(2*length(X)),
-    mean.rank=mean(corrected.rank),
-    variance.of.rank=sum((corrected.rank-mean.rank)^2/(length(X)-1)),
-    wi= sum(sqr, na.rm=TRUE),
-    stability.variance=sqrt((G1*(G1-1)*wi-sum(wi,na.rm=TRUE))/((E1-1)*(G1-2)*(G1-2))),
-    mean.rank.difference= abs.dev.sum(corrected.rank))
+    Mj=(X-Xj.max)^2/(2*length(X)))
 
+  bmin  <- min(res$Bi)#for genotypic stability
+  wisum <- sum(res$sqr1)
+  res <- summarise(res,
+                   Mean.Yield=mean(X),
+                   Xi.logvar=log10(var(X,na.rm = TRUE)),
+                   Xi.logmean=log10(mean(X,na.rm=TRUE)),
+                   Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
+                   s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
+                   s2xi=sum(deviation,na.rm=TRUE),
+                   wi= sum(sqr1, na.rm=TRUE),
+                   mean.rank=mean(corrected.rank),
+                   #stability indices
+                   Ecovalence= mean(sqr, na.rm=TRUE),
+                   Coefficient.of.determination=1-(s2di/s2xi),
+                   Coefficient.of.regression=1+sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE),
+                   Deviation.mean.squares=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
+                   Environmental.variance = sum(deviation, na.rm=TRUE),
+                   Genotypic.stability=sum((X-Mean.Yield-bmin*Xj.bar+bmin*X..bar)^2),
+                   Genotypic.superiority.measure=sum(Mj),
+                   Variance.of.rank=sum((corrected.rank-mean.rank)^2/(length(X)-1)),
+                   Stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)),
+                   Mean.rank.difference= abs.dev.sum(corrected.rank),
+                   Safty.first.index=pnorm((lambda-mean(X))/sd(X)),
+                   Normality=shapiro.test(X)$p.value>=0.05)
+  # for adjusted correlation variation
   b= sum((res$Xi.logmean-mean(res$Xi.logmean))*(res$Xi.logvar-mean(res$Xi.logvar)))/sum((res$Xi.logmean-mean(res$Xi.logmean))^2)
-  res$adjusted.coefficient.correlation=100*(1/res$Xi.bar)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
 
-nam.list <- c('coefficient.determination','coefficient.regression','deviation.mean.squares','environmental.variance',
-              'genotypic.stability','genotypic.superiority.measure','variance.of.rank','stability.variance','mean.rank.difference',
-              'adjusted.coefficient.correlation','ecovalence')
+  res$Adjusted.coefficient.of.variation=100*(1/res$Mean.Yield)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
+  # replace negative value to zero as stated by Shukla, 1972.
+  res$Stability.variance[res$Stability.variance<0] <- 0
+  if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
+
+  nam.list <- c('Genotype','Mean.Yield','Normality','Safty.first.index','Coefficient.of.determination','Coefficient.of.regression','Deviation.mean.squares','Environmental.variance',
+                'Genotypic.stability','Genotypic.superiority.measure','Variance.of.rank','Stability.variance','Mean.rank.difference',
+                'Adjusted.coefficient.of.variation','Ecovalence')
   return(res[,nam.list])
 }
