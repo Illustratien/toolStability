@@ -48,6 +48,7 @@ stability_variance <- function(data,trait,genotype,environment){
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
 
