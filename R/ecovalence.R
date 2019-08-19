@@ -40,10 +40,11 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' eco.valance <- ecovalence(Data,'Yield','Genotype','Environment')
 
 ecovalence <- function(data,trait, genotype,environment){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
+  #combine vecotr into data table
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  X..bar=mean(Data$X)
 
-ecovalence <- function(trait, genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
-  X..bar=mean(trait)
   res <- summarise(
     mutate(
       group_by(
