@@ -3,13 +3,18 @@
 \docType{data}
 \name{Data}
 \alias{Data}
-\title{Wheat APSIM model data set}
-\format{dataframe}
+\title{Wheat APSIM model simulated database}
+\format{A dataframe with ? observations on the following 3 variables.
+\itemize{
+\item{\code{Yield}}{??? }
+\item{\code{Genotype}}{genotype, ? varieties}
+\item{\code{Environment}}{environment, ? environments}
+ }}
 \usage{
 data(Data)
 }
 \description{
-Wheat APSIM model simulated database
+Multi-environment trail evaluating ? genotypes in ? locations.
 }
 \examples{
 data(Data)
@@ -17,6 +22,6 @@ data(Data)
 col='lightblue',border='darkblue')}
 }
 \references{
-\insertRef{10.1371/journal.pone.0146385}{toolStability}
+\insertRef{casadebaig2016}{toolStability}
 }
 \keyword{datasets}
