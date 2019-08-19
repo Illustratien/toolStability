@@ -18,16 +18,15 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
 #' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
 #'
-#' Genotypic stability(\link(\code(genotypic_stability))):
-#' \deqn{ s^{2}_{di} = \frac{1}{E-2} \big[
-#'  sum_{j}(X_{ij} -bar(X_{i.})- bar(X_{.j})+bar(X_{..})^{2} - (b_{i} - 1)^{2})
-#'  (bar(X_{.j}-bar(X_{..})))^{2}} \big]
+#' Genotypic stability:
+#' \deqn{ D_{i}^{2} = \sum_{j} (X_{ij} - \bar{X_{i.}}- b_{min}\bar{X_{.j}} +  b_{min}\bar{X_{..}}^{2}}
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
+#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
 #' denoting marginal means of genotype i and environemnt j,respectively. \cr
-#' \eqn{bar(X)_{..}} denote the overall mean of X.
+#' \eqn{\bar{X_{..}}} denote the overall mean of X.
 #'
+#' \eqn{b_{min}} is the minimum value of (\code{\link{coefficient_of_regression}}) over all enrionment.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.

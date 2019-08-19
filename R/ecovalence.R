@@ -11,9 +11,9 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' interaction all over the environment.
 #' Variety with low ecovalence is considered as stable.
 #'
-#' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar{X}_{i.})^2}{E-1}}
+#' \deqn{W_{i} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}}^{2}}{E-1}}
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
+#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} denoting marginal means of genotype i.
 #'
 #' Here we modified the original function by dividing (E-1) after summation in order to balance the different number of envionment condition.
 #'

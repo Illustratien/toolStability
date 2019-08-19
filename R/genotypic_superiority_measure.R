@@ -10,9 +10,9 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regression function.
 #' Variety with low genotypic superiority measure is considered as stable.
 #'
-#' \deqn{P_{i} = \sum_{j}^{n} (X_{ij}-M_{j})^{2}/(2n)}
+#' \deqn{P_{i} = \sum_{j}^{n} \frac{(X_{ij}-M_{j})^{2}}{2n}}
 #' where \eqn{X_{ij}} stands for observed trait and
-#' \ean{M_{j}} stands for maximum response among all culitvars in the jth location.
+#' \eqn{M_{j}} stands for maximum response among all culitvars in the jth location.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.

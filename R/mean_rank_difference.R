@@ -10,8 +10,14 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' Mean rank difference (Nassar and Hühn, 1987) is calculatd based on regression function.
 #' Variety with low mean rank difference is considered as stable.
 #'
-#' \deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-bar(r)_{i.}|}{E*(E-1)/2}}
-#' where \eqn{r_{ij}} is the rank of genotype i in environment j , based on the corrected \eqn{X_{ij}} values.
+#' Correction for each genotype i was done by subtraction of marginal genotypic mean \eqn{\bar{X_{i.}}} and the addition of overall mean\eqn{\bar{X_{..}}}.
+#' \deqn{X_{corrected ij} = X_{ij} - \bar{X_{i.}} + \bar{X_{..}}}
+#' Then calculated the rank all genotypes for each environment j
+#' \deqn{r_{ij} = rank(X_{corrected ij})}
+#' Mean rank difference is calculated as the following equation.
+#' \deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-\bar{r_{i.}}|}{\frac{E\cdot(E-1)}{2}}}
+#' where \eqn{r_{ij}} is the rank of genotype i in environment j and \eqn{\bar{r_{i.}}} is the marginal rank of genotype i over environment,
+#' based on the corrected \eqn{X_{ij}} values.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.

@@ -18,10 +18,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
 #' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
 #'
-#' Deviation mean squares(\link(\code(deviation_mean_squares))):
-#' \deqn{ s^{2}_{di} = \frac{1}{E-2} \big[
-#'  sum_{j}(X_{ij} -bar(X_{i.})- bar(X_{.j})+bar(X_{..})^{2} - (b_{i} - 1)^{2})
-#'  (bar(X_{.j}-bar(X_{..})))^{2}} \big]
+#' Deviation mean squares(\code{\link{deviation_mean_squares}}):
+#' \deqn{
+#' s^{2}_{di} = \frac{1}{E-2} \left [
+#' \sum_{j} (X_{ij} - \bar{X_{i.}}- \bar{X_{.j}} + \bar{X_{..}}^{2} - (b_{i} - 1)^{2})\cdot
+#' (\bar{X_{.j}}- \bar{X_{..}})^{2} \right ]
+#' }
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr

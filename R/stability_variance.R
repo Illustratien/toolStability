@@ -10,13 +10,15 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' Stability variance (Shukla, 1972) is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
 #' Variety with low stability variance is considered as stable.
 #'
-#' \deqn{\sigma^{2}_{i} = \frac{1}{(G-1)(G-2)(E-1)}\big[
-#' \sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2-\sum_{i}\sum_{j}(X_{ij} -bar(X_{i.})_{i.})^2
-#' \big]}
+#' \deqn{
+#' \Sigma^{2}_{i} = \frac{1}{(G-1)\cdot(G-2)\cdot(E-1)} \left [
+#' G \cdot(G-1)\cdot \sum_{j} (X_{ij} - \bar{X_{i.}}_\bar{X_{.j}} + \bar{X_{..}})^{2}- \sum_{i} \sum_{j} (X_{ij} - \bar{X_{i.}}_\bar{X_{.j}} + \bar{X_{..}})^{2}
+#' \right ]
+#' }
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
+#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
 #' denoting marginal means of genotype i and environemnt j,respectively. \cr
-#' \eqn{bar(X)_{..}} denote the overall mean of X.
+#' \eqn{\bar{X_{..}}} denote the overall mean of X.
 #'
 #'
 #' @param data a dataframe containing trait, genotype and environment.
