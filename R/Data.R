@@ -1,17 +1,23 @@
-#' Wheat APSIM model data set
+#' @title Wheat APSIM model simulated database
 #'
-#' Wheat APSIM model simulated database
+#' @keywords datasets
 #'
 #' @docType data
 #'
 #' @usage data(Data)
 #'
-#' @format dataframe
+#' @description Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years.
 #'
-#' @keywords datasets
+#' @format A dataframe with 220 observations on the following 3 variables.
+#' \itemize{
+#' \item{\code{Yield}}{kg ha^{-1} }
+#' \item{\code{Genotype}}{genotype, 5 varieties}
+#' \item{\code{Environment}}{environment, 44 environments}
+#'  }
+#'
 #' @importFrom Rdpack reprompt
 #' @references
-#' \insertRef{10.1371/journal.pone.0146385}{toolStability}
+#' \insertRef{casadebaig2016}{toolStability}
 #'
 #'
 #' @examples
