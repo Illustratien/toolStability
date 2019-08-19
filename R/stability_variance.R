@@ -20,6 +20,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' denoting marginal means of genotype i and environemnt j,respectively. \cr
 #' \eqn{\bar{X_{..}}} denote the overall mean of X.
 #'
+#' Negative values of stability variance is replaced with 0.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
