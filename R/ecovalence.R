@@ -29,7 +29,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @references
 #' \insertRef{wricke1962}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise inner_join
+#' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
