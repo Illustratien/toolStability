@@ -18,11 +18,14 @@
 #' @seealso \link{\code{stability_variance}}
 #' @seealso \link{\code{variance_of_rank}}
 #'
-#' @param trait numeric vector of interested trait to be analysized.
-#' @param genotype a character or factor vector labeling different genotypic varieties
-#' @param environment a character or factor vector labeling different environments
 #'
-#' @return a data table with environmental variance indices
+#' @param data a dataframe containing trait, genotype and environment.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
+#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
+#' @param environment colname of a column containing a character or factor vector labeling different environments
+#' @param lambda threshold value of trait that define stability.
+#'
+#' @return a data table with multiple stability indices
 #'
 #' @author Tien Cheng Wang
 #'
