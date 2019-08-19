@@ -33,7 +33,6 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
-#' @importFrom gtools combinations
 #' @importFrom Rdpack reprompt
 #'
 #' @export
