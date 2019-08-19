@@ -207,9 +207,6 @@ Stability variance (Shukla, 1972) is calculatd based on lindear combination of e
  Negative values of stability variance is replaced with 0.
 
 
-W_i = \Simga_{j}(X_{ij} -bar(X_{i.})_{i.})^2
- where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
- in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
 ## variance of rank
  Variance of rank is calculatd based on regression function.
  Variety with low variance of rank is considered as stable.
