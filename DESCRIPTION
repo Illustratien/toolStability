@@ -12,9 +12,7 @@ Description: This package is aim at bring the user friendly tool for calculating
     #Use four spaces when indenting paragraphs within the Description.
 Depends: R (>= 3.1.0)
 Imports: dplyr,
-	 magrittr,
 	 data.table,
-	 ggplot2,
 	 Rdpack
 RdMacros: Rdpack
 License: MIT + file LICENSE
