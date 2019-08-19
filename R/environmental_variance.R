@@ -23,7 +23,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @author Tien Cheng Wang
 #'
 #' @references
-#' \insertRef{roemer1917}{toolStability}\insertRef{shukla1972}{toolStability}
+#' \insertRef{roemer1917}{toolStability}
 #'
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
