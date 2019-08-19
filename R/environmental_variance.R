@@ -35,8 +35,9 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' data(Data)
 #' environmental.variance <- environmental_variance(Data,'Yield','Genotype')
 
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+environmental_variance <- function(data,trait,genotype){
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
+  # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]])
 
   #calculate environmental variance

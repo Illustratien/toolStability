@@ -55,6 +55,8 @@ mean_rank_difference <- function(data,trait,genotype,environment){
   }
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  X..bar <- mean(data[[trait]])
+
   res <- summarise(
     group_by(
         mutate(

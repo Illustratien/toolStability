@@ -49,7 +49,7 @@
 #'
 #' @examples
 #' data(Data)
-#' table.stability <- table_stability(Data$Yield,Data$Genotype,Data$Environment)
+#' table.stability <- table_stability(Data,'Yield','Genotype','Environment',median(Data$Yield))
 #'
 table_stability<- function(data,trait,genotype,environment,lambda){
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
