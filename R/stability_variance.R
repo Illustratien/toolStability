@@ -50,21 +50,19 @@ stability_variance <- function(data,trait,genotype,environment){
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
 
-  X..bar=mean(trait)               # overall mean of X
-  G <- length(unique(genotype))
-  res <- summarise(
-    mutate(
-      group_by(
-        ungroup(
-          mutate(
-            group_by(Data,Environment),          # for each environment
-            Xj.bar=mean(X))),                    # first calculate environmental mean
-        Genotype),                               # for each genotype
-      Xi.bar=mean(X),                            # then calculate genotypic mean
-      E=length(X),                               # number of environment
-      sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
-    wi= sum(sqr, na.rm=TRUE)),
-    stability.variance=sqrt((G*(G-1)*wi-sum(wi,na.rm=TRUE))/((E-1)*(G-2)*(G-2))))#end of mutate  sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
+  res <- mutate(
+    group_by(
+      mutate(
+        group_by(Data,Environment),          # for each environment
+        Xj.bar=mean(X)),                    # first calculate environmental mean
+      Genotype),                               # for each genotype
+    Xi.bar=mean(X),                            # then calculate genotypic mean
+    sqr=((X-Xi.bar-Xj.bar+X..bar)^2)/(length(X)-1))
+  wisum <- sum(res$sqr)
+  res <- summarise(res,
+                   wi= sum(sqr, na.rm=TRUE),
+                   stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)))#end of mutate  sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
+  res$stability.variance[res$stability.variance<0] <- 0               # replace negative value to zero as stated by Shukla, 1972.
 
-return(res[ ,c("Genotype","stability.variance")] )
+  return(res[ ,c("Genotype","stability.variance")] )
 }

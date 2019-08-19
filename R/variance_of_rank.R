@@ -50,15 +50,13 @@ variance_of_rank <- function(data,trait,genotype,environment){
 
   res <- summarise(
     group_by(
-      ungroup(
-        mutate(
-          group_by(
-            ungroup(
-              mutate(
-                group_by(Data,Genotype),
-                corrected.X=X-mean(X))),
-            Environment),
-          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min"))),
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data,Genotype),
+            corrected.X=X-mean(X)+X..bar),
+          Environment),
+        corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),
       Genotype),
     mean.rank=mean(corrected.rank),
     variance.of.rank=sum((corrected.rank-mean.rank)^2/(length(X)-1)))

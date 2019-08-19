@@ -69,34 +69,28 @@ table_stability<- function(data,trait,genotype,environment,lambda){
   }
 
   # calculate doefficient determination
-  res <- summarise(
-    mutate(
-      group_by(
-        ungroup(
-          mutate(
-            group_by(
-              ungroup(
-                mutate(
-                  group_by(
-                    Data,Genotype),
-                  corrected.X=X-mean(X))),
-              Environment),          # for each environment
-            Xj.bar=mean(X),
-            Xj.max=max(X),
-            corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min"))),# first calculate environmental mean
-        Genotype),                               # for each genotype
-      Xi.bar=mean(X),                            # then calculate genotypic mean
-      E=length(X),                               # number of environment
-      s2d1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-2),
-      s2d2=((Xj.bar-X..bar)^2)/(E-2),
-      Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
-      Bi2=(Xj.bar-X..bar)^2,
-      deviation=((X-Xi.bar)^2)/(E-1),
-      sqr=(X-Xi.bar-Xj.bar+X..bar)^2),
-    Xi.bar=mean(X),
-    Xi.logvar=log10(var(X,na.rm = TRUE)),
-    Xi.logmean=log10(mean(X,na.rm=TRUE)),
-    ecovalence= mean(sqr, na.rm=TRUE),
+  res <-mutate(
+    group_by(
+        mutate(
+          group_by(
+              mutate(
+                group_by(
+                  Data,Genotype),
+                corrected.X=X-mean(X)+X..bar),
+            Environment),          # for each environment
+          Xj.bar=mean(X),
+          Xj.max=max(X),
+          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),# first calculate environmental mean
+      Genotype),                               # for each genotype
+    Xi.bar=mean(X),                            # then calculate genotypic mean
+    E=length(X),                               # number of environment
+    s2d1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-2),
+    s2d2=((Xj.bar-X..bar)^2)/(E-2),
+    Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
+    Bi2=(Xj.bar-X..bar)^2,
+    deviation=((X-Xi.bar)^2)/(E-1),
+    sqr=(X-Xi.bar-Xj.bar+X..bar)^2,
+    sqr1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-1),
     Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
     s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
     s2xi=sum(deviation,na.rm=TRUE),

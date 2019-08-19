@@ -25,7 +25,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @references
 #' \insertRef{roemer1917}{toolStability}\insertRef{shukla1972}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise
+#' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -39,12 +39,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]])
 
-
-    #calculate environmental variance
-    res <- summarise(
-           mutate(group_by(Data,Genotype),#end of group_by
-           deviation=(X-mean(X))^2/(length(X)-1)),
-           environmental.variance = sum(deviation, na.rm=TRUE))#end of summarise
+  #calculate environmental variance
+  res <- summarise(
+    mutate(
+      group_by(Data,Genotype),
+      deviation=(X-mean(X))^2/(length(X)-1)),
+    environmental.variance = sum(deviation, na.rm=TRUE))
 
   return(res)
 }

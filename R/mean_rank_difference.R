@@ -57,16 +57,15 @@ mean_rank_difference <- function(data,trait,genotype,environment){
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
   res <- summarise(
     group_by(
-      ungroup(
         mutate(
           group_by(
-            ungroup(
               mutate(
                 group_by(Data,Genotype),
-                corrected.X=X-mean(X))),
+                corrected.X=X-mean(X)+X..bar),
             Environment),
-          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min"))),
+          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),
       Genotype),
     mean.rank.difference= abs.dev.sum(corrected.rank))
+
   return(res[ ,c("Genotype","mean.rank.difference")] )
 }

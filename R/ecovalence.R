@@ -47,10 +47,9 @@ ecovalence <- function(trait, genotype,environment){
   res <- summarise(
     mutate(
       group_by(
-        ungroup(
-          mutate(
-            group_by(Data,Environment),          # for each environment
-            Xj.bar=mean(X))),                    # first calculate environmental mean
+        mutate(
+          group_by(Data,Environment),          # for each environment
+          Xj.bar=mean(X)),                    # first calculate environmental mean
         Genotype),                               # for each genotype
       Xi.bar=mean(X),                            # then calculate genotypic mean
       sqr=(X-Xi.bar-Xj.bar+X..bar)^2),

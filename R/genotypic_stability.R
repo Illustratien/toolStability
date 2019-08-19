@@ -55,20 +55,19 @@ genotypic_stability <- function(data,trait,genotype,environment){
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
 
-  X..bar=mean(trait)               # overall mean of X
-  res <- summarise(
-    mutate(
-      group_by(
-        ungroup(
-          mutate(
-            group_by(Data,Environment),          # for each environment
-            Xj.bar=mean(X))),                    # first calculate environmental mean
-        Genotype),                               # for each genotype
-      Xi.bar=mean(X),                            # then calculate genotypic mean
-      Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
-      Bi2=(Xj.bar-X..bar)^2),
-    Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
-    bmin=sum(Bi,na.rm=TRUE),
-    genotypic.stability=sum(X-Xi.bar-bmin*Xj.bar+bmin*X..bar))
-  return(res[,c('Genotype','genotypic.stability')])
+  X..bar=mean(Data$X)              # overall mean of X
+  res <-mutate(
+    group_by(
+      mutate(
+        group_by(Data,Environment),          # for each environment
+        Xj.bar=mean(X)),                    # first calculate environmental mean
+      Genotype),                               # for each genotype
+    Xi.bar=mean(X),                            # then calculate genotypic mean
+    Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
+    Bi2=(Xj.bar-X..bar)^2,
+    Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)))
+  bmin=min(res$Bi)
+  res <- summarise(res,genotypic.stability=sum((X-Xi.bar-bmin*Xj.bar+bmin*X..bar)^2))
+
+  return(res)
 }

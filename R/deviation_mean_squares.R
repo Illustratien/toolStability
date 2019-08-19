@@ -59,14 +59,12 @@ deviation_mean_squares <- function(data,trait,genotype,environment){
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
   X..bar=mean(Data$X)               # overall mean of X
 
-  X..bar=mean(trait)               # overall mean of X
   res <- summarise(
     mutate(
       group_by(
-        ungroup(
-          mutate(
-            group_by(Data,Environment),          # for each environment
-            Xj.bar=mean(X))),                    # first calculate environmental mean
+        mutate(
+          group_by(Data,Environment),          # for each environment
+          Xj.bar=mean(X)),                    # first calculate environmental mean
         Genotype),                               # for each genotype
       Xi.bar=mean(X),                            # then calculate genotypic mean
       E=length(X),                               # number of environment
