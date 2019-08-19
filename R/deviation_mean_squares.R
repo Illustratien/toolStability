@@ -26,9 +26,9 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' }
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} and  \eqn{bar(X)_{.j}} \cr
+#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
 #' denoting marginal means of genotype i and environemnt j,respectively. \cr
-#' \eqn{bar(X)_{..}} denote the overall mean of X.
+#' \eqn{\bar{X_{..}}} denote the overall mean of X.
 #'
 #'
 #' @param data a dataframe containing trait, genotype and environment.
