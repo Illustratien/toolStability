@@ -14,10 +14,11 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{bar(X)_{i.}} denoting marginal means of genotype i.
 #'
-#' @param trait numeric vector of interested trait to be analysized.
-#' @param genotype a character or factor vector labeling different genotypic varieties
+#' @param data a dataframe containing trait, genotype and environment.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
+#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #'
-#' @return a data table with environmental variance indices
+#' @return a data table with environmental variance
 #'
 #' @author Tien Cheng Wang
 #'

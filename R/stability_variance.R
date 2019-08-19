@@ -19,11 +19,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' \eqn{bar(X)_{..}} denote the overall mean of X.
 #'
 #'
-#' @param trait numeric vector of interested trait to be analysized.
-#' @param genotype a character or factor vector labeling different genotypic varieties
-#' @param environment a character or factor vector labeling different environments
+#' @param data a dataframe containing trait, genotype and environment.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
+#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
+#' @param environment colname of a column containing a character or factor vector labeling different environments
 #'
-#' @return a data table with environmental variance indices
+#' @return a data table with stability variance
 #'
 #' @author Tien Cheng Wang
 #'

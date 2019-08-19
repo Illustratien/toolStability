@@ -13,11 +13,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' \deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-bar(r)_{i.}|}{E*(E-1)/2}}
 #' where \eqn{r_{ij}} is the rank of genotype i in environment j , based on the corrected \eqn{X_{ij}} values.
 #'
-#' @param trait numeric vector of interested trait to be analysized.
-#' @param genotype a character or factor vector labeling different genotypic varieties
-#' @param environment a character or factor vector labeling different environments
+#' @param data a dataframe containing trait, genotype and environment.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
+#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
+#' @param environment colname of a column containing a character or factor vector labeling different environments
 #'
-#' @return a data table with environmental variance indices
+#' @return a data table with mean rank difference
 #'
 #' @author Tien Cheng Wang
 #'
