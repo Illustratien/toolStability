@@ -44,7 +44,7 @@
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#'
+#' @importFrom stats pnorm sd shapiro.test
 #' @export
 #'
 #' @examples
