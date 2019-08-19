@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords regression approach
 #'
 #' @details
-#' deviation mean squares is calculatd based on regression function.
+#' Deviation mean squares (Eberhart and Russell, 1966) is calculatd based on regression function.
 #' Variety with low stability variance is considered as stable.
 #' Under the linear model
 #' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}

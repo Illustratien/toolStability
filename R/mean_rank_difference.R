@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords nonparametric approach
 #'
 #' @details
-#' Mean rank difference is calculatd based on regression function.
+#' Mean rank difference (Nassar and Hühn, 1987) is calculatd based on regression function.
 #' Variety with low mean rank difference is considered as stable.
 #'
 #' \deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-bar(r)_{i.}|}{E*(E-1)/2}}

@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords dynamic stability
 #'
 #' @details
-#' Stability variance is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
+#' Stability variance (Shukla, 1972) is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
 #' Variety with low stability variance is considered as stable.
 #'
 #' \deqn{\sigma^{2}_{i} = \frac{1}{(G-1)(G-2)(E-1)}\big[

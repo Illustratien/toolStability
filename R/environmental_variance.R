@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords static stability
 #'
 #' @details
-#' Environmental variance (Roemer 1917) is calculated by squared and suming up all deviation from genotypic mean for each genotype.
+#' Environmental variance (Roemer, 1917) is calculated by squared and suming up all deviation from genotypic mean for each genotype.
 #' The larger the environmental variance of one genotype is, the lower the stability.
 #'
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j}(X_{ij} - \bar(X)_{i.})^2}{E-1} }

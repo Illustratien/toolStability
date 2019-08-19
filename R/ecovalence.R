@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords dynamic stability
 #'
 #' @details
-#' Ecovalence is calcualted based on square and sum up the genotype–environment
+#' Ecovalence (Wricke, 1962) is calcualted based on square and sum up the genotype–environment
 #' interaction all over the environment.
 #' Variety with low ecovalence is considered as stable.
 #'

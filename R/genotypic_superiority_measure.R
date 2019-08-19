@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords dynamic stability
 #'
 #' @details
-#' Genotypic superiority measure is calculatd based on regression function.
+#' Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regression function.
 #' Variety with low genotypic superiority measure is considered as stable.
 #'
 #' \deqn{P_{i} = \sum_{j}^{n} (X_{ij}-M_{j})^{2}/(2n)}

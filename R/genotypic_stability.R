@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords regression approach
 #'
 #' @details
-#' Genotypic stability is calculatd based on regression function.
+#' Genotypic stability (Hanson, 1970) is calculatd based on regression function.
 #' Variety with low stability variance is considered as stable.
 #' Under the linear model
 #' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
