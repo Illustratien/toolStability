@@ -49,13 +49,13 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' deviation.mean.squares <- deviation_mean_squares(Data$Yield,Data$Genotype,Data$Environment)
+#' deviation.mean.squares <- deviation_mean_squares(Data,'Yield','Genotype','Environment')
 #'
-deviation_mean_squares <- function(trait,genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
-
+deviation_mean_squares <- function(data,trait,genotype,environment){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  X..bar=mean(Data$X)               # overall mean of X
 
   X..bar=mean(trait)               # overall mean of X
   res <- summarise(

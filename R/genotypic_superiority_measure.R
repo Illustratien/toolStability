@@ -34,13 +34,13 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' genotypic.superiority.measure <- genotypic_superiority_measure(Data$Yield,Data$Genotype,Data$Environment)
+#' res <- genotypic_superiority_measure(Data,'Yield','Genotype','Environment')
 #'
-genotypic_superiority_measure <- function(trait,genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+genotypic_superiority_measure <- function(data,trait,genotype,environment){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
 
   # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
 
 res <- summarise(
   group_by(

@@ -36,11 +36,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' data(Data)
 #' variance.of.rank <- variance_of_rank(Data$Yield,Data$Genotype,Data$Environment)
 #'
-variance_of_rank <- function(trait,genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
-
+variance_of_rank <- function(data,trait,genotype,environment){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  X..bar <- mean(data[[trait]])
+
   res <- summarise(
     group_by(
       ungroup(

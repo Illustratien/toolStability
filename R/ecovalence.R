@@ -37,7 +37,9 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' eco.valance <- ecovalence(Data$Yield,Data$Genotype,Data$Environment)
+#' eco.valance <- ecovalence(Data,'Yield','Genotype','Environment')
+
+ecovalence <- function(data,trait, genotype,environment){
 
 ecovalence <- function(trait, genotype,environment){
   if(!is.numeric(trait)){stop('Trait must be a numeric vector')}

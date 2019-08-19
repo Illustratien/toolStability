@@ -34,10 +34,10 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' mean.rank.difference<- mean_rank_difference(Data$Yield,Data$Genotype,Data$Environment)
+#' mean.rank.difference<- mean_rank_difference(Data,'Yield','Genotype','Environment')
 #'
-mean_rank_difference <- function(trait,genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+mean_rank_difference <- function(data,trait,genotype,environment){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   abs.dev.sum <- function(x){
     res <- c()
     n <- length(x)
@@ -48,7 +48,7 @@ mean_rank_difference <- function(trait,genotype,environment){
     return(res)
   }
   # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
   res <- summarise(
     group_by(
       ungroup(

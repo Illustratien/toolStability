@@ -48,14 +48,12 @@
 #' data(Data)
 #' table.stability <- table_stability(Data$Yield,Data$Genotype,Data$Environment)
 #'
-table_stability<- function(trait,genotype,environment){
-  if(!is.numeric(trait)){stop('Trait must be a numeric vector')}
+table_stability<- function(data,trait,genotype,environment,lambda){
+  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   # combine vectors into data table
-  Data <- data.table(X=trait,Genotype=genotype,Environment=environment)
-  # overall mean of X
-  X..bar <- mean(trait)
-  G1 <- length(unique(genotype))
-  E1 <- length(unique(environment))
+  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])  # overall mean of X
+  X..bar <- mean(data[[trait]])
+  G <- length(unique(data[[genotype]]))
 
   # for calculating mean.rank.difference
   abs.dev.sum <- function(x){
