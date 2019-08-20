@@ -52,7 +52,15 @@
 #' table.stability <- table_stability(Data,'Yield','Genotype','Environment',median(Data$Yield))
 #'
 table_stability<- function(data,trait,genotype,environment,lambda){
+
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
+  if(!is.numeric(lambda)){stop('Lambda must be numeric!')}
+  if(lambda>range(data[[trait]])[2] | lambda<range(data[[trait]])[1]){stop('Lambda must in the range of trait')}
+  if(missing(lambda)){
+    lambda=median(data$trait)
+    message(sprintf('lambda = %d (medain of %s) is used for Safty first index!',lambda,trait))
+  }
+
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])  # overall mean of X
   X..bar <- mean(data[[trait]])
