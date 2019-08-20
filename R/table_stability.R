@@ -111,7 +111,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
   bmin  <- min(res$Bi)                         # for genotypic stability
   wisum <- sum(res$sqr1)
   res <- summarise(res,
-                   Mean.Yield=mean(X),
+                   Mean.Trait=mean(X),
                    Xi.logvar=log10(var(X,na.rm = TRUE)),
                    Xi.logmean=log10(mean(X,na.rm=TRUE)),
                    Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
@@ -125,7 +125,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
                    Coefficient.of.regression=1+sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE),
                    Deviation.mean.squares=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
                    Environmental.variance = sum(deviation, na.rm=TRUE),
-                   Genotypic.stability=sum((X-Mean.Yield-bmin*Xj.bar+bmin*X..bar)^2),
+                   Genotypic.stability=sum((X-Mean.Trait-bmin*Xj.bar+bmin*X..bar)^2),
                    Genotypic.superiority.measure=sum(Mj),
                    Variance.of.rank=sum((corrected.rank-mean.rank)^2/(length(X)-1)),
                    Stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)),
@@ -135,7 +135,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
   # for adjusted correlation variation
   b= sum((res$Xi.logmean-mean(res$Xi.logmean))*(res$Xi.logvar-mean(res$Xi.logvar)))/sum((res$Xi.logmean-mean(res$Xi.logmean))^2)
 
-  res$Adjusted.coefficient.of.variation=100*(1/res$Mean.Yield)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
+  res$Adjusted.coefficient.of.variation=100*(1/res$Mean.Trait)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
   # replace negative value to zero as stated by Shukla, 1972.
   res$Stability.variance[res$Stability.variance<0] <- 0
   if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
@@ -143,5 +143,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
   nam.list <- c('Genotype','Mean.Trait','Normality','Safty.first.index','Coefficient.of.determination','Coefficient.of.regression','Deviation.mean.squares','Environmental.variance',
                 'Genotypic.stability','Genotypic.superiority.measure','Variance.of.rank','Stability.variance','Mean.rank.difference',
                 'Adjusted.coefficient.of.variation','Ecovalence')
-  return(res[,nam.list])
+  res <- res[,nam.list]
+  names(res)[names(res) == "Mean.Trait"] <- sprintf('Mean.%s',trait)
+  return(res)
 }
