@@ -6,7 +6,7 @@
 #'
 #' @usage data(Data)
 #'
-#' @description Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years.
+#' @description Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years (Casadebaig et al., 2016).
 #'
 #' @format A dataframe with 220 observations on the following 3 variables.
 #' \itemize{

@@ -7,7 +7,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @keywords regression approach
 #'
 #' @details
-#' Adjusted coefficient of variaiton (Döring and Reckling 2018) is calculatd based on regression function.
+#' Adjusted coefficient of variaiton (Döring and Reckling, 2018) is calculatd based on regression function.
 #' Variety with low adjusted coefficient of variation is considered as stable.
 #' Under the linear model
 #'
