@@ -4,17 +4,17 @@
 \name{Data}
 \alias{Data}
 \title{Wheat APSIM model simulated database}
-\format{A dataframe with ? observations on the following 3 variables.
+\format{A dataframe with 220 observations on the following 3 variables.
 \itemize{
-\item{\code{Yield}}{??? }
-\item{\code{Genotype}}{genotype, ? varieties}
-\item{\code{Environment}}{environment, ? environments}
+\item{\code{Yield}}{kg ha^{-1} }
+\item{\code{Genotype}}{genotype, 5 varieties}
+\item{\code{Environment}}{environment, 44 environments}
  }}
 \usage{
 data(Data)
 }
 \description{
-Multi-environment trail evaluating ? genotypes in ? locations.
+Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years.
 }
 \examples{
 data(Data)

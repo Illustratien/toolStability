@@ -30,7 +30,8 @@ Correction for each genotype i was done by subtraction of marginal genotypic mea
 Then calculated the rank all genotypes for each environment j
 \deqn{r_{ij} = rank(X_{corrected ij})}
 Mean rank difference is calculated as the following equation.
-\deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-\bar{r_{i.}}|}{\frac{E\cdot(E-1)}{2}}}
+\deqn{S_{i}1 = \frac{\sum_{j} |r_{ij}-\bar{r_{i.}}| }{\frac{E\cdot
+(E-1)}{2}}}
 where \eqn{r_{ij}} is the rank of genotype i in environment j and \eqn{\bar{r_{i.}}} is the marginal rank of genotype i over environment,
 based on the corrected \eqn{X_{ij}} values.
 }
