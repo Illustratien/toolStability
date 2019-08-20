@@ -3,9 +3,9 @@
 #' @description
 #' \code{table_stability} export all the stability indicies in the package.
 #'
-#' @keywords static, dynamic, regression and nonparametric approach
+#' @keywords static, dynamic, regression, nonparametric and probablistic approach
 #'
-#' @details hahahahahahahahahhahahahahahahahhahahaha
+#' @details Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment as well.
 #'
 #' @seealso \code{\link{adjusted_coefficient_of_variation}}
 #' @seealso \code{\link{coefficient_of_determination}}
@@ -24,7 +24,7 @@
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
-#' @param lambda threshold value of trait that define stability.
+#' @param lambda threshold value of trait that define stability for a genotype across environments through probabilistic approach.
 #'
 #' @return a data table with multiple stability indices
 #'
