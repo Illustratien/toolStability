@@ -41,6 +41,7 @@
 #' \insertRef{lin1988}{toolStability}
 #' \insertRef{shukla1972}{toolStability}
 #' \insertRef{nassar1987}{toolStability}
+#' \insertRef{eskridge1990}{toolStability}
 #'
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
