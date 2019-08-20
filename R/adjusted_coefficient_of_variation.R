@@ -12,8 +12,15 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' Under the linear model
 #'
 #' \deqn{v_{i} = a + bm_{i}}
-#' where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and \eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
-#' \deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [ 10^{(2-b)*m_{i} +(b-2)*\bar{x}+v_{i}} \right ] ^{0.5} \cdot 100 \%}
+#' where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and
+#' \eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
+#' \deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
+#' 10^{(2-b)\cdot
+#' m_{i} + (b-2)\cdot
+#' \bar{m} + v_{i}}
+#' \right ]
+#' ^{0.5} \cdot
+#' 100 \%}
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.

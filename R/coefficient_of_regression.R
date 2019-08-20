@@ -19,7 +19,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
 #'
 #' Coefficient of regression may be expressed as:
-#' \deqn{ b_{i}=1 + \frac{\sum_{j}(X_{ij} -\bar{X_{i.}}-\bar{X_{.j}}+\bar{X_{..}})\cdot
+#' \deqn{ b_{i}=1 + \frac{\sum_{j} (X_{ij} -\bar{X_{i.}}-\bar{X_{.j}}+\bar{X_{..}})\cdot
 #' (\bar{X_{.j}}- \bar{X_{..}})}{\sum_{j}(\bar{X_{.j}}-\bar{X_{..}})^{2}}}
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)

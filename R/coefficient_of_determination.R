@@ -10,13 +10,12 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' Coefficient of determination (Pinthus, 1976) is calculatd based on regression function.
 #' Variety with low coefficient of determination is considered as stable.
 #' Under the linear model
-#' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
+#' \deqn{Y =\mu + b_{i}\cdot e_{j} + g_{i} + d_{ij}}
 #' where Y is the predicted phenotypic values, \eqn{g_{i}}, \eqn{e_{j}} and \eqn{\mu} denoting
-#' genotypic, environmental and overall popluation mean,respectively.
+#' genotypic, environmental and overall popluation mean,respectively. \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} denotes deviation.
 #'
 #' The effect of GE-interaction may be expressed as:
 #' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
-#' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
 #'
 #' Deviation mean squares(\code{link{deviation_mean_squares}}):
 #' \deqn{
