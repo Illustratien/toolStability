@@ -44,7 +44,7 @@
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd shapiro.test
+#' @importFrom stats pnorm sd shapiro.test median
 #' @export
 #'
 #' @examples
