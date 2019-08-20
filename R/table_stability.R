@@ -7,17 +7,18 @@
 #'
 #' @details hahahahahahahahahhahahahahahahahhahahaha
 #'
-#' @seealso \code{link{adjusted_coefficient_of_variaiton}}
-#' @seealso \code{link{coefficient_of_determination}}
-#' @seealso \code{link{coefficient_of_regression}}
-#' @seealso \code{link{deviation_mean_squares}}
-#' @seealso \code{link{ecovalence}}
-#' @seealso \code{link{environmental_variance}}
-#' @seealso \code{link{genotypic_stability}}
-#' @seealso \code{link{genotypic_superiority_measure}}
-#' @seealso \code{link{mean_rank_difference}}
-#' @seealso \code{link{stability_variance}}
-#' @seealso \code{link{variance_of_rank}}
+#' @seealso \code{\link{adjusted_coefficient_of_variation}}
+#' @seealso \code{\link{coefficient_of_determination}}
+#' @seealso \code{\link{coefficient_of_regression}}
+#' @seealso \code{\link{deviation_mean_squares}}
+#' @seealso \code{\link{ecovalence}}
+#' @seealso \code{\link{environmental_variance}}
+#' @seealso \code{\link{genotypic_stability}}
+#' @seealso \code{\link{genotypic_superiority_measure}}
+#' @seealso \code{\link{mean_rank_difference}}
+#' @seealso \code{\link{stability_variance}}
+#' @seealso \code{\link{variance_of_rank}}
+#' @seealso \code{\link{safty_first_index}}
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
