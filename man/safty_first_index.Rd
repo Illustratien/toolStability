@@ -24,9 +24,13 @@ a data table with coefficient of determination
 \code{safty_first_index} calculate variance of a genotype across environments.
 }
 \details{
-Safty-first index (Eskridge, 1990) is calculatd based on the normality assumption of trait over the enviornments.
-Among different environments, trait below a given cirtical level \eqn{\lambda} is defined as failure of trait.
-Safty-first index calculating the probability of trait failure over the environment.Variety with low safty first index is considered as stable.
+Safty-first index (Eskridge, 1990) is calculatd based on the assumption of
+that the trait from each genotype follow normal distribution over enviornments.
+Among different environments, trait below a given cirtical level \eqn{\lambda}
+is defined as failure of trait. The probability of trait failure can be obtained
+by entering mean and variance of trait plus \eqn{\lambda}
+into the cumulated density function of normal distribution.
+Variety with low safty first index is considered as stable.
 
 \deqn{Pr(Y_{ij} < \lambda) = \Phi \left[
 (\lambda - \mu_{i})/ \sqrt \Sigma_{ii}

@@ -14,7 +14,7 @@
 data(Data)
 }
 \description{
-Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years.
+Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years (Casadebaig et al., 2016).
 }
 \examples{
 data(Data)

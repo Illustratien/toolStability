@@ -29,6 +29,7 @@ This package contain the following stability indices:
 * genotypic stability
 * genotypic superiority measure
 * mean rank difference
+* safty first index
 * stability variance
 * variance of rank
 
@@ -40,7 +41,7 @@ Adjusted coefficient of variaiton (Döring and Reckling 2018) is calculatd based
  Under the linear model
  
  $$v_{i} = a + bm_{i}$$
- where $v_{i}$ is the $log_{10}$ of penotypic variance and $m_{i}$ is the $log_{10}$ of penotypic mean.
+ where $v_{i}$ is the $log_{10}$ of penotypic variance and $m_{i}$ is the $log_{10}$ of  penotypic mean.
  $$\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
  10^{(2-b)* m_{i} +(b-2)* \bar{m}+v_{i}} 
  \right ] ^{0.5} \cdot 100 \% $$
@@ -58,14 +59,14 @@ Coefficient of determination (Pinthus, 1976) is calculatd based on regression fu
  $$(ge)_{ij} = b_{i}e_{j} + d_{ij}$$
  where $b_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
  
- Deviation mean squares(\code{link{deviation_mean_squares}}):
+ Deviation mean squares(\code{\link{deviation_mean_squares}}):
  $$
  s^{2}_{di} = \frac{1}{E-2} \left [
  \sum_{j}(X_{ij} -\bar{X_{i.}}- \bar{X_{.j}}+\bar{X_{..}}^{2} - (b_{i} - 1)^{2}) \cdot
  \sum_{j}(\bar{X_{.j}}-\bar{X_{..}})^{2} \right ]
  $$
  
- Environmental variance (\code{link{environmental_variance}})can be expressed as :
+ Environmental variance (\code{\link{environmental_variance}})can be expressed as :
  $$S^{2}_{xi} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}})^{2}}{E-1} $$
  
  Coefficient of determination may be expressed as:
@@ -190,6 +191,18 @@ Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regres
  where $r_{ij}$ is the rank of genotype i in environment j and $\bar{r_{i.}}$ is the marginal rank of genotype i over environment,
  based on the corrected $X_{ij}$ values.
 
+## safty first index
+Safty-first index (Eskridge, 1990) is calculatd based on the normality assumption of trait over the enviornments.
+ Among different environments, trait below a given cirtical level \eqn{\lambda} is defined as failure of trait.
+ Safty-first index calculating the probability of trait failure over the environment.Variety with low safty first index is considered as stable.
+
+ $$Pr(Y_{ij} < \lambda) = \Phi \left[
+ (\lambda - \mu_{i})/ \sqrt \Sigma_{ii}
+ \right]$$
+
+ where $\lambda$ is the critical subsistence level of trait.
+ $\Phi$ is the cumulative distribution function of the standard normal distribution. $\mu_{i}$ and    $\sigma_{ii}$ is the mean and varance of the system i.
+
 ## stability variance
 Stability variance (Shukla, 1972) is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
  Variety with low stability variance is considered as stable.
@@ -215,7 +228,7 @@ Stability variance (Shukla, 1972) is calculatd based on lindear combination of e
  mean $\bar{X_{..}}$.
  $$X_{corrected ij} = X_{ij} - \bar{X_{i.}} + \bar{X_{..}}$$
  Then calculated the rank all genotypes for each environment j
- $$r_{ij} = rank(X_{corrected ij})$$
+ $$r_{ij} = rank(X_{correctedij})$$
  
  Variance of rank is calculated as the following equation.
  $$S_{i}4 = \frac{\sum_{j} (r_{ij}-\bar{r_{i.}})^{2}}{E-1}$$
