@@ -57,14 +57,14 @@ deviation_mean_squares <- function(data,trait,genotype,environment){
   if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
-  X..bar=mean(Data$X)               # overall mean of X
+  X..bar=mean(Data$X)                            # overall mean of X
 
   res <- summarise(
     mutate(
       group_by(
         mutate(
-          group_by(Data,Environment),          # for each environment
-          Xj.bar=mean(X)),                    # first calculate environmental mean
+          group_by(Data,Environment),            # for each environment
+          Xj.bar=mean(X)),                       # first calculate environmental mean
         Genotype),                               # for each genotype
       Xi.bar=mean(X),                            # then calculate genotypic mean
       E=length(X),                               # number of environment

@@ -44,15 +44,14 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @examples
 #' data(Data)
 #' res <- adjusted_coefficient_of_variation(Data,'Yield','Genotype','Environment')
-#'
 adjusted_coefficient_of_variation <- function(data,trait,genotype,environment){
   # combine vectors into data table
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
   res <- summarise(
     group_by(
       mutate(
-        group_by(Data,Environment),             # for each environment
-        Xj.bar=mean(X,na.rm = TRUE)),          # first calculate environmental mean
+        group_by(Data,Environment),               # for each environment
+        Xj.bar=mean(X,na.rm = TRUE)),             # first calculate environmental mean
       Genotype),                                  # for each genotype
     Xi.bar=mean(X,na.rm=TRUE),                    # then calculate genotypic mean
     Xi.logvar=log10(var(X,na.rm = TRUE)),

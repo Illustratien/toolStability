@@ -54,9 +54,9 @@ safty_first_index <- function(data,trait,genotype,environment,lambda){
   Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
   # calculate doefficient determination
   res <- summarise(
-    group_by(Data,Genotype),          # for each environment
-    Normality=shapiro.test(X)$p.value>=0.05,# test normality for each genotype
-    safty.first.index= pnorm((lambda-mean(X))/sd(X)))    # final product
+    group_by(Data,Genotype),                             # for each environment
+    Normality=shapiro.test(X)$p.value>=0.05,             # test normality for each genotype
+    safty.first.index= pnorm((lambda-mean(X))/sd(X)))
   if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
 
   return(res[ ,c("Genotype",'Normality',"safty.first.index")] )

@@ -55,16 +55,17 @@ stability_variance <- function(data,trait,genotype,environment){
   res <- mutate(
     group_by(
       mutate(
-        group_by(Data,Environment),          # for each environment
-        Xj.bar=mean(X)),                    # first calculate environmental mean
+        group_by(Data,Environment),            # for each environment
+        Xj.bar=mean(X)),                       # first calculate environmental mean
       Genotype),                               # for each genotype
     Xi.bar=mean(X),                            # then calculate genotypic mean
     sqr=((X-Xi.bar-Xj.bar+X..bar)^2)/(length(X)-1))
   wisum <- sum(res$sqr)
   res <- summarise(res,
                    wi= sum(sqr, na.rm=TRUE),
-                   stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)))#end of mutate  sqr=(X-Xi.bar-Xj.bar+X..bar)^2),#end of mutate
-  res$stability.variance[res$stability.variance<0] <- 0               # replace negative value to zero as stated by Shukla, 1972.
+                   stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)))
+  # replace negative value to zero as stated by Shukla, 1972.
+  res$stability.variance[res$stability.variance<0] <- 0
 
   return(res[ ,c("Genotype","stability.variance")] )
 }

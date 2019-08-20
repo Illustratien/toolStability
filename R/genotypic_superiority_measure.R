@@ -45,8 +45,8 @@ genotypic_superiority_measure <- function(data,trait,genotype,environment){
     mutate(
       group_by(
         mutate(
-          group_by(Data,Environment),       # for each environment
-          Xj.max=max(X,na.rm=TRUE)),    # first calculate environmental mean
+          group_by(Data,Environment),      # for each environment
+          Xj.max=max(X,na.rm=TRUE)),       # first calculate environmental mean
         Genotype),                         # for each genotype
       Mj=(X-Xj.max)^2/(2*length(X))),
     genotypic.superiority.measure=(sum(Mj)))

@@ -59,8 +59,8 @@ coefficient_of_regression <- function(data,trait,genotype,environment){
     mutate(
       group_by(
         mutate(
-          group_by(Data,Environment),          # for each environment
-          Xj.bar=mean(X)),                    # first calculate environmental mean
+          group_by(Data,Environment),            # for each environment
+          Xj.bar=mean(X)),                       # first calculate environmental mean
         Genotype),                               # for each genotype
       Xi.bar=mean(X),                            # then calculate genotypic mean
       Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),

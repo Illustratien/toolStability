@@ -90,11 +90,11 @@ table_stability<- function(data,trait,genotype,environment,lambda){
               mutate(
                 group_by(
                   Data,Genotype),
-                corrected.X=X-mean(X)+X..bar),
-            Environment),          # for each environment
-          Xj.bar=mean(X),
-          Xj.max=max(X),
-          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),# first calculate environmental mean
+                corrected.X=X-mean(X)+X..bar), # correction before ranking
+            Environment),                      # for each environment
+          Xj.bar=mean(X),                      # environmental mean
+          Xj.max=max(X),                       # maximum of each environment
+          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),
       Genotype),                               # for each genotype
     Xi.bar=mean(X),                            # then calculate genotypic mean
     E=length(X),                               # number of environment
@@ -108,7 +108,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
     Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
     Mj=(X-Xj.max)^2/(2*length(X)))
 
-  bmin  <- min(res$Bi)#for genotypic stability
+  bmin  <- min(res$Bi)                         # for genotypic stability
   wisum <- sum(res$sqr1)
   res <- summarise(res,
                    Mean.Yield=mean(X),
@@ -139,8 +139,8 @@ table_stability<- function(data,trait,genotype,environment,lambda){
   # replace negative value to zero as stated by Shukla, 1972.
   res$Stability.variance[res$Stability.variance<0] <- 0
   if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
-
-  nam.list <- c('Genotype','Mean.Yield','Normality','Safty.first.index','Coefficient.of.determination','Coefficient.of.regression','Deviation.mean.squares','Environmental.variance',
+  # select output columns
+  nam.list <- c('Genotype','Mean.Trait','Normality','Safty.first.index','Coefficient.of.determination','Coefficient.of.regression','Deviation.mean.squares','Environmental.variance',
                 'Genotypic.stability','Genotypic.superiority.measure','Variance.of.rank','Stability.variance','Mean.rank.difference',
                 'Adjusted.coefficient.of.variation','Ecovalence')
   return(res[,nam.list])
