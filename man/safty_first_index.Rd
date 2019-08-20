@@ -28,8 +28,8 @@ Safty-first index (Eskridge, 1990) is calculatd based on the normality assumptio
 Among different environments, trait below a given cirtical level \eqn{\lambda} is defined as failure of trait.
 Safty-first index calculating the probability of trait failure over the environment.Variety with low safty first index is considered as stable.
 
-\deqn{Pr(Y_{ij}<\lambda) = \Phi \left[
-(\lambda - \mu_{i})/ \sqrt \Sigma_{ij}
+\deqn{Pr(Y_{ij} < \lambda) = \Phi \left[
+(\lambda - \mu_{i})/ \sqrt \Sigma_{ii}
 \right]}
 
 where \eqn{\lambda} is the critical subsistence level of trait.

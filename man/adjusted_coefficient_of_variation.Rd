@@ -27,8 +27,15 @@ Variety with low adjusted coefficient of variation is considered as stable.
 Under the linear model
 
 \deqn{v_{i} = a + bm_{i}}
-where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and \eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
-\deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [ 10^{(2-b)*m_{i} +(b-2)*\bar{x}+v_{i}} \right ] ^{0.5} \cdot 100 \%}
+where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and
+\eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
+\deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
+10^{(2-b)\cdot
+m_{i} + (b-2)\cdot
+\bar{m} + v_{i}}
+\right ]
+^{0.5} \cdot
+100 \%}
 }
 \examples{
 data(Data)

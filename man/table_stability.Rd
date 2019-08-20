@@ -15,7 +15,7 @@ table_stability(data, trait, genotype, environment, lambda)
 
 \item{environment}{colname of a column containing a character or factor vector labeling different environments}
 
-\item{lambda}{threshold value of trait that define stability.}
+\item{lambda}{threshold value of trait that define stability for a genotype across environments through probabilistic approach.}
 }
 \value{
 a data table with multiple stability indices
@@ -24,7 +24,7 @@ a data table with multiple stability indices
 \code{table_stability} export all the stability indicies in the package.
 }
 \details{
-hahahahahahahahahhahahahahahahahhahahaha
+Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment as well.
 }
 \examples{
 data(Data)
@@ -42,29 +42,32 @@ table.stability <- table_stability(Data,'Yield','Genotype','Environment',median(
 \insertRef{lin1988}{toolStability}
 \insertRef{shukla1972}{toolStability}
 \insertRef{nassar1987}{toolStability}
+\insertRef{eskridge1990}{toolStability}
 }
 \seealso{
-\code{link{adjusted_coefficient_of_variaiton}}
+\code{\link{adjusted_coefficient_of_variation}}
 
-\code{link{coefficient_of_determination}}
+\code{\link{coefficient_of_determination}}
 
-\code{link{coefficient_of_regression}}
+\code{\link{coefficient_of_regression}}
 
-\code{link{deviation_mean_squares}}
+\code{\link{deviation_mean_squares}}
 
-\code{link{ecovalence}}
+\code{\link{ecovalence}}
 
-\code{link{environmental_variance}}
+\code{\link{environmental_variance}}
 
-\code{link{genotypic_stability}}
+\code{\link{genotypic_stability}}
 
-\code{link{genotypic_superiority_measure}}
+\code{\link{genotypic_superiority_measure}}
 
-\code{link{mean_rank_difference}}
+\code{\link{mean_rank_difference}}
 
-\code{link{stability_variance}}
+\code{\link{stability_variance}}
 
-\code{link{variance_of_rank}}
+\code{\link{variance_of_rank}}
+
+\code{\link{safty_first_index}}
 }
 \author{
 Tien Cheng Wang
@@ -73,5 +76,6 @@ Tien Cheng Wang
 \keyword{approach}
 \keyword{dynamic,}
 \keyword{nonparametric}
-\keyword{regression}
+\keyword{probablistic}
+\keyword{regression,}
 \keyword{static,}
