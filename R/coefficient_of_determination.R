@@ -17,14 +17,14 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' The effect of GE-interaction may be expressed as:
 #' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
 #'
-#' Deviation mean squares(\code{link{deviation_mean_squares}}):
+#' Deviation mean squares(\code{\link{deviation_mean_squares}}):
 #' \deqn{
 #' s^{2}_{di} = \frac{1}{E-2} \left [
 #' \sum_{j}(X_{ij} -\bar{X_{i.}}- \bar{X_{.j}}+\bar{X_{..}}^{2} - (b_{i} - 1)^{2}) \cdot
 #' \sum_{j}(\bar{X_{.j}}-\bar{X_{..}})^{2} \right ]
 #' }
 #'
-#' Environmental variance (\code{link{environmental_variance}})can be expressed as :
+#' Environmental variance (\code{\link{environmental_variance}})can be expressed as :
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}})^{2}}{E-1} }
 #'
 #' Coefficient of determination may be expressed as:
