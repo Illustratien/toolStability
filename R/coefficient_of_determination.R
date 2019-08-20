@@ -28,7 +28,7 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' \deqn{S^{2}_{xi} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}})^{2}}{E-1} }
 #'
 #' Coefficient of determination may be expressed as:
-#' \deqn{r_{i}^{2} = 1 - \frac{s_{di}^{2}}{s_{xi}^{2}} }
+#' \deqn{r^{2}_{i} = 1 - \frac{s_{di}^{2}}{s_{xi}^{2}} }
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
