@@ -47,7 +47,8 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd shapiro.test median
+#' @importFrom stats pnorm sd median
+#' @importFrom nortest ad.test
 #' @export
 #'
 #' @examples
@@ -131,7 +132,7 @@ table_stability<- function(data,trait,genotype,environment,lambda){
                    Stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)),
                    Mean.rank.difference= abs.dev.sum(corrected.rank),
                    Safty.first.index=pnorm((lambda-mean(X))/sd(X)),
-                   Normality=shapiro.test(X)$p.value>=0.05)
+                   Normality=ad.test(X)$p.value>=0.05)
   # for adjusted correlation variation
   b= sum((res$Xi.logmean-mean(res$Xi.logmean))*(res$Xi.logvar-mean(res$Xi.logvar)))/sum((res$Xi.logmean-mean(res$Xi.logmean))^2)
 

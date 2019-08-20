@@ -37,7 +37,8 @@
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd shapiro.test median
+#' @importFrom stats pnorm sd median
+#' @importFrom nortest ad.test
 #'
 #' @export
 #'
@@ -59,7 +60,7 @@ safty_first_index <- function(data,trait,genotype,environment,lambda){
   # calculate doefficient determination
   res <- summarise(
     group_by(Data,Genotype),                             # for each environment
-    Normality=shapiro.test(X)$p.value>=0.05,             # test normality for each genotype
+    Normality=ad.test(X)$p.value>=0.05,             # test normality for each genotype
     safty.first.index= pnorm((lambda-mean(X))/sd(X)))
   if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
 

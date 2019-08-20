@@ -13,7 +13,8 @@ Description: This package is aim at bring the user friendly tool for calculating
 Depends: R (>= 3.1.0)
 Imports: dplyr,
 	 data.table,
-	 Rdpack
+	 Rdpack,
+	 nortest
 RdMacros: Rdpack
 License: MIT + file LICENSE
 Encoding: UTF-8
