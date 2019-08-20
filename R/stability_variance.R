@@ -60,7 +60,9 @@ stability_variance <- function(data,trait,genotype,environment){
       Genotype),                               # for each genotype
     Xi.bar=mean(X),                            # then calculate genotypic mean
     sqr=((X-Xi.bar-Xj.bar+X..bar)^2)/(length(X)-1))
+
   wisum <- sum(res$sqr)
+
   res <- summarise(res,
                    wi= sum(sqr, na.rm=TRUE),
                    stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)))
