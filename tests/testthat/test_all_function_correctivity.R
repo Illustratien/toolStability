@@ -154,7 +154,7 @@ lm1 <- lm(logvar ~ logbar)
 
 b <- summary(lm1)$coefficients[2, 1]
 for (i in 1:gn) {
-  adj.cv [i] <- 100 * (1 / bar.i[i]) * sqrt(10^((2 - b) * logbar[i] + (b - 2) * mean(logbar) + logvar[i]))
+  adj.cv[i] <- 100 * (1 / bar.i[i]) * sqrt(10^((2 - b) * logbar[i] + (b - 2) * mean(logbar) + logvar[i]))
 }
 
 sft.fir <- c()
