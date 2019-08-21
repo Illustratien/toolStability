@@ -1,4 +1,4 @@
-utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yield','Mj','X','Xi.bar','Xj.bar','Xj.max','corrected.X','corrected.rank','dev','deviation','mean.rank','s2d1','s2d2','s2di','s2xi','sqr','sqr1','wi'))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
 #' @title Adjusted coefficient of variaiton
 #'
 #' @description
@@ -43,22 +43,25 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' res <- adjusted_coefficient_of_variation(Data,'Yield','Genotype','Environment')
-adjusted_coefficient_of_variation <- function(data,trait,genotype,environment){
+#' res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment")
+adjusted_coefficient_of_variation <- function(data, trait, genotype, environment) {
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
   res <- summarise(
     group_by(
       mutate(
-        group_by(Data,Environment),               # for each environment
-        Xj.bar=mean(X,na.rm = TRUE)),             # first calculate environmental mean
-      Genotype),                                  # for each genotype
-    Xi.bar=mean(X,na.rm=TRUE),                    # then calculate genotypic mean
-    Xi.logvar=log10(var(X,na.rm = TRUE)),
-    Xi.logmean=log10(mean(X,na.rm=TRUE)))
-  b= sum((res$Xi.logmean-mean(res$Xi.logmean))*(res$Xi.logvar-mean(res$Xi.logvar)))/sum((res$Xi.logmean-mean(res$Xi.logmean))^2)
+        group_by(Data, Environment), # for each environment
+        Xj.bar = mean(X, na.rm = TRUE)
+      ), # first calculate environmental mean
+      Genotype
+    ), # for each genotype
+    Xi.bar = mean(X, na.rm = TRUE), # then calculate genotypic mean
+    Xi.logvar = log10(var(X, na.rm = TRUE)),
+    Xi.logmean = log10(mean(X, na.rm = TRUE))
+  )
+  b <- sum((res$Xi.logmean - mean(res$Xi.logmean)) * (res$Xi.logvar - mean(res$Xi.logvar))) / sum((res$Xi.logmean - mean(res$Xi.logmean))^2)
 
-  res$adjusted.coefficient.of.variation=100*(1/res$Xi.bar)*sqrt(10^(((2-b)*res$Xi.logmean)+((b-2)*(mean(res$Xi.logmean)))+res$Xi.logvar))
+  res$adjusted.coefficient.of.variation <- 100 * (1 / res$Xi.bar) * sqrt(10^(((2 - b) * res$Xi.logmean) + ((b - 2) * (mean(res$Xi.logmean))) + res$Xi.logvar))
 
-  return(res[ ,c("Genotype","adjusted.coefficient.of.variation")] )
+  return(res[, c("Genotype", "adjusted.coefficient.of.variation")])
 }

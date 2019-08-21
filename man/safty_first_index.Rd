@@ -33,7 +33,7 @@ into the cumulated density function of normal distribution.
 Variety with low safty first index is considered as stable.
 
 \deqn{Pr(Y_{ij} < \lambda) = \Phi \left[
-(\lambda - \mu_{i})/ \sqrt \Sigma_{ii}
+(\lambda - \mu_{i})/ \sqrt \sigma_{ii}
 \right]}
 
 where \eqn{\lambda} is the critical subsistence level of trait.
@@ -42,8 +42,7 @@ is the mean and varance of the system i.
 }
 \examples{
 data(Data)
-safty.first.index <- safty_first_index(Data,'Yield','Genotype','Environment',median(Data$Yield))
-
+safty.first.index <- safty_first_index(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
 }
 \references{
 \insertRef{eskridge1990}{toolStability}

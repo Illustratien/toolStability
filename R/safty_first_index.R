@@ -44,26 +44,34 @@
 #'
 #' @examples
 #' data(Data)
-#' safty.first.index <- safty_first_index(Data,'Yield','Genotype','Environment',median(Data$Yield))
-#'
-safty_first_index <- function(data,trait,genotype,environment,lambda){
-  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
-  if(!is.numeric(lambda)){stop('Lambda must be numeric!')}
-  if(lambda>range(data[[trait]])[2] | lambda<range(data[[trait]])[1]){stop('Lambda must in the range of trait')}
-  if(missing(lambda)){
-    lambda=median(data$trait)
-    message(sprintf('lambda = %d (medain of %s) is used for Safty first index!',lambda,trait))
+#' safty.first.index <- safty_first_index(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
+safty_first_index <- function(data, trait, genotype, environment, lambda) {
+  if (!is.numeric(data[[trait]])) {
+    stop("Trait must be a numeric vector")
+  }
+  if (!is.numeric(lambda)) {
+    stop("Lambda must be numeric!")
+  }
+  if (lambda > range(data[[trait]])[2] | lambda < range(data[[trait]])[1]) {
+    stop("Lambda must in the range of trait")
+  }
+  if (missing(lambda)) {
+    lambda <- median(data$trait)
+    message(sprintf("lambda = %d (medain of %s) is used for Safty first index!", lambda, trait))
   }
 
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
   # calculate doefficient determination
   res <- summarise(
-    group_by(Data,Genotype),                             # for each environment
-    Normality=ad.test(X)$p.value>=0.05,             # test normality for each genotype
-    safty.first.index= pnorm((lambda-mean(X))/sd(X)))
-  if(any(!res$Normality)){warning('Input trait is not completely follow normality assumption ! \n please see Normality column for more information.')}
+    group_by(Data, Genotype), # for each environment
+    Normality = ad.test(X)$p.value >= 0.05, # test normality for each genotype
+    safty.first.index = pnorm((lambda - mean(X)) / sd(X))
+  )
+  if (any(!res$Normality)) {
+    warning("Input trait is not completely follow normality assumption ! 
+ please see Normality column for more information.")
+  }
 
-  return(res[ ,c("Genotype",'Normality',"safty.first.index")] )
-
+  return(res[, c("Genotype", "Normality", "safty.first.index")])
 }

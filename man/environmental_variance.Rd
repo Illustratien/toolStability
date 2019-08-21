@@ -29,7 +29,7 @@ in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} denoting marginal means of 
 }
 \examples{
 data(Data)
-environmental.variance <- environmental_variance(Data,'Yield','Genotype')
+environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
 }
 \references{
 \insertRef{roemer1917}{toolStability}

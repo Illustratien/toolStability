@@ -22,6 +22,10 @@
 #'
 #' @examples
 #' data(Data)
-#' \donttest{boxplot(Yield~Genotype,data=Data,
-#' col='lightblue',border='darkblue')}
+#' \donttest{
+#' boxplot(Yield ~ Genotype,
+#'   data = Data,
+#'   col = "lightblue", border = "darkblue"
+#' )
+#' }
 "Data"

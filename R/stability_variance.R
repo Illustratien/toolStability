@@ -1,4 +1,4 @@
-utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yield','Mj','X','Xi.bar','Xj.bar','Xj.max','corrected.X','corrected.rank','dev','deviation','mean.rank','s2d1','s2d2','s2di','s2xi','sqr','sqr1','wi'))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
 #' @title Stability variance
 #'
 #' @description
@@ -42,12 +42,13 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' stability.variance <- stability_variance(Data,'Yield','Genotype','Environment')
-#'
-stability_variance <- function(data,trait,genotype,environment){
-  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
+#' stability.variance <- stability_variance(Data, "Yield", "Genotype", "Environment")
+stability_variance <- function(data, trait, genotype, environment) {
+  if (!is.numeric(data[[trait]])) {
+    stop("Trait must be a numeric vector")
+  }
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
 
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
@@ -55,19 +56,23 @@ stability_variance <- function(data,trait,genotype,environment){
   res <- mutate(
     group_by(
       mutate(
-        group_by(Data,Environment),            # for each environment
-        Xj.bar=mean(X)),                       # first calculate environmental mean
-      Genotype),                               # for each genotype
-    Xi.bar=mean(X),                            # then calculate genotypic mean
-    sqr=((X-Xi.bar-Xj.bar+X..bar)^2)/(length(X)-1))
+        group_by(Data, Environment), # for each environment
+        Xj.bar = mean(X)
+      ), # first calculate environmental mean
+      Genotype
+    ), # for each genotype
+    Xi.bar = mean(X), # then calculate genotypic mean
+    sqr = ((X - Xi.bar - Xj.bar + X..bar)^2) / (length(X) - 1)
+  )
 
   wisum <- sum(res$sqr)
 
   res <- summarise(res,
-                   wi= sum(sqr, na.rm=TRUE),
-                   stability.variance=(G*(G-1)*wi-wisum)/((G-1)*(G-2)))
+    wi = sum(sqr, na.rm = TRUE),
+    stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2))
+  )
   # replace negative value to zero as stated by Shukla, 1972.
-  res$stability.variance[res$stability.variance<0] <- 0
+  res$stability.variance[res$stability.variance < 0] <- 0
 
-  return(res[ ,c("Genotype","stability.variance")] )
+  return(res[, c("Genotype", "stability.variance")])
 }

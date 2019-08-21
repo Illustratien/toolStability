@@ -1,4 +1,4 @@
-utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yield','Mj','X','Xi.bar','Xj.bar','Xj.max','corrected.X','corrected.rank','dev','deviation','mean.rank','s2d1','s2d2','s2di','s2xi','sqr','sqr1','wi'))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
 #' @title Mean rank difference
 #'
 #' @description
@@ -40,34 +40,40 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' mean.rank.difference<- mean_rank_difference(Data,'Yield','Genotype','Environment')
-#'
-mean_rank_difference <- function(data,trait,genotype,environment){
-  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
-  abs.dev.sum <- function(x){
+#' mean.rank.difference <- mean_rank_difference(Data, "Yield", "Genotype", "Environment")
+mean_rank_difference <- function(data, trait, genotype, environment) {
+  if (!is.numeric(data[[trait]])) {
+    stop("Trait must be a numeric vector")
+  }
+  abs.dev.sum <- function(x) {
     res <- c()
     n <- length(x)
-    for (i in seq(1,n-1)){
-      res <- sum(res,abs(x[(i+1):n]-x[i]))
+    for (i in seq(1, n - 1)) {
+      res <- sum(res, abs(x[(i + 1):n] - x[i]))
     }
-    res <- res*2/(n*(n-1))
+    res <- res * 2 / (n * (n - 1))
     return(res)
   }
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
   X..bar <- mean(data[[trait]])
 
   res <- summarise(
     group_by(
-        mutate(
-          group_by(
-              mutate(
-                group_by(Data,Genotype),
-                corrected.X=X-mean(X)+X..bar),
-            Environment),
-          corrected.rank=rank(-corrected.X,na.last="keep", ties.method="min")),
-      Genotype),
-    mean.rank.difference= abs.dev.sum(corrected.rank))
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data, Genotype),
+            corrected.X = X - mean(X) + X..bar
+          ),
+          Environment
+        ),
+        corrected.rank = rank(-corrected.X, na.last = "keep", ties.method = "min")
+      ),
+      Genotype
+    ),
+    mean.rank.difference = abs.dev.sum(corrected.rank)
+  )
 
-  return(res[ ,c("Genotype","mean.rank.difference")] )
+  return(res[, c("Genotype", "mean.rank.difference")])
 }
