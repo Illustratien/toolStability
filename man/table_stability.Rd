@@ -4,7 +4,8 @@
 \alias{table_stability}
 \title{Table stability}
 \usage{
-table_stability(data, trait, genotype, environment, lambda)
+table_stability(data, trait, genotype, environment, lambda,
+  normalize = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -16,6 +17,8 @@ table_stability(data, trait, genotype, environment, lambda)
 \item{environment}{colname of a column containing a character or factor vector labeling different environments}
 
 \item{lambda}{threshold value of trait that define stability for a genotype across environments through probabilistic approach.}
+
+\item{normalize}{a logical value indicating whether stability indicies should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.}
 }
 \value{
 a data table with multiple stability indices
@@ -28,7 +31,7 @@ Combine all stability indices in this package and export as a table, including m
 }
 \examples{
 data(Data)
-table.stability <- table_stability(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
+tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
 }
 \references{
 \insertRef{doering2018}{toolStability}

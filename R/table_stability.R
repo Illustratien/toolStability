@@ -26,6 +26,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
 #' @param lambda threshold value of trait that define stability for a genotype across environments through probabilistic approach.
+#' @param normalize a logical value indicating whether stability indicies should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.
 #'
 #' @return a data table with multiple stability indices
 #'
@@ -44,7 +45,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' \insertRef{nassar1987}{toolStability}
 #' \insertRef{eskridge1990}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #' @importFrom stats pnorm sd median shapiro.test
@@ -53,8 +54,8 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' table.stability <- table_stability(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
-table_stability <- function(data, trait, genotype, environment, lambda) {
+#' tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
+table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
@@ -175,6 +176,15 @@ table_stability <- function(data, trait, genotype, environment, lambda) {
     "Adjusted.coefficient.of.variation", "Ecovalence"
   )
   res <- res[, nam.list]
+
+  if (normalize == TRUE){
+    scale1 <-  function (x) {
+      revers.x <- x * (-1)
+      (revers.x - min(revers.x, na.rm = TRUE)) / diff(range(revers.x, na.rm = TRUE))
+    }
+    res <- mutate_at(res, nam.list[-c(1:3)], scale1)
+  }
+
   names(res)[names(res) == "Mean.Trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }
