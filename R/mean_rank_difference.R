@@ -7,7 +7,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @keywords nonparametric approach
 #'
 #' @details
-#' Mean rank difference (Nassar and Hühn, 1987) is calculatd based on regression function.
+#' Mean rank difference (Nassar and Huehn, 1987) is calculatd based on regression function.
 #' Variety with low mean rank difference is considered as stable.
 #'
 #' Correction for each genotype i was done by subtraction of marginal genotypic mean \eqn{\bar{X_{i.}}} and the addition of overall mean\eqn{\bar{X_{..}}}.
