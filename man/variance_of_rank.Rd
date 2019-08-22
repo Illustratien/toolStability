@@ -22,7 +22,7 @@ a data table with variance of rank
 \code{variance_of_rank} calculate variance of a genotype across environments.
 }
 \details{
-Variance of rank is calculatd based on regression function.
+Variance of rank (Nassar and Huehn, 1987) is calculatd based on regression function.
 Variety with low variance of rank is considered as stable.
 
 Correction for each genotype i was done by subtraction of marginal genotypic mean \eqn{\bar{X_{i.}}} and the addition of overall mean\eqn{\bar{X_{..}}}.

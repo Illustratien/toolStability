@@ -22,7 +22,7 @@ a data table with adjusted coefficient of variation
 \code{adjusted_coefficient_of_variation} calculate variance of a genotype across environments.
 }
 \details{
-Adjusted coefficient of variaiton (Döring and Reckling, 2018) is calculatd based on regression function.
+Adjusted coefficient of variaiton (Doering and Reckling, 2018) is calculatd based on regression function.
 Variety with low adjusted coefficient of variation is considered as stable.
 Under the linear model
 
