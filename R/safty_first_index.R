@@ -82,7 +82,7 @@ safty_first_index <- function(data, trait, genotype, environment, lambda) {
     safty.first.index = pnorm((lambda - mean(X)) / sd(X))
   )
   if (any(!res$Normality)) {
-    warning("Input trait is not completely follow normality assumption ! 
+    warning("Input trait is not completely follow normality assumption !
  please see Normality column for more information.")
   }
 
