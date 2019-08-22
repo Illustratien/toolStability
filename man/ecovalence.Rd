@@ -34,7 +34,7 @@ Here we modified the original function by dividing (E-1) after summation in orde
 }
 \examples{
 data(Data)
-eco.valance <- ecovalence(Data,'Yield','Genotype','Environment')
+eco.valance <- ecovalence(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{wricke1962}{toolStability}

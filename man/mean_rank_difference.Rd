@@ -37,8 +37,7 @@ based on the corrected \eqn{X_{ij}} values.
 }
 \examples{
 data(Data)
-mean.rank.difference<- mean_rank_difference(Data,'Yield','Genotype','Environment')
-
+mean.rank.difference <- mean_rank_difference(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{nassar1987}{toolStability}

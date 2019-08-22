@@ -28,8 +28,7 @@ Combine all stability indices in this package and export as a table, including m
 }
 \examples{
 data(Data)
-table.stability <- table_stability(Data,'Yield','Genotype','Environment',median(Data$Yield))
-
+table.stability <- table_stability(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
 }
 \references{
 \insertRef{doering2018}{toolStability}

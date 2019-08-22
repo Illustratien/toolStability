@@ -1,4 +1,4 @@
-utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yield','Mj','X','Xi.bar','Xj.bar','Xj.max','corrected.X','corrected.rank','dev','deviation','mean.rank','s2d1','s2d2','s2di','s2xi','sqr','sqr1','wi'))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
 #' @title Coefficient of determination
 #'
 #' @description
@@ -55,32 +55,35 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' coef.of.determination <- coefficient_of_determination(Data,'Yield','Genotype','Environment')
-#'
-coefficient_of_determination <- function(data,trait,genotype,environment){
+#' coef.of.determination <- coefficient_of_determination(Data, "Yield", "Genotype", "Environment")
+coefficient_of_determination <- function(data, trait, genotype, environment) {
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]],Environment=data[[environment]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
   # overall mean of X
-  X..bar=mean(Data$X)
+  X..bar <- mean(Data$X)
   # calculate doefficient determination
   res <- summarise(
     mutate(
       group_by(
         mutate(
-          group_by(Data,Environment),          # for each environment
-          Xj.bar=mean(X)),                    # first calculate environmental mean
-        Genotype),                               # for each genotype
-      Xi.bar=mean(X),                            # then calculate genotypic mean
-      E=length(X),                               # number of environment
-      s2d1=((X-Xi.bar-Xj.bar+X..bar)^2)/(E-2),
-      s2d2=((Xj.bar-X..bar)^2)/(E-2),
-      Bi1=(X-Xi.bar-Xj.bar+X..bar)*(Xj.bar-X..bar),
-      Bi2=(Xj.bar-X..bar)^2,
-      dev=((X-Xi.bar)^2)/(E-1)),
-    Bi=1+(sum(Bi1,na.rm=TRUE)/sum(Bi2,na.rm=TRUE)),
-    s2di=sum(s2d1,na.rm=TRUE)-((Bi-1)^2)*sum(s2d2,na.rm=TRUE),
-    s2xi=sum(dev,na.rm=TRUE),
-    coefficient.of.determination=1-(s2di/s2xi))    # final product
+          group_by(Data, Environment), # for each environment
+          Xj.bar = mean(X)
+        ), # first calculate environmental mean
+        Genotype
+      ), # for each genotype
+      Xi.bar = mean(X), # then calculate genotypic mean
+      E = length(X), # number of environment
+      s2d1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 2),
+      s2d2 = ((Xj.bar - X..bar)^2) / (E - 2),
+      Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
+      Bi2 = (Xj.bar - X..bar)^2,
+      dev = ((X - Xi.bar)^2) / (E - 1)
+    ),
+    Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
+    s2di = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
+    s2xi = sum(dev, na.rm = TRUE),
+    coefficient.of.determination = 1 - (s2di / s2xi)
+  ) # final product
 
-  return(res[ ,c("Genotype","coefficient.of.determination")] )
+  return(res[, c("Genotype", "coefficient.of.determination")])
 }

@@ -52,8 +52,7 @@ denoting marginal means of genotype i and environemnt j,respectively. \cr
 }
 \examples{
 data(Data)
-coef.of.determination <- coefficient_of_determination(Data,'Yield','Genotype','Environment')
-
+coef.of.determination <- coefficient_of_determination(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{pinthus1973}{toolStability}

@@ -37,8 +37,7 @@ based on the corrected \eqn{X_{ij}} values.
 }
 \examples{
 data(Data)
-variance.of.rank <- variance_of_rank(Data,'Yield','Genotype','Environment')
-
+variance.of.rank <- variance_of_rank(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{nassar1987}{toolStability}

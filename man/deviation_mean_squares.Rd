@@ -47,8 +47,7 @@ denoting marginal means of genotype i and environemnt j,respectively. \cr
 }
 \examples{
 data(Data)
-deviation.mean.squares <- deviation_mean_squares(Data,'Yield','Genotype','Environment')
-
+deviation.mean.squares <- deviation_mean_squares(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{eberhart1966}{toolStability}
