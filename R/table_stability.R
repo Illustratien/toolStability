@@ -47,7 +47,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd median
+#' @importFrom stats pnorm sd median shapiro.test
 #' @importFrom nortest ad.test
 #' @export
 #'
@@ -73,6 +73,20 @@ table_stability <- function(data, trait, genotype, environment, lambda) {
   Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]]) # overall mean of X
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
+  sample_number <-length(unique(data[[environment]]))
+  if (sample_number<3) {
+    stop("Environment number must above 3")
+  }
+  if (sample_number <= 5000 & sample_number >= 3) {
+    normtest <- function(x){
+      return(shapiro.test(x)$p.value > 0.05)
+    }
+  } else if (sample_number > 5000) {
+    normtest <- function(x){
+      return(ad.test(x)$p.value > 0.05)
+    }
+  }
+
 
   # for calculating mean.rank.difference
   abs.dev.sum <- function(x) {
@@ -142,7 +156,7 @@ table_stability <- function(data, trait, genotype, environment, lambda) {
     Stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2)),
     Mean.rank.difference = abs.dev.sum(corrected.rank),
     Safty.first.index = pnorm((lambda - mean(X)) / sd(X)),
-    Normality = ad.test(X)$p.value >= 0.05
+    Normality = normtest(X)
   )
   # for adjusted correlation variation
   b <- sum((res$Xi.logmean - mean(res$Xi.logmean)) * (res$Xi.logvar - mean(res$Xi.logvar))) / sum((res$Xi.logmean - mean(res$Xi.logmean))^2)
@@ -151,7 +165,7 @@ table_stability <- function(data, trait, genotype, environment, lambda) {
   # replace negative value to zero as stated by Shukla, 1972.
   res$Stability.variance[res$Stability.variance < 0] <- 0
   if (any(!res$Normality)) {
-    warning("Input trait is not completely follow normality assumption ! 
+    warning("Input trait is not completely follow normality assumption !
  please see Normality column for more information.")
   }
   # select output columns

@@ -37,7 +37,7 @@
 #' @importFrom dplyr group_by summarise mutate
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd median
+#' @importFrom stats pnorm sd median shapiro.test
 #' @importFrom nortest ad.test
 #'
 #' @export
@@ -59,13 +59,26 @@ safty_first_index <- function(data, trait, genotype, environment, lambda) {
     lambda <- median(data$trait)
     message(sprintf("lambda = %d (medain of %s) is used for Safty first index!", lambda, trait))
   }
+  sample_number <-length(unique(data[[environment]]))
+  if (sample_number<3) {
+    stop("Environment number must above 3")
+  }
+  if (sample_number <= 5000 & sample_number >= 3) {
+    normtest <- function(x){
+      return(shapiro.test(x)$p.value > 0.05)
+    }
+  } else if (sample_number > 5000) {
+    normtest <- function(x){
+      return(ad.test(x)$p.value > 0.05)
+    }
+  }
 
   # combine vectors into data table
   Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
   # calculate doefficient determination
   res <- summarise(
     group_by(Data, Genotype), # for each environment
-    Normality = ad.test(X)$p.value >= 0.05, # test normality for each genotype
+    Normality = normtest(X), # test normality for each genotype
     safty.first.index = pnorm((lambda - mean(X)) / sd(X))
   )
   if (any(!res$Normality)) {
