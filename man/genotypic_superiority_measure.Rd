@@ -31,8 +31,7 @@ where \eqn{X_{ij}} stands for observed trait and
 }
 \examples{
 data(Data)
-res <- genotypic_superiority_measure(Data,'Yield','Genotype','Environment')
-
+res <- genotypic_superiority_measure(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{lin1988}{toolStability}

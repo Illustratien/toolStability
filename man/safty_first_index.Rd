@@ -42,8 +42,7 @@ is the mean and varance of the system i.
 }
 \examples{
 data(Data)
-safty.first.index <- safty_first_index(Data,'Yield','Genotype','Environment',median(Data$Yield))
-
+safty.first.index <- safty_first_index(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
 }
 \references{
 \insertRef{eskridge1990}{toolStability}

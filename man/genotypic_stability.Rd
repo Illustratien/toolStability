@@ -45,8 +45,7 @@ denoting marginal means of genotype i and environemnt j,respectively. \cr
 }
 \examples{
 data(Data)
-genotypic.stability <- genotypic_stability(Data,'Yield','Genotype','Environment')
-
+genotypic.stability <- genotypic_stability(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{hanson1970}{toolStability}

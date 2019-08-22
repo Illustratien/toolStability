@@ -39,7 +39,7 @@ m_{i} + (b-2)\cdot
 }
 \examples{
 data(Data)
-res <- adjusted_coefficient_of_variation(Data,'Yield','Genotype','Environment')
+res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{doering2018}{toolStability}

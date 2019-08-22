@@ -18,8 +18,12 @@ Multi-environment trail evaluating 5 genotypes in 4 locations of 11 years (Casad
 }
 \examples{
 data(Data)
-\donttest{boxplot(Yield~Genotype,data=Data,
-col='lightblue',border='darkblue')}
+\donttest{
+boxplot(Yield ~ Genotype,
+  data = Data,
+  col = "lightblue", border = "darkblue"
+)
+}
 }
 \references{
 \insertRef{casadebaig2016}{toolStability}

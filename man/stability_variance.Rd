@@ -39,8 +39,7 @@ Negative values of stability variance is replaced with 0.
 }
 \examples{
 data(Data)
-stability.variance <- stability_variance(Data,'Yield','Genotype','Environment')
-
+stability.variance <- stability_variance(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{shukla1972}{toolStability}

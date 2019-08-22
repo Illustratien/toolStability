@@ -44,8 +44,7 @@ denoting marginal means of genotype i and environemnt j,respectively. \cr
 }
 \examples{
 data(Data)
-coefficient.of.regression <- coefficient_of_regression(Data,'Yield','Genotype','Environment')
-
+coefficient.of.regression <- coefficient_of_regression(Data, "Yield", "Genotype", "Environment")
 }
 \references{
 \insertRef{finlay1963}{toolStability}

@@ -1,4 +1,4 @@
-utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yield','Mj','X','Xi.bar','Xj.bar','Xj.max','corrected.X','corrected.rank','dev','deviation','mean.rank','s2d1','s2d2','s2di','s2xi','sqr','sqr1','wi'))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
 #' @title Environmental variance
 #'
 #' @description
@@ -33,19 +33,22 @@ utils::globalVariables(c('Bi','Bi1','Bi2','E','Environment','Genotype','Mean.Yie
 #'
 #' @examples
 #' data(Data)
-#' environmental.variance <- environmental_variance(Data,'Yield','Genotype')
-
-environmental_variance <- function(data,trait,genotype){
-  if(!is.numeric(data[[trait]])){stop('Trait must be a numeric vector')}
+#' environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
+environmental_variance <- function(data, trait, genotype) {
+  if (!is.numeric(data[[trait]])) {
+    stop("Trait must be a numeric vector")
+  }
   # combine vectors into data table
-  Data <- data.table(X=data[[trait]],Genotype=data[[genotype]])
+  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]])
 
-  #calculate environmental variance
+  # calculate environmental variance
   res <- summarise(
     mutate(
-      group_by(Data,Genotype),
-      deviation=(X-mean(X))^2/(length(X)-1)),
-    environmental.variance = sum(deviation, na.rm=TRUE))
+      group_by(Data, Genotype),
+      deviation = (X - mean(X))^2 / (length(X) - 1)
+    ),
+    environmental.variance = sum(deviation, na.rm = TRUE)
+  )
 
   return(res)
 }
