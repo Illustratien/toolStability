@@ -82,10 +82,12 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     normtest <- function(x){
       return(shapiro.test(x)$p.value > 0.05)
     }
+    norm.test.name <- "Shapiro"
   } else if (sample_number > 5000) {
     normtest <- function(x){
       return(ad.test(x)$p.value > 0.05)
     }
+    norm.test.name <- "Anderson-Darling"
   }
 
 
@@ -165,10 +167,15 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   res$Adjusted.coefficient.of.variation <- 100 * (1 / res$Mean.Trait) * sqrt(10^(((2 - b) * res$Xi.logmean) + ((b - 2) * (mean(res$Xi.logmean))) + res$Xi.logvar))
   # replace negative value to zero as stated by Shukla, 1972.
   res$Stability.variance[res$Stability.variance < 0] <- 0
-  if (any(!res$Normality)) {
-    warning("Input trait is not completely follow normality assumption !
- please see Normality column for more information.")
-  }
+
+    if (all(!res$Normality)) {
+      warning(sprintf("All of your genotypes didn't pass the %s normality test!
+ Safty_first Index may not be accurate.",norm.test.name))
+    } else if (any(!res$Normality)){
+      warning(sprintf("Part of your genotypes didn't pass the %s normality test!
+ Safty_first Index may not be accurate.",norm.test.name))
+    }
+
   # select output columns
   nam.list <- c(
     "Genotype", "Mean.Trait", "Normality", "Safty.first.index", "Coefficient.of.determination", "Coefficient.of.regression", "Deviation.mean.squares", "Environmental.variance",
