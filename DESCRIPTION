@@ -2,14 +2,13 @@ Package: toolStability
 Type: Package
 Title: Tool for Stability Indices calculation
 Version: 0.1.0
-Authors@R: c(person('Tien-Cheng','Wang', email ='tien.wang@gem.uni-hannover.de', role=c('aut','cre')),
-	person('Tsu-Wei','Chen',email='chen@gem.uni-hannover.de',role='aut'))
+Authors@R: c(person('Tien-Cheng','Wang', email ='tien.wang@gem.uni-hannover.de',
+ role=c('aut','cre')),person('Tsu-Wei','Chen',email='chen@gem.uni-hannover.de',role='aut'))
 Author: Tien-Cheng Wang [aut, cre],
 	Tsu-Wei Chen [aut]
 Maintainer: Tien-Cheng <tien.wang@gem.uni-hannover.de>
-Description: This package is aim at bring the user friendly tool for calculating
-    and evaluate the stability of crops. (now is still developing)
-    #Use four spaces when indenting paragraphs within the Description.
+Description: Tools to calculate stability indices with parametric,
+ non-parametric and probabilistic approaches. The basic data format requirement for 'toolStability' is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output is the dataframe with stability indices for each genotype. It returns the table of genotype and stability indices. "table_stability" offers the summary table of all stability indices in this package.
 Depends: R (>= 3.1.0)
 Imports: dplyr,
 	 data.table,
