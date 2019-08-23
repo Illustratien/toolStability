@@ -74,7 +74,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]]) # overall mean of X
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
-  sample_number <-length(unique(data[[environment]]))
+  sample_number <-min(table(Data$Genotype))
   if (sample_number<3) {
     stop("Environment number must above 3")
   }
