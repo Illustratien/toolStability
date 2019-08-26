@@ -28,7 +28,6 @@ This package contain the following stability indices:
 * environmental variance
 * genotypic stability
 * genotypic superiority measure
-* mean rank difference
 * safty first index
 * stability variance
 * variance of rank
@@ -176,21 +175,6 @@ Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regres
  where $X_{ij}$ stands for observed trait and
  $M_{j}$ stands for maximum response among all culitvars in the jth location.
  
-
-## mean rank difference
- Mean rank difference (Nassar and Hühn, 1987) is calculatd based on regression function.
- Variety with low mean rank difference is considered as stable.
- 
- Correction for each genotype i was done by subtraction of marginal genotypic mean $\bar{X_{i.}}$ and the addition of overall mean$\bar{X_{..}}$.
- Corrected value ($X_{ij}^{'}$) calculated as :
- $$X_{ij}^{'} = X_{ij} - \bar{X_{i.}} + \bar{X_{..}}$$
- Then calculated the rank all genotypes for each environment j
- $$r_{ij} = rank(X_{corrected ij})$$
- Mean rank difference is calculated as the following equation.
- $$S_{i}1 = \frac{\sum_{j} |r_{ij}-\bar{r_{i.}}|}{\frac{E\cdot(E-1)}{2}}$$
- where $r_{ij}$ is the rank of genotype i in environment j and $\bar{r_{i.}}$ is the marginal rank of genotype i over environment,
- based on the corrected $X_{ij}$ values.
-
 ## safty first index
 Safty-first index (Eskridge, 1990) is calculatd based on the normality assumption of trait over the enviornments.
  Among different environments, trait below a given cirtical level \eqn{\lambda} is defined as failure of trait.

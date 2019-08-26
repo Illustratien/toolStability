@@ -16,7 +16,6 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @seealso \code{\link{environmental_variance}}
 #' @seealso \code{\link{genotypic_stability}}
 #' @seealso \code{\link{genotypic_superiority_measure}}
-#' @seealso \code{\link{mean_rank_difference}}
 #' @seealso \code{\link{stability_variance}}
 #' @seealso \code{\link{variance_of_rank}}
 #' @seealso \code{\link{safty_first_index}}
@@ -89,20 +88,6 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     norm.test.name <- "Anderson-Darling"
   }
 
-
-  # for calculating mean.rank.difference
-  abs.dev.sum <- function(x) {
-    # calculating sum of absolute difference
-    # for every combination of j< j'
-    res <- c()
-    n <- length(x)
-    for (i in seq(1, n - 1)) {
-      res <- sum(res, abs(x[(i + 1):n] - x[i]))
-    }
-    res <- res * 2 / (n * (n - 1))
-    return(res)
-  }
-
   # calculate doefficient determination
   res <- mutate(
     group_by(
@@ -156,7 +141,6 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     Genotypic.superiority.measure = sum(Mj),
     Variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1)),
     Stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2)),
-    Mean.rank.difference = abs.dev.sum(corrected.rank),
     Safty.first.index = pnorm((lambda - mean(X)) / sd(X)),
     Normality = normtest(X)
   )
@@ -178,9 +162,8 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   # select output columns
   nam.list <- c(
     "Genotype", "Mean.Trait", "Normality", "Safty.first.index", "Coefficient.of.determination", "Coefficient.of.regression", "Deviation.mean.squares", "Environmental.variance",
-    "Genotypic.stability", "Genotypic.superiority.measure", "Variance.of.rank", "Stability.variance", "Mean.rank.difference",
-    "Adjusted.coefficient.of.variation", "Ecovalence"
-  )
+    "Genotypic.stability", "Genotypic.superiority.measure", "Variance.of.rank", "Stability.variance",
+    "Adjusted.coefficient.of.variation", "Ecovalence")
   res <- res[, nam.list]
 
   if (normalize == TRUE){

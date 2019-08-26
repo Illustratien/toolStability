@@ -63,8 +63,6 @@ tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),n
 
 \code{\link{genotypic_superiority_measure}}
 
-\code{\link{mean_rank_difference}}
-
 \code{\link{stability_variance}}
 
 \code{\link{variance_of_rank}}

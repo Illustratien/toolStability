@@ -3,7 +3,7 @@ This is a r package for calculating parametric, non-parametric, and probabilisti
 
 ##package structure overview
 
-This r package contain 12 different functions to calculate stability indices, including:
+This r package contain different functions to calculate stability indices, including:
 
  1.  adjusted coefficient variaiton
  2.  coefficient of determination
@@ -13,10 +13,9 @@ This r package contain 12 different functions to calculate stability indices, in
  6.  environmental variance
  7.  genotypic stability
  8.  genotypic superiority measure
- 9.  mean rank difference
- 10. safty first index
- 11. stability variance
- 12. variance of rank
+ 9. safty first index
+ 10. stability variance
+ 11. variance of rank
 
 
 ##function input tutorial
