@@ -23,7 +23,6 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
-#' @param environment colname of a column containing a character or factor vector labeling different environments
 #' @param lambda threshold value of trait that define stability for a genotype across environments through probabilistic approach.
 #' @param normalize a logical value indicating whether stability indicies should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.
 #'
@@ -47,7 +46,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
-#' @importFrom stats pnorm sd median shapiro.test
+#' @importFrom stats pnorm sd median shapiro.test na.omit
 #' @importFrom nortest ad.test
 #' @export
 #'
