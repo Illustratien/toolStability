@@ -54,17 +54,21 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' data(Data)
 #' tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
 table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE) {
-  if (!is.numeric(data[[trait]])) {
+  trait.value <- data[[trait]]
+  geno.value <- data[[genotype]]
+  no.na.trait <- na.omit(trait.value)
+  trait_range <- range(no.na.trait)
+  if (!is.numeric(trait.value )) {
     stop("Trait must be a numeric vector")
   }
   if (!is.numeric(lambda)) {
     stop("Lambda must be numeric!")
   }
-  if (lambda > range(data[[trait]])[2] | lambda < range(data[[trait]])[1]) {
+  if (lambda > trait_range[2] | lambda < trait_range[1]) {
     stop("Lambda must in the range of trait")
   }
   if (missing(lambda)) {
-    lambda <- median(data$trait)
+    lambda <- median(no.na.trait)
     message(sprintf("lambda = %d (medain of %s) is used for Safty first index!", lambda, trait))
   }
 
@@ -74,6 +78,9 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   G <- length(unique(data[[genotype]]))
   sample_number <-range(table(Data$Environment))
   if (sample_number[1]<3) {
+  Data <- na.omit(Data)
+  X..bar <- mean(no.na.trait) # overall mean of X
+  G <- length(unique(na.omit(geno.value)))
     stop("Environment number must above 3")
   } else if (sample_number[2] <= 5000 & sample_number[1] >= 3) {
     normtest <- function(x){
@@ -115,7 +122,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     deviation = ((X - Xi.bar)^2) / (E - 1),
     sqr = (X - Xi.bar - Xj.bar + X..bar)^2,
     sqr1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 1),
-    Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
+    Bi = 1 + (sum(Bi1) / sum(Bi2)),
     Mj = (X - Xj.max)^2 / (2 * length(X))
   )
 
@@ -168,7 +175,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   if (normalize == TRUE){
     scale1 <-  function (x) {
       revers.x <- x * (-1)
-      (revers.x - min(revers.x, na.rm = TRUE)) / diff(range(revers.x, na.rm = TRUE))
+      (revers.x - min(revers.x)) / diff(range(revers.x))
     }
     res <- mutate_at(res, nam.list[-c(1:3)], scale1)
   }
