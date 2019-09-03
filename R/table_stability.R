@@ -105,13 +105,15 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
 
   X..bar <- mean(no.na.trait) # overall mean of X
   G <- length(unique(na.omit(geno.value)))
+  sample_number <-length(unique(Data[['Environment']]))
+  if (sample_number<3) {
     stop("Environment number must above 3")
-  } else if (sample_number[2] <= 5000 & sample_number[1] >= 3) {
+  } else if (sample_number <= 5000 & sample_number >= 3) {
     normtest <- function(x){
       return(shapiro.test(x)$p.value > 0.05)
     }
     norm.test.name <- "Shapiro"
-  } else if (sample_number[2] > 5000) {
+  } else if (sample_number > 5000) {
     normtest <- function(x){
       return(ad.test(x)$p.value > 0.05)
     }
