@@ -237,19 +237,6 @@ test_that("genotypic_stability is same between function and table", {
   )
 })
 
-
-test_that("mean_rank_difference is calulated correctly", {
-  expect_equal(mrd, mean_rank_difference(data, "trait", "genotype", "environment")$mean.rank.difference)
-  expect_equal(mrd, tb$Mean.rank.difference)
-})
-test_that("mean_rank_difference is same between function and table", {
-  expect_equal(
-    mean_rank_difference(data, "trait", "genotype", "environment")$mean.rank.difference,
-    tb$Mean.rank.difference
-  )
-})
-
-
 test_that("variance_of_ranks is calulated correctly", {
   expect_equal(vor, variance_of_rank(data, "trait", "genotype", "environment")$variance.of.rank)
   expect_equal(vor, tb$Variance.of.rank)
