@@ -1,4 +1,8 @@
-utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Trait", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
+                         "Mean.Trait", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max",
+                         "corrected.X", "corrected.rank", "dev", "deviation",
+                         "mean.rank", "s2d1","s2d2", "s2di", "s2xi", "sqr", "sqr1",
+                         "wi", "trait.value", "geno.value", "no.na.trait", "trait_range"))
 #' @title Table stability
 #'
 #' @description
@@ -76,12 +80,29 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   }
 
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]]) # overall mean of X
-  X..bar <- mean(data[[trait]])
-  G <- length(unique(data[[genotype]]))
-  sample_number <-range(table(Data$Environment))
-  if (sample_number[1]<3) {
+  if (length(environment)==1){
+    Data <- data.table(X = trait.value ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data_name <- "data"
+    column_command <- paste(paste0(data_name,'$'),
+                            environment,
+                            sep='',
+                            collapse = ',')
+
+    data$Environment <- eval(parse(
+      text=sprintf("paste(%s,sep='_')",
+        column_command)))
+
+    Data <- data.table(X = trait.value ,
+                       Genotype = geno.value,
+                       Environment = data[['Environment']])
+  }
+
   Data <- na.omit(Data)
+
   X..bar <- mean(no.na.trait) # overall mean of X
   G <- length(unique(na.omit(geno.value)))
     stop("Environment number must above 3")
@@ -132,26 +153,26 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   bmin <- min(res$Bi) # for genotypic stability
   wisum <- sum(res$sqr1)
   res <- summarise(res,
-    Mean.Trait = mean(X),
-    Xi.logvar = log10(var(X, na.rm = TRUE)),
-    Xi.logmean = log10(mean(X, na.rm = TRUE)),
-    Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
-    s2di = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
-    s2xi = sum(deviation, na.rm = TRUE),
-    wi = sum(sqr1, na.rm = TRUE),
-    mean.rank = mean(corrected.rank),
-    # stability indices
-    Ecovalence = mean(sqr, na.rm = TRUE),
-    Coefficient.of.determination = 1 - (s2di / s2xi),
-    Coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
-    Deviation.mean.squares = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
-    Environmental.variance = sum(deviation, na.rm = TRUE),
-    Genotypic.stability = sum((X - Mean.Trait - bmin * Xj.bar + bmin * X..bar)^2),
-    Genotypic.superiority.measure = sum(Mj),
-    Variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1)),
-    Stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2)),
-    Safty.first.index = pnorm((lambda - mean(X)) / sd(X)),
-    Normality = normtest(X)
+                   Mean.Trait = mean(X),
+                   Xi.logvar = log10(var(X)),
+                   Xi.logmean = log10(mean(X)),
+                   Bi = 1 + (sum(Bi1) / sum(Bi2)),
+                   s2di = sum(s2d1) - ((Bi - 1)^2) * sum(s2d2),
+                   s2xi = sum(deviation),
+                   wi = sum(sqr1),
+                   mean.rank = mean(corrected.rank),
+                   # stability indices
+                   Ecovalence = mean(sqr),
+                   Coefficient.of.determination = 1 - (s2di / s2xi),
+                   Coefficient.of.regression = 1 + sum(Bi1) / sum(Bi2),
+                   Deviation.mean.squares = sum(s2d1) - ((Bi - 1)^2) * sum(s2d2),
+                   Environmental.variance = sum(deviation),
+                   Genotypic.stability = sum((X - Mean.Trait - bmin * Xj.bar + bmin * X..bar)^2),
+                   Genotypic.superiority.measure = sum(Mj),
+                   Variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1)),
+                   Stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2)),
+                   Safty.first.index = pnorm((lambda - mean(X)) / sd(X)),
+                   Normality = normtest(X)
   )
   # for adjusted correlation variation
   b <- sum((res$Xi.logmean - mean(res$Xi.logmean)) * (res$Xi.logvar - mean(res$Xi.logvar))) / sum((res$Xi.logmean - mean(res$Xi.logmean))^2)
@@ -160,13 +181,13 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   # replace negative value to zero as stated by Shukla, 1972.
   res$Stability.variance[res$Stability.variance < 0] <- 0
 
-    if (all(!res$Normality)) {
-      warning(sprintf("All of your genotypes didn't pass the %s normality test!
+  if (all(!res$Normality)) {
+    warning(sprintf("All of your genotypes didn't pass the %s normality test!
  Safty_first Index may not be accurate.",norm.test.name))
-    } else if (any(!res$Normality)){
-      warning(sprintf("Part of your genotypes didn't pass the %s normality test!
+  } else if (any(!res$Normality)){
+    warning(sprintf("Part of your genotypes didn't pass the %s normality test!
  Safty_first Index may not be accurate.",norm.test.name))
-    }
+  }
 
   # select output columns
   nam.list <- c(
