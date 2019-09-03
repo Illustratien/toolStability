@@ -14,7 +14,8 @@ table_stability(data, trait, genotype, environment, lambda,
 
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
 
-\item{environment}{colname of a column containing a character or factor vector labeling different environments}
+\item{environment}{colname(s) of a column containing a character or factor vector labeling different environments,
+if input is a vector containing multiple column names, then it will be merged into single environment column in the function.}
 
 \item{lambda}{threshold value of trait that define stability for a genotype across environments through probabilistic approach.}
 
@@ -32,6 +33,7 @@ Combine all stability indices in this package and export as a table, including m
 \examples{
 data(Data)
 tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
+
 }
 \references{
 \insertRef{doering2018}{toolStability}
