@@ -37,8 +37,18 @@ in the package for every genotypes, also including the mean yield and normality 
 across all the enviornments.  
 
 ## dataset description
-The default data is the subset of APSIM simulated wheat dataset, which includes 5 genotypes in 4 locations of 11 years 
-(Casadebaig et al., 2016).
+The default data set 'Data' is the subset of APSIM simulated wheat dataset, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 CO2 levels of treatments (Casadebaig et al., 2016).
+
+'Data' in this package is A data frame with 640 observations and 8 variables.
+
+Trait            Wheat yield (kg.ha-1). 
+Genotype     5   varieties.
+Environment  128 unique combination of environments for each genotype.
+Year         4   years.
+Sites        4   locations.
+Nitrogen     2   nitrogen application levels.
+CO2          2   CO2 concentration levels.
+Sowing       2   sowing dates.
 
 'Data' in this package is a dataframe with 220 observations on the following 3 variables.
 
