@@ -24,10 +24,7 @@ a data table with genotypic superiority measure
 \details{
 Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regression function.
 Variety with low genotypic superiority measure is considered as stable.
-
-\deqn{P_{i} = \sum_{j}^{n} \frac{(X_{ij}-M_{j})^{2}}{2n}}
-where \eqn{X_{ij}} stands for observed trait and
-\eqn{M_{j}} stands for maximum response among all culitvars in the jth location.
+Equation of genotypic superiority measure can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -37,7 +34,7 @@ res <- genotypic_superiority_measure(Data, "Yield", "Genotype", "Environment")
 \insertRef{lin1988}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{dynamic}
 \keyword{stability}

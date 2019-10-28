@@ -9,27 +9,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @details
 #' Deviation mean squares (Eberhart and Russell, 1966) is calculatd based on regression function.
 #' Variety with low stability variance is considered as stable.
-#' Under the linear model
-#' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
-#' where Y is the predicted phenotypic values, \eqn{g_{i}}, \eqn{e_{j}} and \eqn{\mu} denoting
-#' genotypic, environmental and overall popluation mean,respectively.
-#'
-#' The effect of GE-interaction may be expressed as:
-#' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
-#' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
-#'
-#' Deviation mean squares(\code{\link{deviation_mean_squares}}):
-#' \deqn{
-#' s^{2}_{di} = \frac{1}{E-2} \left [
-#' \sum_{j} (X_{ij} - \bar{X_{i.}}- \bar{X_{.j}} + \bar{X_{..}}^{2} - (b_{i} - 1)^{2})\cdot
-#' (\bar{X_{.j}}- \bar{X_{..}})^{2} \right ]
-#' }
-#'
-#' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
-#' denoting marginal means of genotype i and environemnt j,respectively. \cr
-#' \eqn{\bar{X_{..}}} denote the overall mean of X.
-#'
+#' Equation of deviation mean squares can be found in vignette file.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.

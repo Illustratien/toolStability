@@ -22,10 +22,7 @@ a data table with environmental variance
 \details{
 Environmental variance (Roemer, 1917) is calculated by squared and suming up all deviation from genotypic mean for each genotype.
 The larger the environmental variance of one genotype is, the lower the stability.
-
-\deqn{S_{xi}^{2} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}})^{2}}{E-1} }
-where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} denoting marginal means of genotype i.
+Equation of environmental variance can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -35,7 +32,7 @@ environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
 \insertRef{roemer1917}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{stability}
 \keyword{static}

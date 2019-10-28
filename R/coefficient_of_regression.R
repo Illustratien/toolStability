@@ -12,7 +12,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' Under the linear model
 #' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
 #' where Y is the predicted phenotypic values, \eqn{g_{i}}, \eqn{e_{j}} and \eqn{\mu} denoting
-#' genotypic, environmental and overall popluation mean,respectively.
+#' genotypic, environmental and overall population mean,respectively.
 #'
 #' The effect of GE-interaction may be expressed as:
 #' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
@@ -24,7 +24,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
 #' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
-#' denoting marginal means of genotype i and environemnt j,respectively. \cr
+#' denoting marginal means of genotype i and environment j,respectively. \cr
 #' \eqn{\bar{X_{..}}} denote the overall mean of X.
 #'
 #'

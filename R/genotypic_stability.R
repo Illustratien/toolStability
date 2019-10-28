@@ -9,24 +9,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @details
 #' Genotypic stability (Hanson, 1970) is calculatd based on regression function.
 #' Variety with low stability variance is considered as stable.
-#' Under the linear model
-#' \deqn{Y =\mu + b_{i}e_{j} + g_{i} + d_{ij}}
-#' where Y is the predicted phenotypic values, \eqn{g_{i}}, \eqn{e_{j}} and \eqn{\mu} denoting
-#' genotypic, environmental and overall popluation mean,respectively.
-#'
-#' The effect of GE-interaction may be expressed as:
-#' \deqn{(ge)_{ij} = b_{i}e_{j} + d_{ij}}
-#' where \eqn{b_{i}} is the coefficient of regression and \eqn{d_{ij}} a deviation.
-#'
-#' Genotypic stability:
-#' \deqn{ D_{i}^{2} = \sum_{j} (X_{ij} - \bar{X_{i.}}- b_{min}\bar{X_{.j}} +  b_{min}\bar{X_{..}}^{2}}
-#'
-#' where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-#' in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
-#' denoting marginal means of genotype i and environemnt j,respectively. \cr
-#' \eqn{\bar{X_{..}}} denote the overall mean of X.
-#'
-#' \eqn{b_{min}} is the minimum value of (\code{\link{coefficient_of_regression}}) over all enrionment.
+#' Equation of genotypic stability can be found in vignette file.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
@@ -35,7 +18,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @return a data table with genotypic stability
 #'
-#' @author Tien Cheng Wang
+#' @author Tien-Cheng Wang
 #'
 #' @references
 #' \insertRef{hanson1970}{toolStability}

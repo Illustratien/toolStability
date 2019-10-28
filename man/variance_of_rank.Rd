@@ -24,16 +24,7 @@ a data table with variance of rank
 \details{
 Variance of rank (Nassar and Huehn, 1987) is calculatd based on regression function.
 Variety with low variance of rank is considered as stable.
-
-Correction for each genotype i was done by subtraction of marginal genotypic mean \eqn{\bar{X_{i.}}} and the addition of overall mean\eqn{\bar{X_{..}}}.
-\deqn{X_{corrected ij} = X_{ij} - \bar{X_{i.}} + \bar{X_{..}}}
-Then calculated the rank all genotypes for each environment j
-\deqn{r_{ij} = rank(X_{corrected ij})}
-
-Variance of rank is calculated as the following equation.
-\deqn{S_{i}4 = \frac{\sum_{j} (r_{ij}-\bar{r_{i.}}^{2}}{E-1}}
-where \eqn{r_{ij}} is the rank of genotype i in environment j and \eqn{\bar{r_{i.}}} is the marginal rank of genotype i over environment,
-based on the corrected \eqn{X_{ij}} values.
+Equation of variance of rank can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -43,7 +34,7 @@ variance.of.rank <- variance_of_rank(Data, "Yield", "Genotype", "Environment")
 \insertRef{nassar1987}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{approach}
 \keyword{nonparametric}

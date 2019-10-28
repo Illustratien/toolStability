@@ -9,7 +9,7 @@ adjusted_coefficient_of_variation(data, trait, genotype, environment)
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
 
-\item{trait}{colname of a column containing a numeric vector of interested trait to be analysized.}
+\item{trait}{colname of a column containing a numeric vector of interested trait to be analyzed.}
 
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
 
@@ -23,19 +23,7 @@ a data table with adjusted coefficient of variation
 }
 \details{
 Adjusted coefficient of variaiton (Doering and Reckling, 2018) is calculatd based on regression function.
-Variety with low adjusted coefficient of variation is considered as stable.
-Under the linear model
-
-\deqn{v_{i} = a + bm_{i}}
-where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and
-\eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
-\deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
-10^{(2-b)\cdot
-m_{i} + (b-2)\cdot
-\bar{m} + v_{i}}
-\right ]
-^{0.5} \cdot
-100 \%}
+Variety with low adjusted coefficient of variation is considered as stable. Equation of adjusted coefficient of variation can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -45,7 +33,7 @@ res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment
 \insertRef{doering2018}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{approach}
 \keyword{regression}

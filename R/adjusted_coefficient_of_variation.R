@@ -8,28 +8,16 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @details
 #' Adjusted coefficient of variaiton (Doering and Reckling, 2018) is calculatd based on regression function.
-#' Variety with low adjusted coefficient of variation is considered as stable.
-#' Under the linear model
-#'
-#' \deqn{v_{i} = a + bm_{i}}
-#' where \eqn{v_{i}} is the \eqn{log_{10}} of penotypic variance and
-#' \eqn{m_{i}} is the \eqn{log_{10}} of penotypic mean.
-#' \deqn{\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
-#' 10^{(2-b)\cdot
-#' m_{i} + (b-2)\cdot
-#' \bar{m} + v_{i}}
-#' \right ]
-#' ^{0.5} \cdot
-#' 100 \%}
+#' Variety with low adjusted coefficient of variation is considered as stable. Equation of adjusted coefficient of variation can be found in vignette file.
 #'
 #' @param data a dataframe containing trait, genotype and environment.
-#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analyzed.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
 #'
 #' @return a data table with adjusted coefficient of variation
 #'
-#' @author Tien Cheng Wang
+#' @author Tien-Cheng Wang
 #'
 #' @references
 #' \insertRef{doering2018}{toolStability}

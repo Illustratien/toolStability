@@ -25,12 +25,7 @@ a data table with ecovalence
 Ecovalence (Wricke, 1962) is calcualted based on square and sum up the genotype–environment
 interaction all over the environment.
 Variety with low ecovalence is considered as stable.
-
-\deqn{W_{i} = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}}^{2}}{E-1}}
-where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} denoting marginal means of genotype i.
-
-Here we modified the original function by dividing (E-1) after summation in order to balance the different number of envionment condition.
+Equation of ecovalence can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -40,7 +35,7 @@ eco.valance <- ecovalence(Data, "Yield", "Genotype", "Environment")
 \insertRef{wricke1962}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{dynamic}
 \keyword{stability}

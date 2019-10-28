@@ -9,11 +9,11 @@ stability_variance(data, trait, genotype, environment)
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
 
-\item{trait}{colname of a column containing a numeric vector of interested trait to be analysized.}
+\item{trait}{colname of a column containing a numeric vector of interested trait to be analyzed.}
 
-\item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
+\item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties.}
 
-\item{environment}{colname of a column containing a character or factor vector labeling different environments}
+\item{environment}{colname of a column containing a character or factor vector labeling different environments.}
 }
 \value{
 a data table with stability variance
@@ -24,18 +24,8 @@ a data table with stability variance
 \details{
 Stability variance (Shukla, 1972) is calculatd based on lindear combination of ecovalence and mean square of genotype-environment interaction.
 Variety with low stability variance is considered as stable.
-
-\deqn{
-\Sigma^{2}_{i} = \frac{1}{(G-1)\cdot(G-2)\cdot(E-1)} \left [
-G \cdot(G-1)\cdot \sum_{j} (X_{ij} - \bar{X_{i.}}_\bar{X_{.j}} + \bar{X_{..}})^{2}- \sum_{i} \sum_{j} (X_{ij} - \bar{X_{i.}}_\bar{X_{.j}} + \bar{X_{..}})^{2}
-\right ]
-}
-where \eqn{X_{ij}} is the observed phenotypic mean value of genotype i(i=1,..., G)
-in environment j(j=1,...,E), with \eqn{\bar{X_{i.}}} and  \eqn{\bar{X_{.j}}} \cr
-denoting marginal means of genotype i and environemnt j,respectively. \cr
-\eqn{\bar{X_{..}}} denote the overall mean of X.
-
 Negative values of stability variance is replaced with 0.
+Equation of stability variance can be found in vignette file.
 }
 \examples{
 data(Data)
@@ -45,7 +35,7 @@ stability.variance <- stability_variance(Data, "Yield", "Genotype", "Environment
 \insertRef{shukla1972}{toolStability}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{dynamic}
 \keyword{stability}
