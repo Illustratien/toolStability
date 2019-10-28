@@ -24,10 +24,10 @@ Multi-environment trail evaluating 5 genotypes in 4 locations for 4 years, with 
 \examples{
 data(Data)
 \donttest{
-boxplot(Yield ~ Genotype,
-  data = Data,
-  col = "lightblue", border = "darkblue"
-)
+ggplot2::ggplot(Data,ggplot2::aes(x=Sites,y=Yield,col=Genotype))+
+  ggplot2::geom_boxplot()+
+  ggplot2::facet_grid(Sowing~Nitrogen,labeller =ggplot2::label_both)+
+  ggplot2::ylab(bquote('Wheat yield (ton' \%.\%'ha'^'-1'*')'))
 }
 }
 \references{
