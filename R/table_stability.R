@@ -3,14 +3,14 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
                          "corrected.X", "corrected.rank", "dev", "deviation",
                          "mean.rank", "s2d1","s2d2", "s2di", "s2xi", "sqr", "sqr1",
                          "wi", "trait.value", "geno.value", "no.na.trait", "trait_range"))
-#' @title Table stability
+#' @title Table of stability indices
 #'
 #' @description
-#' \code{table_stability} export all the stability indicies in the package.
+#' \code{table_stability} export all the stability indices in the package.
 #'
 #' @keywords static, dynamic, regression, nonparametric and probablistic approach
 #'
-#' @details Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment as well.
+#' @details Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment.
 #'
 #' @seealso \code{\link{adjusted_coefficient_of_variation}}
 #' @seealso \code{\link{coefficient_of_determination}}
@@ -22,19 +22,19 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #' @seealso \code{\link{genotypic_superiority_measure}}
 #' @seealso \code{\link{stability_variance}}
 #' @seealso \code{\link{variance_of_rank}}
-#' @seealso \code{\link{safty_first_index}}
+#' @seealso \code{\link{safety_first_index}}
 #'
-#' @param data a dataframe containing trait, genotype and environment.
-#' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
-#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
+#' @param data a data frame containing trait, genotype and environment.
+#' @param trait colname of a column containing a numeric vector of interested trait to be analyzed.
+#' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties.
 #' @param environment colname(s) of a column containing a character or factor vector labeling different environments,
 #' if input is a vector containing multiple column names, then it will be merged into single environment column in the function.
-#' @param lambda threshold value of trait that define stability for a genotype across environments through probabilistic approach.
-#' @param normalize a logical value indicating whether stability indicies should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.
+#' @param lambda the minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait vlaue.
+#' @param normalize a logical value indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.
 #'
 #' @return a data table with multiple stability indices
 #'
-#' @author Tien Cheng Wang
+#' @author Tien-Cheng Wang
 #'
 #' @references
 #' \insertRef{doering2018}{toolStability}
@@ -58,7 +58,14 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #'
 #' @examples
 #' data(Data)
-#' tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
+#' tb <- table_stability(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  lambda = median(Data$Yield),
+#'  normalize = TRUE
+#'  )
 #'
 table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE) {
   trait.value <- data[[trait]]
@@ -80,7 +87,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   }
 
   # combine vectors into data table
-  if (length(environment)==1){
+  if (length(environment) == 1){
     Data <- data.table(X = trait.value ,
                        Genotype = data[[genotype]],
                        Environment = data[[environment]])
@@ -105,8 +112,8 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
 
   X..bar <- mean(no.na.trait) # overall mean of X
   G <- length(unique(na.omit(geno.value)))
-  sample_number <-length(unique(Data[['Environment']]))
-  if (sample_number<3) {
+  sample_number <- length(unique(Data[['Environment']]))
+  if (sample_number < 3) {
     stop("Environment number must above 3")
   } else if (sample_number <= 5000 & sample_number >= 3) {
     normtest <- function(x){
@@ -173,7 +180,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
                    Genotypic.superiority.measure = sum(Mj),
                    Variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1)),
                    Stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2)),
-                   Safty.first.index = pnorm((lambda - mean(X)) / sd(X)),
+                   Safety.first.index = pnorm((lambda - mean(X)) / sd(X)),
                    Normality = normtest(X)
   )
   # for adjusted correlation variation
@@ -185,15 +192,15 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
 
   if (all(!res$Normality)) {
     warning(sprintf("All of your genotypes didn't pass the %s normality test!
- Safty_first Index may not be accurate.",norm.test.name))
+ Safety_first Index may not be accurate.",norm.test.name))
   } else if (any(!res$Normality)){
     warning(sprintf("Part of your genotypes didn't pass the %s normality test!
- Safty_first Index may not be accurate.",norm.test.name))
+ Safety_first Index may not be accurate.",norm.test.name))
   }
 
   # select output columns
   nam.list <- c(
-    "Genotype", "Mean.Trait", "Normality", "Safty.first.index", "Coefficient.of.determination", "Coefficient.of.regression", "Deviation.mean.squares", "Environmental.variance",
+    "Genotype", "Mean.Trait", "Normality", "Safety.first.index", "Coefficient.of.determination", "Coefficient.of.regression", "Deviation.mean.squares", "Environmental.variance",
     "Genotypic.stability", "Genotypic.superiority.measure", "Variance.of.rank", "Stability.variance",
     "Adjusted.coefficient.of.variation", "Ecovalence")
   res <- res[, nam.list]

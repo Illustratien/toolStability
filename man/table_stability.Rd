@@ -2,37 +2,44 @@
 % Please edit documentation in R/table_stability.R
 \name{table_stability}
 \alias{table_stability}
-\title{Table stability}
+\title{Table of stability indices}
 \usage{
 table_stability(data, trait, genotype, environment, lambda,
   normalize = FALSE)
 }
 \arguments{
-\item{data}{a dataframe containing trait, genotype and environment.}
+\item{data}{a data frame containing trait, genotype and environment.}
 
-\item{trait}{colname of a column containing a numeric vector of interested trait to be analysized.}
+\item{trait}{colname of a column containing a numeric vector of interested trait to be analyzed.}
 
-\item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
+\item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties.}
 
 \item{environment}{colname(s) of a column containing a character or factor vector labeling different environments,
 if input is a vector containing multiple column names, then it will be merged into single environment column in the function.}
 
-\item{lambda}{threshold value of trait that define stability for a genotype across environments through probabilistic approach.}
+\item{lambda}{the minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait vlaue.}
 
-\item{normalize}{a logical value indicating whether stability indicies should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.}
+\item{normalize}{a logical value indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.}
 }
 \value{
 a data table with multiple stability indices
 }
 \description{
-\code{table_stability} export all the stability indicies in the package.
+\code{table_stability} export all the stability indices in the package.
 }
 \details{
-Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment as well.
+Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment.
 }
 \examples{
 data(Data)
-tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),normalize = TRUE)
+tb <- table_stability(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ lambda = median(Data$Yield),
+ normalize = TRUE
+ )
 
 }
 \references{
@@ -69,10 +76,10 @@ tb <- table_stability(Data,"Yield","Genotype","Environment",median(Data$Yield),n
 
 \code{\link{variance_of_rank}}
 
-\code{\link{safty_first_index}}
+\code{\link{safety_first_index}}
 }
 \author{
-Tien Cheng Wang
+Tien-Cheng Wang
 }
 \keyword{and}
 \keyword{approach}

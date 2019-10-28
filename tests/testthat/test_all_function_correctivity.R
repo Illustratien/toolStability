@@ -268,13 +268,13 @@ test_that("genotypic_superiority_measure is same between function and table", {
   )
 })
 
-test_that("safty_first_index is calulated correctly", {
-  expect_equal(sft.fir, safty_first_index(data, "trait", "genotype", "environment", lambda)$safty.first.index)
-  expect_equal(sft.fir, tb$Safty.first.index)
+test_that("safety_first_index is calulated correctly", {
+  expect_equal(sft.fir, safety_first_index(data, "trait", "genotype", "environment", lambda)$safety.first.index)
+  expect_equal(sft.fir, tb$Safety.first.index)
 })
-test_that("safty_first_index is same between function and table", {
+test_that("safety_first_index is same between function and table", {
   expect_equal(
-    safty_first_index(data, "trait", "genotype", "environment", lambda)$safty.first.index,
-    tb$Safty.first.index
+    safety_first_index(data, "trait", "genotype", "environment", lambda)$safety.first.index,
+    tb$Safety.first.index
   )
 })
