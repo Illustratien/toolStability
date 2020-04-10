@@ -51,8 +51,19 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' coefficient.of.regression <- coefficient_of_regression(Data, "Yield", "Genotype", "Environment")
 coefficient_of_regression <- function(data, trait, genotype, environment) {
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
 
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X) # overall mean of X
   res <- summarise(
     mutate(
@@ -67,8 +78,9 @@ coefficient_of_regression <- function(data, trait, genotype, environment) {
       Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
       Bi2 = (Xj.bar - X..bar)^2
     ),
-    coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)
+    coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
+    !!varnam := mean(X)
   )
 
-  return(res[, c("Genotype", "coefficient.of.regression")])
+  return(res[, c("Genotype", varnam,"coefficient.of.regression")])
 }

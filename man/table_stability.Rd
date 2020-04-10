@@ -5,7 +5,7 @@
 \title{Table of stability indices}
 \usage{
 table_stability(data, trait, genotype, environment, lambda,
-  normalize = FALSE)
+  normalize = FALSE, unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a data frame containing trait, genotype and environment.}
@@ -19,7 +19,9 @@ if input is a vector containing multiple column names, then it will be merged in
 
 \item{lambda}{the minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait vlaue.}
 
-\item{normalize}{a logical value indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.}
+\item{normalize}{logical, default is \code{FALSE}, indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable.}
+
+\item{unit.correct}{logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.}
 }
 \value{
 a data table with multiple stability indices

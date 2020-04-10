@@ -4,7 +4,8 @@
 \alias{genotypic_superiority_measure}
 \title{Genotypic superiority measure}
 \usage{
-genotypic_superiority_measure(data, trait, genotype, environment)
+genotypic_superiority_measure(data, trait, genotype, environment,
+  unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -14,6 +15,8 @@ genotypic_superiority_measure(data, trait, genotype, environment)
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
 
 \item{environment}{colname of a column containing a character or factor vector labeling different environments}
+
+\item{unit.correct}{logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'}
 }
 \value{
 a data table with genotypic superiority measure
@@ -22,7 +25,7 @@ a data table with genotypic superiority measure
 \code{genotypic_superiority_measure} calculate variance of a genotype across environments.
 }
 \details{
-Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on regression function.
+Genotypic superiority measure (Lin and Binns, 1988) is calculatd based on means square distance between maximum value of environment j and genotype i.
 Variety with low genotypic superiority measure is considered as stable.
 Equation of genotypic superiority measure can be found in vignette file.
 }

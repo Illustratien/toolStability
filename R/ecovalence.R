@@ -16,6 +16,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
+#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.
 #'
 #' @return a data table with ecovalence
 #'
@@ -24,7 +25,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{wricke1962}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -33,12 +34,24 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @examples
 #' data(Data)
 #' eco.valance <- ecovalence(Data, "Yield", "Genotype", "Environment")
-ecovalence <- function(data, trait, genotype, environment) {
+ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
   # combine vecotr into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X)
 
   res <- summarise(
@@ -53,8 +66,12 @@ ecovalence <- function(data, trait, genotype, environment) {
       Xi.bar = mean(X), # then calculate genotypic mean
       sqr = (X - Xi.bar - Xj.bar + X..bar)^2
     ),
+    !!varnam := mean(X),
     ecovalence = mean(sqr, na.rm = TRUE)
   )
 
-  return(res[, c("Genotype", "ecovalence")])
+  if (unit.correct==TRUE){
+    res <- mutate_at(res,"ecovalence", sqrt)
+  }
+  return(res[, c("Genotype",varnam, "ecovalence")])
 }

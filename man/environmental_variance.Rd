@@ -4,7 +4,7 @@
 \alias{environmental_variance}
 \title{Environmental variance}
 \usage{
-environmental_variance(data, trait, genotype)
+environmental_variance(data, trait, genotype, unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -12,6 +12,8 @@ environmental_variance(data, trait, genotype)
 \item{trait}{colname of a column containing a numeric vector of interested trait to be analysized.}
 
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
+
+\item{unit.correct}{logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'}
 }
 \value{
 a data table with environmental variance

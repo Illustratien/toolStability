@@ -30,7 +30,8 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #' @param environment colname(s) of a column containing a character or factor vector labeling different environments,
 #' if input is a vector containing multiple column names, then it will be merged into single environment column in the function.
 #' @param lambda the minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait vlaue.
-#' @param normalize a logical value indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable. Default is \code{FALSE}.
+#' @param normalize logical, default is \code{FALSE}, indicating whether stability indices should be normalized to the range from 0 to 1, where 1 refer to stable and 0 is unstable.
+#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.
 #'
 #' @return a data table with multiple stability indices
 #'
@@ -67,7 +68,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #'  normalize = TRUE
 #'  )
 #'
-table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE) {
+table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE, unit.correct=FALSE) {
   trait.value <- data[[trait]]
   geno.value <- data[[genotype]]
   no.na.trait <- na.omit(trait.value)
@@ -93,15 +94,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
                        Environment = data[[environment]])
 
   }else { # if input is the vector containing the name that are going to combine in one column
-    data_name <- "data"
-    column_command <- paste(paste0(data_name,'$'),
-                            environment,
-                            sep='',
-                            collapse = ',')
-
-    data$Environment <- eval(parse(
-      text=sprintf("paste(%s,sep='_')",
-        column_command)))
+    data$Environment <- interaction(data[,environment],sep = '_')
 
     Data <- data.table(X = trait.value ,
                        Genotype = geno.value,
@@ -200,10 +193,25 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
 
   # select output columns
   nam.list <- c(
-    "Genotype", "Mean.Trait", "Normality", "Safety.first.index", "Coefficient.of.determination", "Coefficient.of.regression", "Deviation.mean.squares", "Environmental.variance",
-    "Genotypic.stability", "Genotypic.superiority.measure", "Variance.of.rank", "Stability.variance",
-    "Adjusted.coefficient.of.variation", "Ecovalence")
+    "Genotype", "Mean.Trait", "Normality",
+    "Safety.first.index", "Coefficient.of.determination",
+    "Coefficient.of.regression", "Deviation.mean.squares",
+    "Environmental.variance","Genotypic.stability",
+    "Genotypic.superiority.measure", "Variance.of.rank",
+    "Stability.variance","Adjusted.coefficient.of.variation",
+    "Ecovalence")
   res <- res[, nam.list]
+  need.squared.si<-c("Environmental.variance",
+                     "Ecovalence",
+                     "Stability.variance",
+                     "Genotypic.stability",
+                     "Variance.of.rank",
+                     "Deviation.mean.squares",
+                     "Genotypic.superiority.measure"
+                     )
+  if (unit.correct==TRUE){
+    res <- mutate_at(res,need.squared.si, sqrt)
+  }
 
   if (normalize == TRUE){
     scale1 <-  function (x) {

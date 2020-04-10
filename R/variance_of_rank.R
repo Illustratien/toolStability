@@ -15,7 +15,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
-#'
+#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'
 #' @return a data table with variance of rank
 #'
 #' @author Tien-Cheng Wang
@@ -23,7 +23,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{nassar1987}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -32,12 +32,24 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @examples
 #' data(Data)
 #' variance.of.rank <- variance_of_rank(Data, "Yield", "Genotype", "Environment")
-variance_of_rank <- function(data, trait, genotype, environment) {
+variance_of_rank <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   X..bar <- mean(data[[trait]])
 
   res <- summarise(
@@ -54,9 +66,13 @@ variance_of_rank <- function(data, trait, genotype, environment) {
       ),
       Genotype
     ),
+    !!varnam := mean(X),
     mean.rank = mean(corrected.rank),
     variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1))
   )
 
-  return(res[, c("Genotype", "variance.of.rank")])
+  if (unit.correct==TRUE){
+    res <- mutate_at(res,"variance.of.rank", sqrt)
+  }
+  return(res[, c("Genotype",varnam, "variance.of.rank")])
 }

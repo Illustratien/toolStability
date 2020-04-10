@@ -68,10 +68,23 @@ safety_first_index <- function(data, trait, genotype, environment, lambda) {
   }
 
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   # calculate doefficient determination
   res <- summarise(
     group_by(Data, Genotype), # for each environment
+    !!varnam := mean(X),
     Normality = normtest(X), # test normality for each genotype
     safety.first.index = pnorm((lambda - mean(X)) / sd(X))
   )
@@ -80,5 +93,5 @@ safety_first_index <- function(data, trait, genotype, environment, lambda) {
  please see Normality column for more information.")
   }
 
-  return(res[, c("Genotype", "Normality", "safety.first.index")])
+  return(res[, c("Genotype",varnam, "Normality", "safety.first.index")])
 }

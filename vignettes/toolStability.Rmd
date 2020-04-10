@@ -16,10 +16,16 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
+```{r, echo=FALSE,out.margin=FALSE}
+htmltools::img(src = knitr::image_uri('logo1.PNG'), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:20px;'
+           )
+```
 ```{r setup}
 library(toolStability)
 ```
+
 ## Welcome to toolStability
 This is an r package for calculating parametric, non-parametric, and probabilistic stability indices.
 
@@ -123,7 +129,8 @@ summary.table <- table_stability(data = Data,
                                  genotype = 'Genotype',
                                  environment = 'Environment',
                                  lambda = median(Data$Yield),
-                                 normalize = F )
+                                 normalize = F,
+                                 unit.correct = F)
 #### warning message is telling you that your data structure is not distributed as normal distribution
 
 #### check the structure of result
@@ -135,7 +142,8 @@ normalized.summary.table <- table_stability(data = Data,
                                  genotype = 'Genotype',
                                  environment = 'Environment',
                                  lambda = median(Data$Yield),
-                                 normalize = F )
+                                 normalize = T,
+                                 unit.correct = F)
 #### warning message is telling you that your data structure is not distributed as normal distribution
 
 #### check the structure of result
@@ -150,7 +158,8 @@ summary.table2 <- table_stability(data = Data,
                                  genotype = 'Genotype',
                                  environment = c('CO2','Nitrogen'),
                                  lambda = median(Data$Yield),
-                                 normalize = F )
+                                 normalize = F,
+                                 unit.correct = F)
 
 #### check the structure of result
 dplyr::glimpse(summary.table2)
@@ -313,8 +322,7 @@ Genotypic stability [@hanson1970] is calculated based on regression function.
  
 
 ### genotypic superiority measure
-Genotypic superiority measure [@lin1988] is calculated based on regression function.
- Variety with low genotypic superiority measure is considered as stable.
+Genotypic superiority measure [@lin1988] is calculatd based on means square distance between maximum value of environment j and genotype i. Variety with low genotypic superiority measure is considered as stable.
  
  $$P_{i} = \sum_{j}^{n} \frac{(X_{ij}-M_{j})^{2}}{2n}$$
  where $X_{ij}$ stands for observed trait and

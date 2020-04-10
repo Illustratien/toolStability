@@ -4,7 +4,8 @@
 \alias{stability_variance}
 \title{Stability variance}
 \usage{
-stability_variance(data, trait, genotype, environment)
+stability_variance(data, trait, genotype, environment,
+  unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -14,6 +15,8 @@ stability_variance(data, trait, genotype, environment)
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties.}
 
 \item{environment}{colname of a column containing a character or factor vector labeling different environments.}
+
+\item{unit.correct}{logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'}
 }
 \value{
 a data table with stability variance

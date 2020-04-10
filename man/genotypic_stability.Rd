@@ -4,7 +4,8 @@
 \alias{genotypic_stability}
 \title{Genotypic stability}
 \usage{
-genotypic_stability(data, trait, genotype, environment)
+genotypic_stability(data, trait, genotype, environment,
+  unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -13,7 +14,8 @@ genotypic_stability(data, trait, genotype, environment)
 
 \item{genotype}{colname of a column containing a character or factor vector labeling different genotypic varieties}
 
-\item{environment}{colname of a column containing a character or factor vector labeling different environments}
+\item{environment}{colname of a column containing a character or factor vector labeling different environments
+@param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'}
 }
 \value{
 a data table with genotypic stability

@@ -34,7 +34,19 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment")
 adjusted_coefficient_of_variation <- function(data, trait, genotype, environment) {
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   res <- summarise(
     group_by(
       mutate(
@@ -45,11 +57,12 @@ adjusted_coefficient_of_variation <- function(data, trait, genotype, environment
     ), # for each genotype
     Xi.bar = mean(X, na.rm = TRUE), # then calculate genotypic mean
     Xi.logvar = log10(var(X, na.rm = TRUE)),
-    Xi.logmean = log10(mean(X, na.rm = TRUE))
+    Xi.logmean = log10(mean(X, na.rm = TRUE)),
+    !!varnam := mean(X)
   )
   b <- sum((res$Xi.logmean - mean(res$Xi.logmean)) * (res$Xi.logvar - mean(res$Xi.logvar))) / sum((res$Xi.logmean - mean(res$Xi.logmean))^2)
 
   res$adjusted.coefficient.of.variation <- 100 * (1 / res$Xi.bar) * sqrt(10^(((2 - b) * res$Xi.logmean) + ((b - 2) * (mean(res$Xi.logmean))) + res$Xi.logvar))
 
-  return(res[, c("Genotype", "adjusted.coefficient.of.variation")])
+  return(res[, c("Genotype",varnam, "adjusted.coefficient.of.variation")])
 }

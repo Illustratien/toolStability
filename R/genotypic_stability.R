@@ -15,7 +15,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
-#'
+#'  @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'
 #' @return a data table with genotypic stability
 #'
 #' @author Tien-Cheng Wang
@@ -23,7 +23,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{hanson1970}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -32,12 +32,24 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @examples
 #' data(Data)
 #' genotypic.stability <- genotypic_stability(Data, "Yield", "Genotype", "Environment")
-genotypic_stability <- function(data, trait, genotype, environment) {
+genotypic_stability <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
 
   X..bar <- mean(Data$X) # overall mean of X
   res <- mutate(
@@ -54,7 +66,13 @@ genotypic_stability <- function(data, trait, genotype, environment) {
     Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE))
   )
   bmin <- min(res$Bi)
-  res <- summarise(res, genotypic.stability = sum((X - Xi.bar - bmin * Xj.bar + bmin * X..bar)^2))
+  res <- summarise(res,
+                   !!varnam := mean(X),
+                   genotypic.stability = sum((X - Xi.bar - bmin * Xj.bar + bmin * X..bar)^2))
 
+
+  if (unit.correct==TRUE){
+    res <- mutate_at(res,"genotypic.stability", sqrt)
+  }
   return(res)
 }

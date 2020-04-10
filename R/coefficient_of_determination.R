@@ -34,7 +34,19 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' coef.of.determination <- coefficient_of_determination(Data, "Yield", "Genotype", "Environment")
 coefficient_of_determination <- function(data, trait, genotype, environment) {
   # combine vectors into data table
-  Data <- data.table(X = data[[trait]], Genotype = data[[genotype]], Environment = data[[environment]])
+  if (length(environment) == 1){
+    Data <- data.table(X =  data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[[environment]])
+
+  }else { # if input is the vector containing the name that are going to combine in one column
+    data$Environment <- interaction(data[,environment],sep = '_')
+
+    Data <- data.table(X = data[[trait]] ,
+                       Genotype = data[[genotype]],
+                       Environment = data[['Environment']])
+  }
+  varnam <- paste0("Mean.",trait)
   # overall mean of X
   X..bar <- mean(Data$X)
   # calculate doefficient determination
@@ -55,11 +67,12 @@ coefficient_of_determination <- function(data, trait, genotype, environment) {
       Bi2 = (Xj.bar - X..bar)^2,
       dev = ((X - Xi.bar)^2) / (E - 1)
     ),
+    !!varnam := mean(X),
     Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
     s2di = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
     s2xi = sum(dev, na.rm = TRUE),
     coefficient.of.determination = 1 - (s2di / s2xi)
   ) # final product
 
-  return(res[, c("Genotype", "coefficient.of.determination")])
+  return(res[, c("Genotype",varnam, "coefficient.of.determination")])
 }

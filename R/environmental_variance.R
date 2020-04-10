@@ -14,7 +14,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param data a dataframe containing trait, genotype and environment.
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
-#'
+#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'
 #' @return a data table with environmental variance
 #'
 #' @author Tien-Cheng Wang
@@ -22,7 +22,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{roemer1917}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate mutate_at
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -31,7 +31,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @examples
 #' data(Data)
 #' environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
-environmental_variance <- function(data, trait, genotype) {
+environmental_variance <- function(data, trait, genotype, unit.correct=FALSE){
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
@@ -47,5 +47,8 @@ environmental_variance <- function(data, trait, genotype) {
     environmental.variance = sum(deviation, na.rm = TRUE)
   )
 
+  if (unit.correct==TRUE){
+    res <- mutate_at(res,"environmental.variance", sqrt)
+  }
   return(res)
 }

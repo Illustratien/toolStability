@@ -167,7 +167,7 @@ for (i in 1:gn) {
 
 
 tb <- table_stability(data, "trait", "genotype", "environment", lambda)
-
+tb1 <- table_stability(data, "trait", "genotype", "environment", lambda,unit.correct=T)
 
 test_that("environmental_variance is calulated correctly", {
   expect_equal(env.var, environmental_variance(data, "trait", "genotype")$environmental.variance)
@@ -175,6 +175,10 @@ test_that("environmental_variance is calulated correctly", {
 })
 test_that("environmental_variance is same between function and table", {
   expect_equal(environmental_variance(data, "trait", "genotype")$environmental.variance, tb$Environmental.variance)
+})
+test_that("unit of environmental_variance is corrected correctly", {
+  expect_equal(sqrt(env.var), environmental_variance(data, "trait", "genotype",unit.correct=T)$environmental.variance)
+  expect_equal(sqrt(env.var), tb1$Environmental.variance)
 })
 
 test_that("ecovalence is calulated correctly", {
@@ -184,6 +188,10 @@ test_that("ecovalence is calulated correctly", {
 test_that("ecovalence is same between function and table", {
   expect_equal(ecovalence(data, "trait", "genotype", "environment")$ecovalence, tb$Ecovalence)
 })
+test_that("unit of ecovalence is corrected correctly", {
+  expect_equal(sqrt(eco.val), ecovalence(data, "trait", "genotype", "environment",unit.correct=T)$ecovalence)
+  expect_equal(sqrt(eco.val), tb1$Ecovalence)
+})
 
 test_that("stability_variance is calulated correctly", {
   expect_equal(stb.var, stability_variance(data, "trait", "genotype", "environment")$stability.variance)
@@ -191,6 +199,10 @@ test_that("stability_variance is calulated correctly", {
 })
 test_that("stability_variance is same between function and table", {
   expect_equal(stability_variance(data, "trait", "genotype", "environment")$stability.variance, tb$Stability.variance)
+})
+test_that("unit of stability_variance is corrected correctly", {
+  expect_equal(sqrt(stb.var), stability_variance(data, "trait", "genotype", "environment",unit.correct=T)$stability.variance)
+  expect_equal(sqrt(stb.var), tb1$Stability.variance)
 })
 
 test_that("coefficient_of_regression is calulated correctly", {
@@ -212,6 +224,11 @@ test_that("deviation_mean_squares is same between function and table", {
     deviation_mean_squares(data, "trait", "genotype", "environment")$deviation.mean.squares,
     tb$Deviation.mean.squares
   )
+})
+
+test_that("unit of deviation_mean_squares is corrected correctly", {
+  expect_equal(sqrt(s2di), deviation_mean_squares(data, "trait", "genotype", "environment",unit.correct=T)$deviation.mean.squares)
+  expect_equal(sqrt(s2di), tb1$Deviation.mean.squares)
 })
 
 test_that("coefficient_of_determination is calulated correctly", {
@@ -237,6 +254,11 @@ test_that("genotypic_stability is same between function and table", {
   )
 })
 
+test_that("unit of genotypic_stability is corrected correctly", {
+  expect_equal(sqrt(D2i), genotypic_stability(data, "trait", "genotype", "environment",unit.correct=T)$genotypic.stability)
+  expect_equal(sqrt(D2i), tb1$Genotypic.stability)
+})
+
 test_that("variance_of_ranks is calulated correctly", {
   expect_equal(vor, variance_of_rank(data, "trait", "genotype", "environment")$variance.of.rank)
   expect_equal(vor, tb$Variance.of.rank)
@@ -245,6 +267,10 @@ test_that("variance_of_ranks is same between function and table", {
   expect_equal(variance_of_rank(data, "trait", "genotype", "environment")$variance.of.rank, tb$Variance.of.rank)
 })
 
+test_that("unit of variance_of_ranks is corrected correctly", {
+  expect_equal(sqrt(vor), variance_of_rank(data, "trait", "genotype", "environment",unit.correct=T)$variance.of.rank)
+  expect_equal(sqrt(vor), tb1$Variance.of.rank)
+})
 
 test_that("adjusted_coefficient_of_variation is calulated correctly", {
   expect_equal(adj.cv, adjusted_coefficient_of_variation(data, "trait", "genotype", "environment")$adjusted.coefficient.of.variation)
@@ -266,6 +292,10 @@ test_that("genotypic_superiority_measure is same between function and table", {
     genotypic_superiority_measure(data, "trait", "genotype", "environment")$genotypic.superiority.measure,
     tb$Genotypic.superiority.measure
   )
+})
+test_that("unit of genotypic_superiority_measure is corrected correctly", {
+  expect_equal(sqrt(Pi), genotypic_superiority_measure(data, "trait", "genotype", "environment",unit.correct=T)$genotypic.superiority.measure)
+  expect_equal(sqrt(Pi), tb1$Genotypic.superiority.measure)
 })
 
 test_that("safety_first_index is calulated correctly", {
