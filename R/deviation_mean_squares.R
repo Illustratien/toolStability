@@ -32,7 +32,12 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' deviation.mean.squares <- deviation_mean_squares(Data, "Yield", "Genotype", "Environment")
+#' deviation.mean.squares <- deviation_mean_squares(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  unit.correct = FALSE)
 deviation_mean_squares <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")

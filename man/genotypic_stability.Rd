@@ -4,8 +4,7 @@
 \alias{genotypic_stability}
 \title{Genotypic stability}
 \usage{
-genotypic_stability(data, trait, genotype, environment,
-  unit.correct = FALSE)
+genotypic_stability(data, trait, genotype, environment, unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -30,7 +29,12 @@ Equation of genotypic stability can be found in vignette file.
 }
 \examples{
 data(Data)
-genotypic.stability <- genotypic_stability(Data, "Yield", "Genotype", "Environment")
+genotypic.stability <- genotypic_stability(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{hanson1970}{toolStability}

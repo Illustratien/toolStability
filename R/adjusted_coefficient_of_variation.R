@@ -31,7 +31,11 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment")
+#' res <- adjusted_coefficient_of_variation(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment")
 adjusted_coefficient_of_variation <- function(data, trait, genotype, environment) {
   # combine vectors into data table
   if (length(environment) == 1){

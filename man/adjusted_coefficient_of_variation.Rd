@@ -27,7 +27,11 @@ Variety with low adjusted coefficient of variation is considered as stable. Equa
 }
 \examples{
 data(Data)
-res <- adjusted_coefficient_of_variation(Data, "Yield", "Genotype", "Environment")
+res <- adjusted_coefficient_of_variation(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment")
 }
 \references{
 \insertRef{doering2018}{toolStability}

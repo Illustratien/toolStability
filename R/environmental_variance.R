@@ -30,7 +30,11 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
+#' environmental.variance <- environmental_variance(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  unit.correct = FALSE)
 environmental_variance <- function(data, trait, genotype, unit.correct=FALSE){
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")

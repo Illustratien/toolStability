@@ -28,7 +28,11 @@ Equation of environmental variance can be found in vignette file.
 }
 \examples{
 data(Data)
-environmental.variance <- environmental_variance(Data, "Yield", "Genotype")
+environmental.variance <- environmental_variance(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{roemer1917}{toolStability}

@@ -4,7 +4,8 @@
 \name{Data}
 \alias{Data}
 \title{Wheat APSIM model simulated database}
-\format{A dataframe with 640 observations on the following 8 variables.
+\format{
+A dataframe with 640 observations on the following 8 variables.
 \itemize{
 \item{\code{Yield}}{       unit: kg*ha^-1.}
 \item{\code{Genotype}}{    genotypes, 5 varieties.}
@@ -14,7 +15,8 @@
 \item{\code{Nitrogen}}{    2 nitrogen application levels.}
 \item{\code{CO2}}{         2 CO2 concentration levels.}
 \item{\code{Sowing}}{      2 sowing dates.}
- }}
+ }
+}
 \usage{
 data(Data)
 }

@@ -4,8 +4,15 @@
 \alias{table_stability}
 \title{Table of stability indices}
 \usage{
-table_stability(data, trait, genotype, environment, lambda,
-  normalize = FALSE, unit.correct = FALSE)
+table_stability(
+  data,
+  trait,
+  genotype,
+  environment,
+  lambda,
+  normalize = FALSE,
+  unit.correct = FALSE
+)
 }
 \arguments{
 \item{data}{a data frame containing trait, genotype and environment.}
@@ -40,9 +47,8 @@ tb <- table_stability(
  genotype = "Genotype",
  environment = "Environment",
  lambda = median(Data$Yield),
- normalize = TRUE
- )
-
+ normalize = TRUE,
+ unit.correct=TRUE)
 }
 \references{
 \insertRef{doering2018}{toolStability}

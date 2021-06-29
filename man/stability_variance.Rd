@@ -4,8 +4,7 @@
 \alias{stability_variance}
 \title{Stability variance}
 \usage{
-stability_variance(data, trait, genotype, environment,
-  unit.correct = FALSE)
+stability_variance(data, trait, genotype, environment, unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -32,7 +31,11 @@ Equation of stability variance can be found in vignette file.
 }
 \examples{
 data(Data)
-stability.variance <- stability_variance(Data, "Yield", "Genotype", "Environment")
+stability.variance <- stability_variance(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment")
 }
 \references{
 \insertRef{shukla1972}{toolStability}

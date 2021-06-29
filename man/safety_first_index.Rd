@@ -35,7 +35,12 @@ Equation of adjusted coefficient of variation can be found in vignette file.
 }
 \examples{
 data(Data)
-safety.first.index <- safety_first_index(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
+safety.first.index <- safety_first_index(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ lambda = median(Data$Yield))
 }
 \references{
 \insertRef{eskridge1990}{toolStability}

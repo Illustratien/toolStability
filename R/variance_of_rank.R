@@ -31,7 +31,12 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' variance.of.rank <- variance_of_rank(Data, "Yield", "Genotype", "Environment")
+#' variance.of.rank <- variance_of_rank(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  unit.correct = FALSE)
 variance_of_rank <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")

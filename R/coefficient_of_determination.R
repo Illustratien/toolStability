@@ -31,7 +31,11 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' coef.of.determination <- coefficient_of_determination(Data, "Yield", "Genotype", "Environment")
+#' coef.of.determination <- coefficient_of_determination(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment")
 coefficient_of_determination <- function(data, trait, genotype, environment) {
   # combine vectors into data table
   if (length(environment) == 1){

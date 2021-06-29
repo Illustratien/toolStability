@@ -31,7 +31,12 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' res <- genotypic_superiority_measure(Data, "Yield", "Genotype", "Environment")
+#' res <- genotypic_superiority_measure(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  unit.correct = FALSE)
 genotypic_superiority_measure <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")

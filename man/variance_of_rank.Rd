@@ -4,8 +4,7 @@
 \alias{variance_of_rank}
 \title{variance of rank}
 \usage{
-variance_of_rank(data, trait, genotype, environment,
-  unit.correct = FALSE)
+variance_of_rank(data, trait, genotype, environment, unit.correct = FALSE)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -31,7 +30,12 @@ Equation of variance of rank can be found in vignette file.
 }
 \examples{
 data(Data)
-variance.of.rank <- variance_of_rank(Data, "Yield", "Genotype", "Environment")
+variance.of.rank <- variance_of_rank(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{nassar1987}{toolStability}

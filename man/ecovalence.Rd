@@ -31,7 +31,12 @@ Equation of ecovalence can be found in vignette file.
 }
 \examples{
 data(Data)
-eco.valance <- ecovalence(Data, "Yield", "Genotype", "Environment")
+eco.valance <- ecovalence(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{wricke1962}{toolStability}

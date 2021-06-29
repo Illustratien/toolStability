@@ -28,7 +28,11 @@ Equation of coefficient of determination can be found in vignette file.
 }
 \examples{
 data(Data)
-coef.of.determination <- coefficient_of_determination(Data, "Yield", "Genotype", "Environment")
+coef.of.determination <- coefficient_of_determination(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment")
 }
 \references{
 \insertRef{pinthus1973}{toolStability}

@@ -48,7 +48,11 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' coefficient.of.regression <- coefficient_of_regression(Data, "Yield", "Genotype", "Environment")
+#' coefficient.of.regression <- coefficient_of_regression(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment")
 coefficient_of_regression <- function(data, trait, genotype, environment) {
   # combine vectors into data table
   if (length(environment) == 1){

@@ -31,7 +31,12 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' genotypic.stability <- genotypic_stability(Data, "Yield", "Genotype", "Environment")
+#' genotypic.stability <- genotypic_stability(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  unit.correct = FALSE)
 genotypic_stability <- function(data, trait, genotype, environment, unit.correct = FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")

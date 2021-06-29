@@ -4,8 +4,13 @@
 \alias{deviation_mean_squares}
 \title{Deviation mean squares}
 \usage{
-deviation_mean_squares(data, trait, genotype, environment,
-  unit.correct = FALSE)
+deviation_mean_squares(
+  data,
+  trait,
+  genotype,
+  environment,
+  unit.correct = FALSE
+)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -31,7 +36,12 @@ Equation of deviation mean squares can be found in vignette file.
 }
 \examples{
 data(Data)
-deviation.mean.squares <- deviation_mean_squares(Data, "Yield", "Genotype", "Environment")
+deviation.mean.squares <- deviation_mean_squares(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{eberhart1966}{toolStability}

@@ -4,8 +4,13 @@
 \alias{genotypic_superiority_measure}
 \title{Genotypic superiority measure}
 \usage{
-genotypic_superiority_measure(data, trait, genotype, environment,
-  unit.correct = FALSE)
+genotypic_superiority_measure(
+  data,
+  trait,
+  genotype,
+  environment,
+  unit.correct = FALSE
+)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
@@ -31,7 +36,12 @@ Equation of genotypic superiority measure can be found in vignette file.
 }
 \examples{
 data(Data)
-res <- genotypic_superiority_measure(Data, "Yield", "Genotype", "Environment")
+res <- genotypic_superiority_measure(
+ data = Data,
+ trait = "Yield",
+ genotype = "Genotype",
+ environment = "Environment",
+ unit.correct = FALSE)
 }
 \references{
 \insertRef{lin1988}{toolStability}

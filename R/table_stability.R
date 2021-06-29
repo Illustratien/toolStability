@@ -65,9 +65,8 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #'  genotype = "Genotype",
 #'  environment = "Environment",
 #'  lambda = median(Data$Yield),
-#'  normalize = TRUE
-#'  )
-#'
+#'  normalize = TRUE,
+#'  unit.correct=TRUE)
 table_stability <- function(data, trait, genotype, environment, lambda, normalize=FALSE, unit.correct=FALSE) {
   trait.value <- data[[trait]]
   geno.value <- data[[genotype]]

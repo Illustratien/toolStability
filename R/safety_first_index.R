@@ -38,7 +38,12 @@
 #'
 #' @examples
 #' data(Data)
-#' safety.first.index <- safety_first_index(Data, "Yield", "Genotype", "Environment", median(Data$Yield))
+#' safety.first.index <- safety_first_index(
+#'  data = Data,
+#'  trait = "Yield",
+#'  genotype = "Genotype",
+#'  environment = "Environment",
+#'  lambda = median(Data$Yield))
 safety_first_index <- function(data, trait, genotype, environment, lambda) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
