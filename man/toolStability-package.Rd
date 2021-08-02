@@ -4,19 +4,10 @@
 \name{toolStability-package}
 \alias{toolStability}
 \alias{toolStability-package}
-\title{toolStability: Tool for Stability Indices calculation}
+\title{toolStability: Tool for stability indices calculation}
 \description{
 Tools to calculate stability indices with parametric,
  non-parametric and probabilistic approaches. The basic data format requirement for 'toolStability' is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. Function "table_stability" offers the summary table of all stability indices in this package.
-}
-\seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/Illustratien/toolStability}
-  \item \url{https://Illustratien.github.io/toolStability/
-    https://CRAN.R-project.org/package=toolStability}
-}
-
 }
 \author{
 \strong{Maintainer}: Tien-Cheng Wang \email{wangtien@student.hu-berlin.de}

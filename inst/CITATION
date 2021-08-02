@@ -8,9 +8,9 @@ if (!length(year)) {
 vers <- paste("R package version", meta$Version)
 
 citEntry(entry  = "Manual",
-         title  = "toolStability: tools for stability indices",
+         title  = "toolStability: Tool for stability indices calculation",
          author = personList(person(given = "T.-C.", family = "Wang",
-                                    email = "wangtien@hu-berlin.de",
+                                    email = "wangtien@student.hu-berlin.de",
                                     role = c("aut", "cre"),
 									                  comment = c(ORCID = "0000-0001-7952-1404")),
 							               person(given = "T.-W.", family = "Chen",
@@ -19,7 +19,7 @@ citEntry(entry  = "Manual",
          year = year,
          textVersion = paste(
            "Wang, T-C (",
-           year, ").  toolStability: tools for stability indices. ",
+           year, ").  toolStability: Tool for stability indices calculation. ",
            vers, ", ", "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability",
            ".", sep=""),
          note = {c(paste(vers), "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability")})
