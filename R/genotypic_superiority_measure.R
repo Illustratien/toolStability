@@ -23,7 +23,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{lin1988}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at
+#' @importFrom dplyr group_by summarise mutate mutate_at rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -55,22 +55,23 @@ genotypic_superiority_measure <- function(data, trait, genotype, environment, un
                        Environment = data[['Environment']])
   }
   varnam <- paste0("Mean.",trait)
-  res <- summarise(
-    mutate(
-      group_by(
-        mutate(
-          group_by(Data, Environment), # for each environment
-          Xj.max = max(X, na.rm = TRUE)
-        ), # first calculate environmental mean
-        Genotype
-      ), # for each genotype
-      Mj = (X - Xj.max)^2 / (2 * length(X))
-    ),
-    !!varnam := mean(X),
-    genotypic.superiority.measure = (sum(Mj))
-  )
+  res <- dplyr::rename(
+    summarise(
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data, Environment), # for each environment
+            Xj.max = max(X, na.rm = TRUE)
+          ), # first calculate environmental mean
+          Genotype
+        ), # for each genotype
+        Mj = (X - Xj.max)^2 / (2 * length(X))
+      ),
+      Mean.trait = mean(X),
+      genotypic.superiority.measure = (sum(Mj))),
+    varnam = 'Mean.trait')
   if (unit.correct==TRUE){
     res <- mutate_at(res,"genotypic.superiority.measure", sqrt)
   }
-  return(res[, c("Genotype",varnam ,"genotypic.superiority.measure")])
+  return(res)
 }

@@ -23,7 +23,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{nassar1987}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at
+#' @importFrom dplyr group_by summarise mutate mutate_at select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -57,27 +57,30 @@ variance_of_rank <- function(data, trait, genotype, environment, unit.correct = 
   varnam <- paste0("Mean.",trait)
   X..bar <- mean(data[[trait]])
 
-  res <- summarise(
-    group_by(
-      mutate(
+  res <- dplyr::rename(
+    dplyr::select(
+      summarise(
         group_by(
           mutate(
-            group_by(Data, Genotype),
-            corrected.X = X - mean(X) + X..bar
+            group_by(
+              mutate(
+                group_by(Data, Genotype),
+                corrected.X = X - mean(X) + X..bar
+              ),
+              Environment
+            ),
+            corrected.rank = rank(-corrected.X, na.last = "keep", ties.method = "min")
           ),
-          Environment
+          Genotype
         ),
-        corrected.rank = rank(-corrected.X, na.last = "keep", ties.method = "min")
-      ),
-      Genotype
-    ),
-    !!varnam := mean(X),
-    mean.rank = mean(corrected.rank),
-    variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1))
-  )
+        Mean.trait = mean(X),
+        mean.rank = mean(corrected.rank),
+        variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1))),
+      c('Genotype','Mean.trait','variance.of.rank')),
+    varnam = 'Mean.trait')
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"variance.of.rank", sqrt)
   }
-  return(res[, c("Genotype",varnam, "variance.of.rank")])
+  return(res)
 }

@@ -40,7 +40,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{finlay1963}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -69,22 +69,24 @@ coefficient_of_regression <- function(data, trait, genotype, environment) {
   }
   varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X) # overall mean of X
-  res <- summarise(
-    mutate(
-      group_by(
+  res <- dplyr::rename(
+    dplyr::select(
+      summarise(
         mutate(
-          group_by(Data, Environment), # for each environment
-          Xj.bar = mean(X)
-        ), # first calculate environmental mean
-        Genotype
-      ), # for each genotype
-      Xi.bar = mean(X), # then calculate genotypic mean
-      Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
-      Bi2 = (Xj.bar - X..bar)^2
-    ),
-    coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
-    !!varnam := mean(X)
-  )
-
-  return(res[, c("Genotype", varnam,"coefficient.of.regression")])
+          group_by(
+            mutate(
+              group_by(Data, Environment), # for each environment
+              Xj.bar = mean(X)
+            ), # first calculate environmental mean
+            Genotype
+          ), # for each genotype
+          Xi.bar = mean(X), # then calculate genotypic mean
+          Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
+          Bi2 = (Xj.bar - X..bar)^2
+        ),
+        coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
+        Mean.trait = mean(X)),
+      c('Genotype','Mean.trait','coefficient.of.regression')),
+    varnam = 'Mean.trait')
+  return(res)
 }

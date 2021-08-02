@@ -1,0 +1,29 @@
+citHeader("To cite the R package 'toolStability' in publications use:")
+
+if(!exists("meta") || is.null(meta)) meta <- packageDescription("toolStability")
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+if (!length(year)) {
+ year <- format(packageDate("toolStability"), "%Y")
+}
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry  = "Manual",
+         title  = "toolStability: tools for stability indices",
+         author = personList(person(given = "T.-C.", family = "Wang",
+                                    email = "wangtien@hu-berlin.de",
+                                    role = c("aut", "cre"),
+									                  comment = c(ORCID = "0000-0001-7952-1404")),
+							               person(given = "T.-W.", family = "Chen",
+                                    email = "tsu-wei.chen@hu-berlin.de",
+									                  role = "co-aut")),
+         year = year,
+         textVersion = paste(
+           "Wang, T-C (",
+           year, ").  toolStability: tools for stability indices. ",
+           vers, ", ", "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability",
+           ".", sep=""),
+         note = {c(paste(vers), "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability")})
+
+citFooter("This free and open-source software implements academic
+research by the authors and co-workers. If you use it, please support
+the project by citing the package.")

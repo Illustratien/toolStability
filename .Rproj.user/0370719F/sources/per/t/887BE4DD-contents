@@ -1,0 +1,20 @@
+# after the edit of the package
+# install.packages("devtools")
+# install.packages("testthat")
+library(devtools)
+document()
+#ctrl shift b
+#strl shift t
+devtools::build_vignettes()
+build()
+# build_vignettes("toolStability")
+# install miktex
+# Sys.setenv(PATH = paste(Sys.getenv("PATH"), "C:/Program Files/MiKTeX/miktex/bin/x64", sep=.Platform$path.sep))
+
+
+
+
+# install.packages("pkgdown")
+library(pkgdown)
+pkgdown::build_site()
+# ** if you want to build site, the path should not longer as 260 character

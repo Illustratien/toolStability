@@ -28,7 +28,7 @@
 #' @references
 #' \insertRef{eskridge1990}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #' @importFrom stats pnorm sd median shapiro.test
@@ -87,16 +87,18 @@ safety_first_index <- function(data, trait, genotype, environment, lambda) {
   }
   varnam <- paste0("Mean.",trait)
   # calculate doefficient determination
-  res <- summarise(
-    group_by(Data, Genotype), # for each environment
-    !!varnam := mean(X),
-    Normality = normtest(X), # test normality for each genotype
-    safety.first.index = pnorm((lambda - mean(X)) / sd(X))
-  )
+  res <- dplyr::rename(
+    summarise(
+      group_by(Data, Genotype), # for each environment
+      Mean.trait = mean(X),
+      Normality = normtest(X), # test normality for each genotype
+      safety.first.index = pnorm((lambda - mean(X)) / sd(X))),
+    varnam = 'Mean.trait')
+
   if (any(!res$Normality)) {
     warning("Input trait is not completely follow normality assumption !
  please see Normality column for more information.")
   }
 
-  return(res[, c("Genotype",varnam, "Normality", "safety.first.index")])
+  return(res)
 }

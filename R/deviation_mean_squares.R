@@ -24,7 +24,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{eberhart1966}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at
+#' @importFrom dplyr group_by summarise mutate mutate_at select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -58,7 +58,9 @@ deviation_mean_squares <- function(data, trait, genotype, environment, unit.corr
   varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X) # overall mean of X
 
-  res <- summarise(
+  res <- dplyr::rename(
+    dplyr::select(
+    summarise(
     mutate(
       group_by(
         mutate(
@@ -74,13 +76,16 @@ deviation_mean_squares <- function(data, trait, genotype, environment, unit.corr
       Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
       Bi2 = (Xj.bar - X..bar)^2
     ),
-    !!varnam := mean(X),
+    Mean.trait = mean(X),
     Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
-    deviation.mean.squares = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE)
-  )
+    deviation.mean.squares = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE)),
+    c('Genotype','Mean.trait','deviation.mean.squares')),
+    varnam = 'Mean.trait')
+
+
   if (unit.correct==TRUE){
     res <- mutate_at(res,"deviation.mean.squares", sqrt)
   }
 
-  return(res[, c("Genotype", varnam,"deviation.mean.squares")])
+  return(res)
 }

@@ -25,7 +25,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{wricke1962}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at
+#' @importFrom dplyr group_by summarise mutate mutate_at select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -59,24 +59,28 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE) {
   varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X)
 
-  res <- summarise(
-    mutate(
-      group_by(
+  res <-dplyr::rename(
+    dplyr::select(
+      summarise(
         mutate(
-          group_by(Data, Environment), # for each environment
-          Xj.bar = mean(X)
-        ), # first calculate environmental mean
-        Genotype
-      ), # for each genotype
-      Xi.bar = mean(X), # then calculate genotypic mean
-      sqr = (X - Xi.bar - Xj.bar + X..bar)^2
-    ),
-    !!varnam := mean(X),
-    ecovalence = mean(sqr, na.rm = TRUE)
-  )
+          group_by(
+            mutate(
+              group_by(Data, Environment), # for each environment
+              Xj.bar = mean(X)
+            ), # first calculate environmental mean
+            Genotype
+          ), # for each genotype
+          Xi.bar = mean(X), # then calculate genotypic mean
+          sqr = (X - Xi.bar - Xj.bar + X..bar)^2
+        ),
+        Mean.trait = mean(X),
+        ecovalence = mean(sqr, na.rm = TRUE)),
+      c('Genotype','Mean.trait','ecovalence')),
+    varnam = 'Mean.trait')
+
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"ecovalence", sqrt)
   }
-  return(res[, c("Genotype",varnam, "ecovalence")])
+  return(res)
 }

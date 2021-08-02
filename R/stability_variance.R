@@ -24,7 +24,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mj
 #' @references
 #' \insertRef{shukla1972}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at
+#' @importFrom dplyr group_by summarise mutate mutate_at select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -72,16 +72,19 @@ stability_variance <- function(data, trait, genotype, environment, unit.correct 
 
   wisum <- sum(res$sqr)
 
-  res <- summarise(res,
-    wi = sum(sqr, na.rm = TRUE),
-    !!varnam := mean(X),
-    stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2))
-  )
+  res <- dplyr::rename(
+    dplyr::select(
+      summarise(res,
+                wi = sum(sqr, na.rm = TRUE),
+                Mean.trait = mean(X),
+                stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2))),
+      c('Genotype','Mean.trait','stability.variance')),
+    varnam = 'Mean.trait')
   # replace negative value to zero as stated by Shukla, 1972.
   res$stability.variance[res$stability.variance < 0] <- 0
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"stability.variance", sqrt)
   }
-  return(res[, c("Genotype",varnam, "stability.variance")])
+  return(res)
 }

@@ -1,4 +1,4 @@
-utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi"))
+utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Mean.Yield", "Mj", "X", "Xi.bar", "Xj.bar", "Xj.max", "corrected.X", "corrected.rank", "dev", "deviation", "mean.rank", "s2d1", "s2d2", "s2di", "s2xi", "sqr", "sqr1", "wi","Xi.logmean","Xi.logvar"))
 #' @title Adjusted coefficient of variaiton
 #'
 #' @description
@@ -22,7 +22,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{doering2018}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate
+#' @importFrom dplyr group_by summarise mutate select rename
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #' @importFrom stats var
@@ -51,7 +51,7 @@ adjusted_coefficient_of_variation <- function(data, trait, genotype, environment
                        Environment = data[['Environment']])
   }
   varnam <- paste0("Mean.",trait)
-  res <- summarise(
+  res <-summarise(
     group_by(
       mutate(
         group_by(Data, Environment), # for each environment
@@ -62,11 +62,14 @@ adjusted_coefficient_of_variation <- function(data, trait, genotype, environment
     Xi.bar = mean(X, na.rm = TRUE), # then calculate genotypic mean
     Xi.logvar = log10(var(X, na.rm = TRUE)),
     Xi.logmean = log10(mean(X, na.rm = TRUE)),
-    !!varnam := mean(X)
-  )
-  b <- sum((res$Xi.logmean - mean(res$Xi.logmean)) * (res$Xi.logvar - mean(res$Xi.logvar))) / sum((res$Xi.logmean - mean(res$Xi.logmean))^2)
+    Mean.trait = mean(X))
+  b <- with(res,sum((Xi.logmean - mean(Xi.logmean)) * (Xi.logvar - mean(Xi.logvar))) / sum((Xi.logmean - mean(Xi.logmean))^2))
 
-  res$adjusted.coefficient.of.variation <- 100 * (1 / res$Xi.bar) * sqrt(10^(((2 - b) * res$Xi.logmean) + ((b - 2) * (mean(res$Xi.logmean))) + res$Xi.logvar))
+  res <- dplyr::rename(
+    dplyr::select(mutate(res,
+                         adjusted.coefficient.of.variation = 100 * (1 / Xi.bar) * sqrt(10^(((2 - b) * Xi.logmean) + ((b - 2) * (mean(Xi.logmean))) + Xi.logvar))),
+                  c('Genotype','Mean.trait','adjusted.coefficient.of.variation')),
+    varnam = 'Mean.trait')
 
-  return(res[, c("Genotype",varnam, "adjusted.coefficient.of.variation")])
+  return(res)
 }
