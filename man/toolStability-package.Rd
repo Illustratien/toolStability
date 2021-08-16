@@ -4,7 +4,7 @@
 \name{toolStability-package}
 \alias{toolStability}
 \alias{toolStability-package}
-\title{toolStability: Tool for stability indices calculation}
+\title{toolStability: Tool for Stability Indices Calculation}
 \description{
 Tools to calculate stability indices with parametric,
  non-parametric and probabilistic approaches. The basic data format requirement for 'toolStability' is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. Function "table_stability" offers the summary table of all stability indices in this package.

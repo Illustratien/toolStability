@@ -89,10 +89,8 @@ tb <- table_stability(
 \author{
 Tien-Cheng Wang
 }
-\keyword{and}
-\keyword{approach}
-\keyword{dynamic,}
+\keyword{dynamic}
 \keyword{nonparametric}
 \keyword{probablistic}
-\keyword{regression,}
-\keyword{static,}
+\keyword{regression}
+\keyword{static}

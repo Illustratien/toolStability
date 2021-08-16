@@ -8,8 +8,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype",
 #' @description
 #' \code{table_stability} export all the stability indices in the package.
 #'
-#' @keywords static, dynamic, regression, nonparametric and probablistic approach
-#'
+#' @keywords static dynamic regression nonparametric probablistic
 #' @details Combine all stability indices in this package and export as a table, including mean trait, normality of the trait across environment.
 #'
 #' @seealso \code{\link{adjusted_coefficient_of_variation}}

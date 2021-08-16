@@ -8,7 +8,7 @@ if (!length(year)) {
 vers <- paste("R package version", meta$Version)
 
 citEntry(entry  = "Manual",
-         title  = "toolStability: Tool for stability indices calculation",
+         title  = "toolStability: Tool for Stability Indices Calculation",
          author = personList(person(given = "T.-C.", family = "Wang",
                                     email = "wangtien@student.hu-berlin.de",
                                     role = c("aut", "cre"),

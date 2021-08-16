@@ -44,7 +44,7 @@ knitr::opts_chunk$set(
 \begin{wrapfigure}{r}{0.35\textwidth}
   \vspace{-20pt}
   \begin{center}
-    \includegraphics[width=0.33\textwidth]{`r system.file("extdata", "toolStability.png", package = "toolStability")`}
+    \includegraphics[width=0.25\textwidth]{`r system.file("extdata", "toolStability.png", package = "toolStability")`}
   \end{center}
     \vspace{-20pt}
 \end{wrapfigure}
