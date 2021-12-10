@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.10)  10 DEC 2021 16:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.10)  10 DEC 2021 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/toolSta
-bility.tex
-
-(c:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/toolStab
+**C:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/toolStab
 ility.tex
+
+(c:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/toolStabi
+lity.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (c:/Users/marse/AppData/Roaming/TinyTeX/texmf
 -dist/tex/latex/base/article.cls
@@ -662,7 +662,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 {c:/Users/marse/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
 x.map}]
 <C:/Users/marse/Documents/R/win-library/4.0/toolStability/extdata/toolStability
-.png, id=130, 180.675pt x 180.675pt>
+.png, id=142, 180.675pt x 180.675pt>
 File: C:/Users/marse/Documents/R/win-library/4.0/toolStability/extdata/toolStab
 ility.png Graphic file (type png)
 <use C:/Users/marse/Documents/R/win-library/4.0/toolStability/extdata/toolStabi
@@ -678,75 +678,69 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  <c:/Users/marse/Documents/R/win-library/4.0/toolStability/extdata/toolStabilit
 y.png>]
-<C:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/toolStab
-ility_files/figure-latex/plot-1.pdf, id=155, 578.16pt x 289.08pt>
-File: C:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/too
-lStability_files/figure-latex/plot-1.pdf Graphic file (type pdf)
-<use C:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/tool
-Stability_files/figure-latex/plot-1.pdf>
-Package pdftex.def Info: C:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-c
-d6c79bc4119.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line
- 277.
+<C:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/toolStabi
+lity_files/figure-latex/plot-1.pdf, id=167, 578.16pt x 289.08pt>
+File: C:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/tool
+Stability_files/figure-latex/plot-1.pdf Graphic file (type pdf)
+<use C:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/toolS
+tability_files/figure-latex/plot-1.pdf>
+Package pdftex.def Info: C:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-d
+e185e1bd6e.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line 
+280.
 (pdftex.def)             Requested size: 469.75385pt x 234.8769pt.
 [3
 
- <c:/Users/marse/AppData/Local/Temp/Rtmp4U04od/preview-cd6c79bc4119.dir/toolSta
-bility_files/figure-latex/plot-1.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-94.
+ <c:/Users/marse/AppData/Local/Temp/Rtmpcfy6v6/preview-de185e1bd6e.dir/toolStab
+ility_files/figure-latex/plot-1.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
+00.
 (c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 315.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 321.
 
 LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 363.
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 369.
 
 [4
 
-]
-Underfull \vbox (badness 10000) detected at line 490
+] [5]
+Underfull \vbox (badness 10000) detected at line 528
  []
 
 
-Underfull \vbox (badness 10000) detected at line 490
+Underfull \vbox (badness 10000) detected at line 528
  []
 
-[5]
-Underfull \vbox (badness 10000) detected at line 490
- []
+[6
 
-
-Underfull \vbox (badness 10000) detected at line 490
- []
-
-[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
-Overfull \hbox (30.36731pt too wide) detected at line 720
+] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+Overfull \hbox (30.36731pt too wide) detected at line 756
 \OML/lmm/m/it/10 ^^[[] \OT1/lmr/m/n/10 = [] []
  []
 
 [17] [18]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 754.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 790.
 
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 780--780
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 816--816
 []\T1/lmtt/m/n/10 #>   https://github.com/Illustratien/toolStabilityhttps://cra
 n.r-project.org/package=toolStability.[] 
  []
 
 [19] [20] (./toolStability.aux)
 Package rerunfilecheck Info: File `toolStability.out' has not changed.
-(rerunfilecheck)             Checksum: E29A7C6CE2BE98C4C517A4532F483C4E;2960.
+(rerunfilecheck)             Checksum: A9275500963F33C94A90ED93C9F1B0B2;3183.
  ) 
 Here is how much of TeX's memory you used:
- 12225 strings out of 480313
- 193378 string characters out of 5895779
- 500510 words of memory out of 5000000
- 29778 multiletter control sequences out of 15000+600000
+ 12233 strings out of 480313
+ 193469 string characters out of 5895779
+ 497487 words of memory out of 5000000
+ 29782 multiletter control sequences out of 15000+600000
  459213 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,63p,446b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,63p,445b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}{c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mat
 hit.enc}{c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/l
@@ -775,10 +769,10 @@ ublic/lm/lmtt10.pfb><c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmtt12.pfb><c:/Users/marse/AppData/Roaming/TinyTeX/texmf-dist/fon
 ts/type1/public/lm/lmtti10.pfb><c:/Users/marse/AppData/Roaming/TinyTeX/texmf-di
 st/fonts/type1/public/lm/lmtto10.pfb>
-Output written on toolStability.pdf (20 pages, 498683 bytes).
+Output written on toolStability.pdf (20 pages, 499837 bytes).
 PDF statistics:
- 427 PDF objects out of 1000 (max. 8388607)
- 354 compressed objects within 4 object streams
- 88 named destinations out of 1000 (max. 500000)
- 163 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 442 PDF objects out of 1000 (max. 8388607)
+ 369 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

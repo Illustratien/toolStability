@@ -96,6 +96,7 @@ toolStability contains different functions to calculate stability indices, inclu
 10. stability variance
 11. variance of rank
 \clearpage
+
 ## Build-in data set
 
 The default data set `Data` is the subset of $APSIM$ simulated wheat data set, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 $CO_2$ levels of treatments [@casadebaig2016].
@@ -125,6 +126,7 @@ ggplot2::ggplot(Data,ggplot2::aes(x=Sites,y=Yield,col=Genotype))+
 
 ```
 \clearpage
+
 ## Tutorial
 
 1. Data preparation 
@@ -166,24 +168,41 @@ library(toolStability)
 data("Data")
 ### check the structure of sample dataset
 ### be sure that the trait is numeric!!!
+
+
+
 dplyr::glimpse(Data)
 
 ### calculate ecovalence for all genotypes
 single.index.ecovalence <- ecovalence(data = Data,
                                       trait = 'Yield',
                                       genotype = 'Genotype',
-                                      environment = 'Environment')
+                                      environment = 'Environment',
+                                      unit.correct = FALSE,
+                                      modify = FALSE)
 ### check the structure of result
 dplyr::glimpse(single.index.ecovalence)
 
+### calculate modified ecovalence for all genotypes
+single.index.ecovalence.modified <- ecovalence(data = Data,
+                                      trait = 'Yield',
+                                      genotype = 'Genotype',
+                                      environment = 'Environment',
+                                      unit.correct = FALSE,
+                                      modify = TRUE)
+### check the structure of result
+dplyr::glimpse(single.index.ecovalence.modified)
+```
+\clearpage
+```{r}
 ### calculate all stability indices for all genotypes
 summary.table <- table_stability(data = Data,
                                  trait = 'Yield',
                                  genotype = 'Genotype',
                                  environment = 'Environment',
                                  lambda = median(Data$Yield),
-                                 normalize = F,
-                                 unit.correct = F)
+                                 normalize = FALSE,
+                                 unit.correct = FALSE)
 #### warning message means your data structure is not distributed as normal distribution
 
 #### check the structure of result
@@ -195,8 +214,8 @@ normalized.summary.table <- table_stability(data = Data,
                                             genotype = 'Genotype',
                                             environment = 'Environment',
                                             lambda = median(Data$Yield),
-                                            normalize = T,
-                                            unit.correct = F)
+                                            normalize = TRUE,
+                                            unit.correct = FALSE)
 #### warning message means your data structure is not distributed as normal distribution
 
 #### check the structure of result
@@ -211,8 +230,8 @@ summary.table2 <- table_stability(data = Data,
                                   genotype = 'Genotype',
                                   environment = c('CO2','Nitrogen'),
                                   lambda = median(Data$Yield),
-                                  normalize = F,
-                                  unit.correct = F)
+                                  normalize = FALSE,
+                                  unit.correct = FALSE)
 
 #### check the structure of result
 dplyr::glimpse(summary.table2)
@@ -325,11 +344,10 @@ Variety with low ecovalence is considered as stable.
 Ecovalence is expressed as:
 $$W_{i} = \sum_{j} (X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})$$
 To let $W_{i}$ comparable between experiments, we also provide the modified ecovalence ($W_{i}'$) that take number of environments into account.
+
 $$W_{i}' = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})}{E-1}$$
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
 in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ denoting marginal means of genotype $i$.
-
-Here we modified the original function by dividing (E-1) after summation in order to balance the different number of environment condition.
 
 \newpage
 
