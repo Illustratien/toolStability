@@ -39,7 +39,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'  genotype = "Genotype",
 #'  environment = "Environment",
 #'  unit.correct = FALSE)
-ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE) {
+ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE,modify=FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
@@ -56,11 +56,30 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE) {
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X)
 
-  res <-dplyr::rename(
-    dplyr::select(
+
+  if(modify==T){
+    index.name <- 'ecovalence.modified'
+    res <-dplyr::select(
+        summarise(
+          mutate(
+            group_by(
+              mutate(
+                group_by(Data, Environment), # for each environment
+                Xj.bar = mean(X)
+              ), # first calculate environmental mean
+              Genotype
+            ), # for each genotype
+            Xi.bar = mean(X), # then calculate genotypic mean
+            sqr = (X - Xi.bar - Xj.bar + X..bar)^2
+          ),
+          Mean.trait = mean(X),
+          ecovalence.modified = mean(sqr, na.rm = TRUE)),
+        c('Genotype','Mean.trait',index.name))
+  }else{
+    index.name <- 'ecovalence'
+    res <-dplyr::select(
       summarise(
         mutate(
           group_by(
@@ -74,13 +93,15 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE) {
           sqr = (X - Xi.bar - Xj.bar + X..bar)^2
         ),
         Mean.trait = mean(X),
-        ecovalence = mean(sqr, na.rm = TRUE)),
-      c('Genotype','Mean.trait','ecovalence')),
-    varnam = 'Mean.trait')
-
+        ecovalence = sum(sqr)),
+      c('Genotype','Mean.trait',index.name))
+  }
 
   if (unit.correct==TRUE){
-    res <- mutate_at(res,"ecovalence", sqrt)
+    res <- mutate_at(res,index.name, sqrt)
   }
+
+  names(res)[names(res) == "Mean.Trait"] <- sprintf("Mean.%s", trait)
+
   return(res)
 }

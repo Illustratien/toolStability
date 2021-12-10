@@ -152,6 +152,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
 
   bmin <- min(res$Bi) # for genotypic stability
   wisum <- sum(res$sqr1)
+
   res <- summarise(res,
                    Mean.Trait = mean(X),
                    Xi.logvar = log10(var(X)),
@@ -162,7 +163,8 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
                    wi = sum(sqr1),
                    mean.rank = mean(corrected.rank),
                    # stability indices
-                   Ecovalence = mean(sqr),
+                   Ecovalence = sum(sqr),
+                   Ecovalence.modified = mean(sqr),
                    Coefficient.of.determination = 1 - (s2di / s2xi),
                    Coefficient.of.regression = 1 + sum(Bi1) / sum(Bi2),
                    Deviation.mean.squares = sum(s2d1) - ((Bi - 1)^2) * sum(s2d2),
@@ -182,10 +184,10 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
   res$Stability.variance[res$Stability.variance < 0] <- 0
 
   if (all(!res$Normality)) {
-    warning(sprintf("All of your genotypes didn't pass the %s normality test!
+    warning(sprintf("\nAll of your genotypes didn't pass the %s normality test!
  Safety_first Index may not be accurate.",norm.test.name))
   } else if (any(!res$Normality)){
-    warning(sprintf("Part of your genotypes didn't pass the %s normality test!
+    warning(sprintf("\nPart of your genotypes didn't pass the %s normality test!
  Safety_first Index may not be accurate.",norm.test.name))
   }
 
@@ -197,10 +199,11 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     "Environmental.variance","Genotypic.stability",
     "Genotypic.superiority.measure", "Variance.of.rank",
     "Stability.variance","Adjusted.coefficient.of.variation",
-    "Ecovalence")
+    "Ecovalence","Ecovalence.modified")
   res <- res[, nam.list]
   need.squared.si<-c("Environmental.variance",
                      "Ecovalence",
+                     "Ecovalence.modified",
                      "Stability.variance",
                      "Genotypic.stability",
                      "Variance.of.rank",

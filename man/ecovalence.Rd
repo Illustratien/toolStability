@@ -4,7 +4,14 @@
 \alias{ecovalence}
 \title{Ecovalence}
 \usage{
-ecovalence(data, trait, genotype, environment, unit.correct = FALSE)
+ecovalence(
+  data,
+  trait,
+  genotype,
+  environment,
+  unit.correct = FALSE,
+  modify = FALSE
+)
 }
 \arguments{
 \item{data}{a dataframe containing trait, genotype and environment.}
