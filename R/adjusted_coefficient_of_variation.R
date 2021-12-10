@@ -50,7 +50,7 @@ adjusted_coefficient_of_variation <- function(data, trait, genotype, environment
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
+
   res <-summarise(
     group_by(
       mutate(
@@ -65,11 +65,9 @@ adjusted_coefficient_of_variation <- function(data, trait, genotype, environment
     Mean.trait = mean(X))
   b <- with(res,sum((Xi.logmean - mean(Xi.logmean)) * (Xi.logvar - mean(Xi.logvar))) / sum((Xi.logmean - mean(Xi.logmean))^2))
 
-  res <- dplyr::rename(
-    dplyr::select(mutate(res,
-                         adjusted.coefficient.of.variation = 100 * (1 / Xi.bar) * sqrt(10^(((2 - b) * Xi.logmean) + ((b - 2) * (mean(Xi.logmean))) + Xi.logvar))),
-                  c('Genotype','Mean.trait','adjusted.coefficient.of.variation')),
-    varnam = 'Mean.trait')
-
+  res <-  dplyr::select(mutate(res,
+                               adjusted.coefficient.of.variation = 100 * (1 / Xi.bar) * sqrt(10^(((2 - b) * Xi.logmean) + ((b - 2) * (mean(Xi.logmean))) + Xi.logvar))),
+                        c('Genotype','Mean.trait','adjusted.coefficient.of.variation'))
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

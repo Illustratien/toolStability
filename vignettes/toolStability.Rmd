@@ -40,7 +40,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
 \tableofcontents
+\clearpage
 \begin{wrapfigure}{r}{0.35\textwidth}
   \vspace{-20pt}
   \begin{center}
@@ -72,7 +74,7 @@ Then the package can be loaded using the function
 library(toolStability)
 ```
 
-\clearpage
+
 
 
 ## Welcome to toolStability
@@ -93,7 +95,7 @@ toolStability contains different functions to calculate stability indices, inclu
 9.  safety first index
 10. stability variance
 11. variance of rank
-
+\clearpage
 ## Build-in data set
 
 The default data set `Data` is the subset of $APSIM$ simulated wheat data set, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 $CO_2$ levels of treatments [@casadebaig2016].
@@ -122,7 +124,7 @@ ggplot2::ggplot(Data,ggplot2::aes(x=Sites,y=Yield,col=Genotype))+
    ggplot2::theme_test()
 
 ```
-
+\clearpage
 ## Tutorial
 
 1. Data preparation 
@@ -148,7 +150,7 @@ For calculation of probabilistic stability index `safety_first_index`, an additi
 `lambda`:      minimal acceptable value of `trait` that the user expected from crop across `environment`. `lambda` should between the range of `trait` value.<br /><br />
 
 Under the assumption of `trait` is normally distributed, safety first index is calculated based on the probability of trait below `lambda` across the `environment` for each `genotype`.<br /><br />
-\clearpage
+
 
 3. Function Features
 
@@ -242,22 +244,19 @@ $$\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
 Coefficient of determination [@pinthus1973] is calculated based on regression function.
 Variety with low coefficient of determination is considered as stable.
 Under the linear model
-$$Y =\mu + b_{i}\times e_{j} + g_{i} + d_{ij}$$
+$$Y =\mu + \beta_{i}\times e_{j} + g_{i} + d_{ij}$$
 where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
-$$(ge)_{ij} = b_{i}\times e_{j} + d_{ij}$$
-where $b_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
+$$(ge)_{ij} = \beta_{i}\times e_{j} + d_{ij}$$
+where $\beta_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
 
-Deviation mean squares:
-$$
-s^{2}_{di} = \frac{1}{E-2} \left [
-\sum_{j}(X_{ij} -\overline{X_{i.}}- \overline{X_{.j}}+\overline{X_{..}}^{2} - (b_{i} - 1)^{2}) \times
-\sum_{j}(\overline{X_{.j}}-\overline{X_{..}})^{2} \right ]
-$$
 
-Environmental variance can be expressed as :
+$s^{2}_{di}$, see $deviation~mean~squares$ for formula.
+
+
+Environmental variance can be expressed as:
 $$S_{xi}^{2} = \frac{\sum_{j} (X_{ij} - \overline{X_{i.}})^{2}}{E-1} $$
 
 Coefficient of determination may be expressed as:
@@ -274,13 +273,13 @@ $\overline{X_{..}}$ denote the overall mean of $X$.
 Coefficient of regression [@finlay1963] is calculated based on regression function.
 Variety with low coefficient of regression is considered as stable.
 Under the linear model
-$$Y =\mu + b_{i}\times e_{j} + g_{i} + d_{ij}$$
+$$Y =\mu + \beta_{i}\times e_{j} + g_{i} + d_{ij}$$
 where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
-$$(ge)_{ij} = b_{i}\times e_{j} + d_{ij}$$
-where $b_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
+$$(ge)_{ij} = \beta_{i}\times e_{j} + d_{ij}$$
+where $\beta_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
 
 Coefficient of regression may be expressed as:
 $$ b_{i}=1 + \frac{\sum_{j}(X_{ij} -\overline{X_{i.}}-\overline{X_{.j}}+\overline{X_{..}}) \times
@@ -289,7 +288,7 @@ $$ b_{i}=1 + \frac{\sum_{j}(X_{ij} -\overline{X_{i.}}-\overline{X_{.j}}+\overlin
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
 in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ and $\overline{X_{.j}}$ 
 denoting marginal means of genotype $i$ and environment $j$, respectively. 
-$\overline{X_{..}}$ denote the overall mean of $X$.
+$\overline{X_{..}}$ denote the overall mean of $X$. $b_{i}$is the estimation of $\beta_{i}$.
 
 \newpage
 
@@ -297,18 +296,18 @@ $\overline{X_{..}}$ denote the overall mean of $X$.
 Deviation mean squares [@eberhart1966] is calculated based on regression function.
 Variety with low stability variance is considered as stable.
 Under the linear model
-$$Y =\mu + b_{i}\times e_{j} + g_{i} + d_{ij}$$
+$$Y =\mu + \beta_{i}\times e_{j} + g_{i} + d_{ij}$$
 where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
-$$(ge)_{ij} = b_{i}\times e_{j} + d_{ij}$$
-where $b_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
+$$(ge)_{ij} = \beta_{i}\times e_{j} + d_{ij}$$
+where $\beta_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
 
 Deviation mean squares:
 $$
 s^{2}_{di} = \frac{1}{E-2} \left [
-\sum_{j} (X_{ij} - \overline{X_{i.}}- \overline{X_{.j}} + \overline{X_{..}}^{2} - (b_{i} - 1)^{2}) \times
+\sum_{j} (X_{ij} - \overline{X_{i.}}- \overline{X_{.j}} + \overline{X_{..}}^{2}) - (b_{i} - 1)^{2} \times
 (\overline{X_{.j}}- \overline{X_{..}})^{2} \right ]
 $$
 
@@ -323,8 +322,10 @@ $\overline{X_{..}}$ denote the overall mean of $X$.
 Ecovalence [@wricke1962] is calculated based on square and sum up the genotype–environment
 interaction all over the environment.
 Variety with low ecovalence is considered as stable.
-
-$$W_{i} = \frac{\sum_{j} (X_{ij} - \overline{X_{i.}}^{2})}{E-1}$$
+Ecovalence is expressed as:
+$$W_{i} = \sum_{j} (X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})$$
+To let $W_{i}$ comparable between experiments, we also provide the modified ecovalence ($W_{i}'$) that take number of environments into account.
+$$W_{i}' = \frac{\sum_{j} (X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})}{E-1}$$
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
 in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ denoting marginal means of genotype $i$.
 
@@ -346,13 +347,13 @@ in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ denoting marginal mea
 Genotypic stability [@hanson1970] is calculated based on regression function.
 Variety with low stability variance is considered as stable.
 Under the linear model
-$$Y =\mu + b_{i}\times e_{j} + g_{i} + d_{ij}$$
+$$Y =\mu + \beta_{i}\times e_{j} + g_{i} + d_{ij}$$
 where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
-$$(ge)_{ij} = b_{i}\times e_{j} + d_{ij}$$
-where $b_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
+$$(ge)_{ij} = \beta_{i}\times e_{j} + d_{ij}$$
+where $\beta_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
 
 Genotypic stability:
 $$ D_{i}^{2} = \sum_{j} (X_{ij} - \overline{X_{i.}}- b_{min}\times \overline{X_{.j}} + b_{min}\times \overline{X_{..}})^{2}$$
@@ -394,7 +395,7 @@ Variety with low stability variance is considered as stable.
 
 $$
 \sigma^{2}_{i} = \frac{1}{(G-1) \times (G-2) \times (E-1)} \left [
-G \times(G-1)\times \sum_{j} (X_{ij} - \overline{X_{i.}}\times\overline{X_{.j}} + \overline{X_{..}})^{2}- \sum_{i} \sum_{j} (X_{ij} - \overline{X_{i.}}\times\overline{X_{.j}} + \overline{X_{..}})^{2}
+G \times(G-1)\times \sum_{j} (X_{ij} - \overline{X_{i.}}-\overline{X_{.j}} + \overline{X_{..}})^{2}- \sum_{i} \sum_{j} (X_{ij} - \overline{X_{i.}}-\overline{X_{.j}} + \overline{X_{..}})^{2}
 \right ]
 $$
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
@@ -412,7 +413,7 @@ Variety with low variance of rank is considered as stable.
 
 Correction for each genotype $i$ was done by subtraction of marginal genotypic mean $\overline{X_{i.}}$ and the addition of overall
 mean $\overline{X_{..}}$.
-$$X_{corrected ij} = X_{ij} - \overline{X_{i.}} + \overline{X_{..}}$$
+$$X_{corrected~ij} = X_{ij} - \overline{X_{i.}} + \overline{X_{..}}$$
 Then calculated the rank all genotypes for each environment $j$
 $$r_{ij} = rank(X_{correctedij})$$
 

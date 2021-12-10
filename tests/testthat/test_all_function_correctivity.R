@@ -182,15 +182,20 @@ test_that("unit of environmental_variance is corrected correctly", {
 })
 
 test_that("ecovalence is calulated correctly", {
-  expect_equal(eco.val, ecovalence(data, "trait", "genotype", "environment")$ecovalence)
-  expect_equal(eco.val, tb$Ecovalence)
+  expect_equal(eco.val1, ecovalence(data, "trait", "genotype", "environment",modify = F)$ecovalence)
+  expect_equal(eco.val1, tb$Ecovalence)
+  expect_equal(eco.val, ecovalence(data, "trait", "genotype", "environment",modify = T)$ecovalence.modified)
+  expect_equal(eco.val, tb$Ecovalence.modified)
 })
 test_that("ecovalence is same between function and table", {
-  expect_equal(ecovalence(data, "trait", "genotype", "environment")$ecovalence, tb$Ecovalence)
+  expect_equal(ecovalence(data, "trait", "genotype", "environment",modify = F)$ecovalence, tb$Ecovalence)
+  expect_equal(ecovalence(data, "trait", "genotype", "environment",modify = T)$ecovalence.modified, tb$Ecovalence.modified)
 })
 test_that("unit of ecovalence is corrected correctly", {
-  expect_equal(sqrt(eco.val), ecovalence(data, "trait", "genotype", "environment",unit.correct=T)$ecovalence)
-  expect_equal(sqrt(eco.val), tb1$Ecovalence)
+  expect_equal(sqrt(eco.val), ecovalence(data, "trait", "genotype", "environment",unit.correct=T,modify = T)$ecovalence.modified)
+  expect_equal(sqrt(eco.val), tb1$Ecovalence.modified)
+  expect_equal(sqrt(eco.val1), ecovalence(data, "trait", "genotype", "environment",unit.correct=T,modify = F)$ecovalence)
+  expect_equal(sqrt(eco.val1), tb1$Ecovalence)
 })
 
 test_that("stability_variance is calulated correctly", {

@@ -57,30 +57,29 @@ variance_of_rank <- function(data, trait, genotype, environment, unit.correct = 
   varnam <- paste0("Mean.",trait)
   X..bar <- mean(data[[trait]])
 
-  res <- dplyr::rename(
-    dplyr::select(
-      summarise(
-        group_by(
-          mutate(
-            group_by(
-              mutate(
-                group_by(Data, Genotype),
-                corrected.X = X - mean(X) + X..bar
-              ),
-              Environment
+  res <- dplyr::select(
+    summarise(
+      group_by(
+        mutate(
+          group_by(
+            mutate(
+              group_by(Data, Genotype),
+              corrected.X = X - mean(X) + X..bar
             ),
-            corrected.rank = rank(-corrected.X, na.last = "keep", ties.method = "min")
+            Environment
           ),
-          Genotype
+          corrected.rank = rank(-corrected.X, na.last = "keep", ties.method = "min")
         ),
-        Mean.trait = mean(X),
-        mean.rank = mean(corrected.rank),
-        variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1))),
-      c('Genotype','Mean.trait','variance.of.rank')),
-    varnam = 'Mean.trait')
+        Genotype
+      ),
+      Mean.trait = mean(X),
+      mean.rank = mean(corrected.rank),
+      variance.of.rank = sum((corrected.rank - mean.rank)^2 / (length(X) - 1))),
+    c('Genotype','Mean.trait','variance.of.rank'))
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"variance.of.rank", sqrt)
   }
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

@@ -50,36 +50,33 @@ coefficient_of_determination <- function(data, trait, genotype, environment) {
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
   # overall mean of X
   X..bar <- mean(Data$X)
   # calculate doefficient determination
-  res <- dplyr::rename(
-    dplyr::select(
-      summarise(
-        mutate(
-          group_by(
-            mutate(
-              group_by(Data, Environment), # for each environment
-              Xj.bar = mean(X)
-            ), # first calculate environmental mean
-            Genotype
-          ), # for each genotype
-          Xi.bar = mean(X), # then calculate genotypic mean
-          E = length(X), # number of environment
-          s2d1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 2),
-          s2d2 = ((Xj.bar - X..bar)^2) / (E - 2),
-          Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
-          Bi2 = (Xj.bar - X..bar)^2,
-          dev = ((X - Xi.bar)^2) / (E - 1)
-        ),
-        Mean.trait = mean(X),
-        Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
-        s2di = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
-        s2xi = sum(dev, na.rm = TRUE),
-        coefficient.of.determination = 1 - (s2di / s2xi)),
-      c('Genotype','Mean.trait','coefficient.of.determination')),
-    varnam = 'Mean.trait') # final product
-
+  res <- dplyr::select(
+    summarise(
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data, Environment), # for each environment
+            Xj.bar = mean(X)
+          ), # first calculate environmental mean
+          Genotype
+        ), # for each genotype
+        Xi.bar = mean(X), # then calculate genotypic mean
+        E = length(X), # number of environment
+        s2d1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 2),
+        s2d2 = ((Xj.bar - X..bar)^2) / (E - 2),
+        Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
+        Bi2 = (Xj.bar - X..bar)^2,
+        dev = ((X - Xi.bar)^2) / (E - 1)
+      ),
+      Mean.trait = mean(X),
+      Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
+      s2di = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE),
+      s2xi = sum(dev, na.rm = TRUE),
+      coefficient.of.determination = 1 - (s2di / s2xi)),
+    c('Genotype','Mean.trait','coefficient.of.determination'))
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

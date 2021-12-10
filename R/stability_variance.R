@@ -54,7 +54,7 @@ stability_variance <- function(data, trait, genotype, environment, unit.correct 
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
+
   X..bar <- mean(data[[trait]])
   G <- length(unique(data[[genotype]]))
 
@@ -72,19 +72,18 @@ stability_variance <- function(data, trait, genotype, environment, unit.correct 
 
   wisum <- sum(res$sqr)
 
-  res <- dplyr::rename(
-    dplyr::select(
-      summarise(res,
-                wi = sum(sqr, na.rm = TRUE),
-                Mean.trait = mean(X),
-                stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2))),
-      c('Genotype','Mean.trait','stability.variance')),
-    varnam = 'Mean.trait')
+  res <- dplyr::select(
+    summarise(res,
+              wi = sum(sqr, na.rm = TRUE),
+              Mean.trait = mean(X),
+              stability.variance = (G * (G - 1) * wi - wisum) / ((G - 1) * (G - 2))),
+    c('Genotype','Mean.trait','stability.variance'))
   # replace negative value to zero as stated by Shukla, 1972.
   res$stability.variance[res$stability.variance < 0] <- 0
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"stability.variance", sqrt)
   }
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

@@ -55,37 +55,35 @@ deviation_mean_squares <- function(data, trait, genotype, environment, unit.corr
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
+
   X..bar <- mean(Data$X) # overall mean of X
 
-  res <- dplyr::rename(
-    dplyr::select(
+  res <- dplyr::select(
     summarise(
-    mutate(
-      group_by(
-        mutate(
-          group_by(Data, Environment), # for each environment
-          Xj.bar = mean(X)
-        ), # first calculate environmental mean
-        Genotype
-      ), # for each genotype
-      Xi.bar = mean(X), # then calculate genotypic mean
-      E = length(X), # number of environment
-      s2d1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 2),
-      s2d2 = ((Xj.bar - X..bar)^2) / (E - 2),
-      Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
-      Bi2 = (Xj.bar - X..bar)^2
-    ),
-    Mean.trait = mean(X),
-    Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
-    deviation.mean.squares = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE)),
-    c('Genotype','Mean.trait','deviation.mean.squares')),
-    varnam = 'Mean.trait')
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data, Environment), # for each environment
+            Xj.bar = mean(X)
+          ), # first calculate environmental mean
+          Genotype
+        ), # for each genotype
+        Xi.bar = mean(X), # then calculate genotypic mean
+        E = length(X), # number of environment
+        s2d1 = ((X - Xi.bar - Xj.bar + X..bar)^2) / (E - 2),
+        s2d2 = ((Xj.bar - X..bar)^2) / (E - 2),
+        Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
+        Bi2 = (Xj.bar - X..bar)^2
+      ),
+      Mean.trait = mean(X),
+      Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE)),
+      deviation.mean.squares = sum(s2d1, na.rm = TRUE) - ((Bi - 1)^2) * sum(s2d2, na.rm = TRUE)),
+    c('Genotype','Mean.trait','deviation.mean.squares'))
 
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"deviation.mean.squares", sqrt)
   }
-
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

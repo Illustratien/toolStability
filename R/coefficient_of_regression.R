@@ -67,26 +67,24 @@ coefficient_of_regression <- function(data, trait, genotype, environment) {
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
   X..bar <- mean(Data$X) # overall mean of X
-  res <- dplyr::rename(
-    dplyr::select(
-      summarise(
-        mutate(
-          group_by(
-            mutate(
-              group_by(Data, Environment), # for each environment
-              Xj.bar = mean(X)
-            ), # first calculate environmental mean
-            Genotype
-          ), # for each genotype
-          Xi.bar = mean(X), # then calculate genotypic mean
-          Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
-          Bi2 = (Xj.bar - X..bar)^2
-        ),
-        coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
-        Mean.trait = mean(X)),
-      c('Genotype','Mean.trait','coefficient.of.regression')),
-    varnam = 'Mean.trait')
+  res <-dplyr::select(
+    summarise(
+      mutate(
+        group_by(
+          mutate(
+            group_by(Data, Environment), # for each environment
+            Xj.bar = mean(X)
+          ), # first calculate environmental mean
+          Genotype
+        ), # for each genotype
+        Xi.bar = mean(X), # then calculate genotypic mean
+        Bi1 = (X - Xi.bar - Xj.bar + X..bar) * (Xj.bar - X..bar),
+        Bi2 = (Xj.bar - X..bar)^2
+      ),
+      coefficient.of.regression = 1 + sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE),
+      Mean.trait = mean(X)),
+    c('Genotype','Mean.trait','coefficient.of.regression'))
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

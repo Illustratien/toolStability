@@ -87,18 +87,16 @@ safety_first_index <- function(data, trait, genotype, environment, lambda) {
   }
   varnam <- paste0("Mean.",trait)
   # calculate doefficient determination
-  res <- dplyr::rename(
-    summarise(
-      group_by(Data, Genotype), # for each environment
-      Mean.trait = mean(X),
-      Normality = normtest(X), # test normality for each genotype
-      safety.first.index = pnorm((lambda - mean(X)) / sd(X))),
-    varnam = 'Mean.trait')
+  res <-summarise(
+    group_by(Data, Genotype), # for each environment
+    Mean.trait = mean(X),
+    Normality = normtest(X), # test normality for each genotype
+    safety.first.index = pnorm((lambda - mean(X)) / sd(X)))
 
   if (any(!res$Normality)) {
-    warning("Input trait is not completely follow normality assumption !
+    warning("\nInput trait is not completely follow normality assumption !
  please see Normality column for more information.")
   }
-
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

@@ -46,13 +46,15 @@ environmental_variance <- function(data, trait, genotype, unit.correct=FALSE){
   res <- summarise(
     mutate(
       group_by(Data, Genotype),
-      deviation = (X - mean(X))^2 / (length(X) - 1)
-    ),
+      deviation = (X - mean(X))^2 / (length(X) - 1)),
+    Mean.trait = mean(X),
     environmental.variance = sum(deviation, na.rm = TRUE)
+
   )
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"environmental.variance", sqrt)
   }
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }

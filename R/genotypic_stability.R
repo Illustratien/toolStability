@@ -71,15 +71,14 @@ genotypic_stability <- function(data, trait, genotype, environment, unit.correct
     Bi = 1 + (sum(Bi1, na.rm = TRUE) / sum(Bi2, na.rm = TRUE))
   )
   bmin <- min(res$Bi)
-  res <-dplyr::rename(
-    summarise(res,
-              Mean.trait = mean(X),
-              genotypic.stability = sum((X - Xi.bar - bmin * Xj.bar + bmin * X..bar)^2)),
-    varnam = 'Mean.trait')
+  res <- summarise(res,
+                   Mean.trait = mean(X),
+                   genotypic.stability = sum((X - Xi.bar - bmin * Xj.bar + bmin * X..bar)^2))
 
 
   if (unit.correct==TRUE){
     res <- mutate_at(res,"genotypic.stability", sqrt)
   }
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
   return(res)
 }
