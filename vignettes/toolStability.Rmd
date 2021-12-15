@@ -25,8 +25,9 @@ header-includes:
 - \newcommand{\blandscape}{\begin{landscape}}
 - \newcommand{\elandscape}{\end{landscape}}
 - \fancyhead[LO,RE]{The \texttt{toolStability} Package{:} A Brief Introduction}
-vignette: |
+vignette: >
   %\VignetteIndexEntry{toolStability}
+  %\VignetteEngine{knitr::knitr}
   %\usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown_notangle}
 bibliography: REFERENCES.bib
@@ -314,16 +315,9 @@ $\overline{X_{..}}$ denote the overall mean of $X$. $b_{i}$is the estimation of 
 ### deviation mean squares
 Deviation mean squares [@eberhart1966] is calculated based on regression function.
 Variety with low stability variance is considered as stable.
-Under the linear model
-$$Y =\mu + \beta_{i}\times e_{j} + g_{i} + d_{ij}$$
-where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
-genotypic, environmental and overall population mean, respectively.
 
-The effect of GE-interaction may be expressed as:
-$$(ge)_{ij} = \beta_{i}\times e_{j} + d_{ij}$$
-where $\beta_{i}$ is the coefficient of regression and $d_{ij}$ a deviation.
 
-Deviation mean squares:
+Deviation mean squares may be expressed as:
 $$
 s^{2}_{di} = \frac{1}{E-2} \left [
 \sum_{j} (X_{ij} - \overline{X_{i.}}- \overline{X_{.j}} + \overline{X_{..}}^{2}) - (b_{i} - 1)^{2} \times
@@ -333,7 +327,7 @@ $$
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
 in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ and $\overline{X_{.j}}$ 
 denoting marginal means of genotype $i$ and environment $j$, respectively. 
-$\overline{X_{..}}$ denote the overall mean of $X$.
+$\overline{X_{..}}$ denote the overall mean of $X$. $b_{i}$ is the estimation of coefficient of regression.
 
 \newpage
 

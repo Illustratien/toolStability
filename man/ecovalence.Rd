@@ -23,6 +23,8 @@ ecovalence(
 \item{environment}{colname of a column containing a character or factor vector labeling different environments}
 
 \item{unit.correct}{logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.}
+
+\item{modify}{logical, default is \code{FALSE}, returning the original ecovalence; when \code{TRUE}, returning modified ecovalence in consideration of number of environment.}
 }
 \value{
 a data table with ecovalence
@@ -43,7 +45,8 @@ eco.valance <- ecovalence(
  trait = "Yield",
  genotype = "Genotype",
  environment = "Environment",
- unit.correct = FALSE)
+ unit.correct = FALSE,
+ modify=FALSE)
 }
 \references{
 \insertRef{wricke1962}{toolStability}

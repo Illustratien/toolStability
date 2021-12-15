@@ -17,6 +17,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
 #' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.
+#' @param modify logical, default is \code{FALSE}, returning the original ecovalence; when \code{TRUE}, returning modified ecovalence in consideration of number of environment.
 #'
 #' @return a data table with ecovalence
 #'
@@ -38,8 +39,9 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'  trait = "Yield",
 #'  genotype = "Genotype",
 #'  environment = "Environment",
-#'  unit.correct = FALSE)
-ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE,modify=FALSE) {
+#'  unit.correct = FALSE,
+#'  modify=FALSE)
+ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE, modify=FALSE) {
   if (!is.numeric(data[[trait]])) {
     stop("Trait must be a numeric vector")
   }
