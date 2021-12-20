@@ -19,7 +19,7 @@ citEntry(entry  = "Manual",
 				    comment = c(ORCID = "0000-0001-6698-563X")),
          year = year,
          textVersion = paste(
-           "Wang, T-C and Chen, T-W (",
+           "Wang, T-C. and Chen, T-W. (",
            year, ").  toolStability: Tool for stability indices calculation. ",
            vers, ", ", "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability",
            ".", sep=""),
