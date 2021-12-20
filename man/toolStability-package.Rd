@@ -7,7 +7,31 @@
 \title{toolStability: Tool for Stability Indices Calculation}
 \description{
 Tools to calculate stability indices with parametric,
- non-parametric and probabilistic approaches. The basic data format requirement for 'toolStability' is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. Function "table_stability" offers the summary table of all stability indices in this package.
+ non-parametric and probabilistic approaches. The basic data format requirement for 'toolStability' is a data frame with 3 columns including numeric trait values,
+ genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. 
+ Function "table_stability" offers the summary table of all stability indices in this package. 
+ Sample dataset in this package is from: 
+ Casadebaig P, Zheng B, Chapman S et al. (2016) <doi: 10.1371/journal.pone.0146385>. 
+ Indices used in this package are from:
+ Doering TF, Reckling M (2018) <doi: 10.1016/j.eja.2018.06.007>.
+ Eberhart SA, Russell WA (1966) <doi: 10.2135/cropsci1966.0011183X000600010011x>.
+ Eskridge KM (1990) <doi: 10.2135/cropsci1990.0011183X003000020025x>.
+ Finlay KW, Wilkinson GN (1963) <doi: 10.1071/AR9630742>.
+ Hanson WD (1970) Genotypic stability. <doi: 10.1007/BF00285245>.
+ Lin CS, Binns MR (1988) <doi: 10.4141/cjps88-018>.
+ Nassar R, Huehn M (1987) <doi: 10.2307/2531947>.
+ Pinthus MJ (1973) <doi: 10.1007/BF00021563>.
+ Roemer T (1917).
+ Shukla GK (1972). 
+ Wricke G (1962).
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Illustratien/toolStability}
+  \item Report bugs at \url{https://github.com/Illustratien/toolStability/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Tien-Cheng Wang \email{wangtien@student.hu-berlin.de}
