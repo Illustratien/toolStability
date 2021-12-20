@@ -20,3 +20,4 @@
 ^vignettes/Introduction\.toc$
 ^.*\.Rhistory$
 ^.*\.git$
+^LICENSE\.md$

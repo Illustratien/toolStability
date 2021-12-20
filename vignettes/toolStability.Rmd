@@ -27,7 +27,7 @@ header-includes:
 - \fancyhead[LO,RE]{The \texttt{toolStability} Package{:} A Brief Introduction}
 vignette: >
   %\VignetteIndexEntry{toolStability}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown_notangle}
 bibliography: REFERENCES.bib

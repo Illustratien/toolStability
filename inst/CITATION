@@ -13,17 +13,17 @@ citEntry(entry  = "Manual",
                                     email = "wangtien@student.hu-berlin.de",
                                     role = c("aut", "cre"),
 				    comment = c(ORCID = "0000-0001-7952-1404")),
-			     person(given = "T.-W.", family = "Chen",
+				    person(given = "T.-W.", family = "Chen",
                                     email = "tsu-wei.chen@hu-berlin.de",
-			            role = "co-aut",
-				    comment = c(ORCID = "0000-0001-6698-563X")),
+				    comment = c(ORCID = "0000-0001-7952-1404"),
+			            role = "com")),
          year = year,
          textVersion = paste(
            "Wang, T-C. and Chen, T-W. (",
            year, ").  toolStability: Tool for stability indices calculation. ",
-           vers, ", ", "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability",
-           ".", sep=""),
-         note = {c(paste(vers), "https://github.com/Illustratien/toolStability", "https://cran.r-project.org/package=toolStability")})
+           vers, ", ", "https://github.com/Illustratien/toolStability/", "https://cran.r-project.org/package=toolStability",
+           ".", sep="\n"),
+         note = {c(paste(vers), "https://github.com/Illustratien/toolStability/", "https://cran.r-project.org/package=toolStability")})
 
 citFooter("This free and open-source software implements academic
 research by the authors and co-workers. If you use it, please support

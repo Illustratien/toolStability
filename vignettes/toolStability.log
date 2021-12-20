@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.15)  16 DEC 2021 10:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.15)  20 DEC 2021 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/toolSta
+**C:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/toolSta
 bility.tex
 
-(c:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/toolStab
+(c:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/toolStab
 ility.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (c:/Users/twang/AppData/Roaming/TinyTeX/texmf
@@ -678,19 +678,19 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  <c:/Users/twang/Documents/R/win-library/4.0/toolStability/extdata/toolStabilit
 y.png>]
-<C:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/toolStab
+<C:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/toolStab
 ility_files/figure-latex/plot-1.pdf, id=167, 578.16pt x 289.08pt>
-File: C:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/too
+File: C:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/too
 lStability_files/figure-latex/plot-1.pdf Graphic file (type pdf)
-<use C:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/tool
+<use C:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/tool
 Stability_files/figure-latex/plot-1.pdf>
-Package pdftex.def Info: C:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-5
-3fc2f9a3369.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line
+Package pdftex.def Info: C:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5
+edc68147884.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line
  280.
 (pdftex.def)             Requested size: 469.75385pt x 234.8769pt.
 [3
 
- <c:/Users/twang/AppData/Local/Temp/RtmpyskKkd/preview-53fc2f9a3369.dir/toolSta
+ <c:/Users/twang/AppData/Local/Temp/Rtmpw770lu/preview-5edc68147884.dir/toolSta
 bility_files/figure-latex/plot-1.pdf>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
 00.
@@ -723,12 +723,6 @@ Overfull \hbox (6.4786pt too wide) detected at line 754
 [17] [18]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 788.
-
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 814--814
-[]\T1/lmtt/m/n/10 #>   https://github.com/Illustratien/toolStabilityhttps://cra
-n.r-project.org/package=toolStability.[] 
- []
-
 [19] [20] (./toolStability.aux)
 Package rerunfilecheck Info: File `toolStability.out' has not changed.
 (rerunfilecheck)             Checksum: A9275500963F33C94A90ED93C9F1B0B2;3183.
@@ -769,7 +763,7 @@ ublic/lm/lmtt10.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmtt12.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fon
 ts/type1/public/lm/lmtti10.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-di
 st/fonts/type1/public/lm/lmtto10.pfb>
-Output written on toolStability.pdf (20 pages, 500087 bytes).
+Output written on toolStability.pdf (20 pages, 499405 bytes).
 PDF statistics:
  441 PDF objects out of 1000 (max. 8388607)
  368 compressed objects within 4 object streams
