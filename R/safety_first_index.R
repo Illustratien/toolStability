@@ -85,7 +85,7 @@ safety_first_index <- function(data, trait, genotype, environment, lambda) {
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
+
   # calculate doefficient determination
   res <-summarise(
     group_by(Data, Genotype), # for each environment

@@ -103,7 +103,7 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE, m
     res <- mutate_at(res,index.name, sqrt)
   }
 
-  names(res)[names(res) == "Mean.Trait"] <- sprintf("Mean.%s", trait)
+  names(res)[names(res) == "Mean.trait"] <- sprintf("Mean.%s", trait)
 
   return(res)
 }

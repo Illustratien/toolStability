@@ -54,7 +54,6 @@ variance_of_rank <- function(data, trait, genotype, environment, unit.correct = 
                        Genotype = data[[genotype]],
                        Environment = data[['Environment']])
   }
-  varnam <- paste0("Mean.",trait)
   X..bar <- mean(data[[trait]])
 
   res <- dplyr::select(
