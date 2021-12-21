@@ -25,9 +25,8 @@ header-includes:
 - \newcommand{\blandscape}{\begin{landscape}}
 - \newcommand{\elandscape}{\end{landscape}}
 - \fancyhead[LO,RE]{The \texttt{toolStability} Package{:} A Brief Introduction}
-vignette: >
+vignette: |
   %\VignetteIndexEntry{toolStability}
-  %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown_notangle}
 bibliography: REFERENCES.bib
