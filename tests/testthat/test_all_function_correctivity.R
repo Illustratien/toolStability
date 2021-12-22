@@ -1,6 +1,6 @@
 
 library(toolStability)
-rm(list = ls())
+
 trait <- c(2, 3, 20, 3, 10, 25, 2, 6, 23, 4, 18, 22)
 genotype <- as.factor(rep(1:3, 4))
 genotype1 <- rep(1:3, each = 4)
