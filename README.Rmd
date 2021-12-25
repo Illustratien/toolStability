@@ -1,0 +1,168 @@
+---
+output: rmarkdown::github_document
+always_allow_html: true
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "",
+  fig.path = "inst/extdata/"
+)
+```
+
+## `toolStability`: Tool for Stability Indices Calculation  <img src="https://raw.githubusercontent.com/Illustratien/toolStability/master/inst/extdata/toolStability.png" align="right" alt="logo" width="200" height = "200" style = "padding: 10px; border: none; float: right;">
+
+```{r,echo = FALSE, message = FALSE}
+devtools::load_all(".")
+
+```
+
+###### Version : [`r getNamespaceVersion("toolStability")`]; License: [GPL-3](https://www.r-project.org/Licenses/)
+
+
+##### *Wang, T-C. and Chen, T-W.*
+
+
+
+***
+
+[![minimal R version](https://img.shields.io/badge/R>%3D-3.5.0-6666ff.svg?logo=R)](https://cran.r-project.org/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/toolStability)](https://cran.r-project.org/package=toolStability)
+[![Dependencies](https://tinyverse.netlify.com/badge/toolStability)](https://cran.r-project.org/package=toolStability)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green)](https://CRAN.R-project.org/package=toolStability)
+```{r, results='asis', echo=FALSE}
+dver <- ifelse(test = gsub("(.\\.)(\\d+)(\\..)", "", getNamespaceVersion("toolStability")) != "",
+               yes = getNamespaceVersion("toolStability"),
+               no = gsub("Version:\\s*", "", readLines(paste0("https://raw.githubusercontent.com/", "Illustratien/toolStability", "/master/DESCRIPTION"))[grep("Version:", readLines(paste0("https://raw.githubusercontent.com/", "Illustratien/toolStability", "/master/DESCRIPTION")))]))
+
+cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver, "-orange.svg)](https://github.com/Illustratien/toolStability)", sep = ""))
+```
+[![Github Code Size](https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg)](https://github.com/Illustratien/toolStability)
+[![R-CMD-check](https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg)](https://github.com/Illustratien/toolStability/actions)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
+[![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
+<!-- [![Website - pkgdown](https://img.shields.io/website-up-down-green-red/https/Illustratien.github.io/toolStability.svg)](https://Illustratien.github.io/toolStability/) -->
+[![.](https://pro-pulsar-193905.appspot.com/UA-116205606-1/welcome-page)](https://github.com/Illustratien/google-analytics-beacon)
+<!-- [![packageversion](https://img.shields.io/badge/Package%20version-0.2.3.3-orange.svg)](https://github.com/Illustratien/toolStability) -->
+<!-- [![GitHub Download Count](https://github-basic-badges.herokuapp.com/downloads/Illustratien/toolStability/total.svg)] -->
+<!-- [![Rdoc](https://www.rdocumentation.org/badges/version/toolStability)](https://www.rdocumentation.org/packages/toolStability) -->
+
+***
+
+## Description
+`r gsub("\\n", " ", packageDescription("toolStability", fields = "Description"))`
+
+## Installation
+The package can be installed from CRAN as follows:
+
+```{r, eval=FALSE}
+if (!require('devtools')) install.packages('devtools')
+install.packages('toolStability', dependencies=TRUE)
+```
+
+The development version can be installed from github as follows:
+
+```{r, eval=FALSE}
+devtools::install_github("Illustratien/toolStability")
+```
+
+## Detailed tutorial
+For a detailed tutorial (vignette) on how to used this package type:
+
+```{r, eval=FALSE}
+browseVignettes(package = 'toolStability')
+```
+
+<!-- The vignette for the latest version is also available [online](https://Illustratien.github.io/toolStability/articles/Introduction.html). -->
+
+## What's new
+To know whats new in this version type:
+
+```{r, eval=FALSE}
+news(package='toolStability')
+```
+
+## Links
+
+[CRAN page](https://cran.r-project.org/package=toolStability)
+
+[Github page](https://github.com/Illustratien/toolStability)
+
+<!-- [Documentation website](https://Illustratien.github.io/toolStability/) -->
+
+[Zenodo DOI](https://zenodo.org/badge/latestdoi/203346020)
+
+## CRAN checks
+
+
+```{r, echo = FALSE}
+pkgname <- "toolStability"
+
+osdf <-
+  rbind(data.frame(OS = "Linux", 
+           Flavour = c("r-devel-linux-x86_64-debian-clang",
+                       "r-devel-linux-x86_64-debian-gcc", 
+                       "r-devel-linux-x86_64-fedora-clang",
+                       "r-devel-linux-x86_64-fedora-gcc", 
+                       "r-patched-linux-x86_64",
+                       "r-release-linux-x86_64")),
+data.frame(OS = "Solaris", 
+           Flavour = c("r-patched-solaris-x86")),
+data.frame(OS = "Windows", 
+           Flavour = c("r-devel-windows-ix86+x86_64", 
+                       "r-release-windows-ix86+x86_64",
+                       "r-oldrel-windows-ix86+x86_64")),
+data.frame(OS = "macOS", 
+           Flavour = c("r-release-macos-x86_64", 
+                       "r-oldrel-macos-x86_64")))
+
+osdf$`CRAN check` <- paste("[![CRAN check - ", osdf$Flavour, "]",
+                    "(https://cranchecks.info/badges/flavor/",
+                    osdf$Flavour, "/", pkgname, ")]",
+                    "(https://cran.r-project.org/web/checks/check_results_",
+                    pkgname, ".html)",
+                    sep = "")
+```
+
+
+<!-- ```{r, echo = FALSE, results='asis'} -->
+<!-- library(kableExtra, warn.conflicts = FALSE) -->
+
+<!-- kosdf <- kbl(osdf[, c("Flavour", "CRAN check")], row.names = FALSE) -->
+
+<!-- kosdf2 <- kable_styling(kosdf, bootstrap_options = c("striped", "hover"), -->
+<!--               full_width = F, position = "left") -->
+
+<!-- # pack_rows(kosdf2, index = c("[![Linux](https://shields.io/badge/Linux--9cf?logo=Linux&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 6, -->
+<!-- #                             "[![Solaris](https://shields.io/badge/Solaris--9cf?logo=Oracle&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 1, -->
+<!-- #                             "[![Windows](https://shields.io/badge/Windows--9cf?logo=Windows&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 3, -->
+<!-- #                             "[![MacOS](https://shields.io/badge/MacOS--9cf?logo=Apple&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 2)) -->
+
+<!-- ``` -->
+
+## Citing `toolStability`
+To cite the methods in the package use:
+
+```{r, eval = FALSE}
+citation("toolStability")
+```
+
+```{r, echo = FALSE}
+detach("package:toolStability", unload=TRUE)
+suppressPackageStartupMessages(library(toolStability))
+cit <- citation("toolStability")
+# yr <- format(Sys.Date(), "%Y")
+# cit[1]$year <- yr
+# oc <- class(cit)
+# 
+# cit <- unclass(cit)
+# attr(cit[[1]],"textVersion") <- gsub("\\(\\)",
+#                                      paste("\\(", yr, "\\)", sep = ""),
+#                                      attr(cit[[1]],"textVersion"))
+# class(cit) <- oc
+cit
+```

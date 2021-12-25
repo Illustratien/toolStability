@@ -1,242 +1,143 @@
 
-# toolStability
-This is an r package for calculating parametric, non-parametric, and probabilistic stability indices.
+## `toolStability`: Tool for Stability Indices Calculation <img src="https://raw.githubusercontent.com/Illustratien/toolStability/master/inst/extdata/toolStability.png" align="right" alt="logo" width="200" height = "200" style = "padding: 10px; border: none; float: right;">
 
-##package structure overview
+    Warning: package 'testthat' was built under R version 4.0.4
 
-toolStability contains different functions to calculate stability indices, including:
+###### Version : \[0.1.0\]; License: [GPL-3](https://www.r-project.org/Licenses/)
 
- 1.  adjusted coefficient of variation
- 2.  coefficient of determination
- 3.  coefficient of regression
- 4.  deviation mean squares
- 5.  ecovalence
- 6.  environmental variance
- 7.  genotypic stability
- 8.  genotypic superiority measure
- 9.  safety first index
- 10. stability variance
- 11. variance of rank
+##### *Wang, T-C. and Chen, T-W.*
 
+------------------------------------------------------------------------
 
-##function input tutorial
+[![minimal R
+version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg?logo=R)](https://cran.r-project.org/)
+[![License: GPL
+v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/toolStability)](https://cran.r-project.org/package=toolStability)
+[![Dependencies](https://tinyverse.netlify.com/badge/toolStability)](https://cran.r-project.org/package=toolStability)
+[![rstudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green)](https://CRAN.R-project.org/package=toolStability)
+[![develVersion](https://img.shields.io/badge/devel%20version-0.1.0-orange.svg)](https://github.com/Illustratien/toolStability)
+[![Github Code
+Size](https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg)](https://github.com/Illustratien/toolStability)
+[![R-CMD-check](https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg)](https://github.com/Illustratien/toolStability/actions)
+[![Project Status:
+Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2021--12--25-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
+[![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
+<!-- [![Website - pkgdown](https://img.shields.io/website-up-down-green-red/https/Illustratien.github.io/toolStability.svg)](https://Illustratien.github.io/toolStability/) -->
+[![.](https://pro-pulsar-193905.appspot.com/UA-116205606-1/welcome-page)](https://github.com/Illustratien/google-analytics-beacon)
+<!-- [![packageversion](https://img.shields.io/badge/Package%20version-0.2.3.3-orange.svg)](https://github.com/Illustratien/toolStability) -->
+<!-- [![GitHub Download Count](https://github-basic-badges.herokuapp.com/downloads/Illustratien/toolStability/total.svg)] -->
+<!-- [![Rdoc](https://www.rdocumentation.org/badges/version/toolStability)](https://www.rdocumentation.org/packages/toolStability) -->
 
-1. Data preparation 
+------------------------------------------------------------------------
 
-In order to calculate stability index, you will need to prepare a data frame with 3 columns containing trait, genotype, and environment.
+## Description
 
+Tools to calculate stability indices with parametric, non-parametric and
+probabilistic approaches. The basic data format requirement for
+‘toolStability’ is a data frame with 3 columns including numeric trait
+values, genotype,and environmental labels. Output format of each
+function is the dataframe with chosen stability index for each genotype.
+Function “table_stability” offers the summary table of all stability
+indices in this package. Sample dataset in this package is from:
+Casadebaig P, Zheng B, Chapman S et al. (2016) \<doi:
+10.1371/journal.pone.0146385>. Indices used in this package are from:
+Doering TF, Reckling M (2018) \<doi: 10.1016/j.eja.2018.06.007>.
+Eberhart SA, Russell WA (1966) \<doi:
+10.2135/cropsci1966.0011183X000600010011x>. Eskridge KM (1990) \<doi:
+10.2135/cropsci1990.0011183X003000020025x>. Finlay KW, Wilkinson GN
+(1963) \<doi: 10.1071/AR9630742>. Hanson WD (1970) Genotypic stability.
+\<doi: 10.1007/BF00285245>. Lin CS, Binns MR (1988)
+<https://cdnsciencepub.com/doi/abs/10.4141/cjps88-018>. Nassar R, Huehn
+M (1987). Pinthus MJ (1973) \<doi: 10.1007/BF00021563>. Roemer T (1917).
+Shukla GK (1972). Wricke G (1962).
 
-  * trait:       numeric and continuous, trait value to be analyzed.
-  * genotype:    character or factor, labeling different genotypic varieties.
-  * environment: character or factor, labeling different environments.
+## Installation
 
-2. Input formats of function
-
-Most of the functions in the package work with the following format: 
-
-function (data = Data,
-         trait = "Trait_Column_Name",
-         genotype = "Genotype_Column_Name",
-         environment = "Environment_Column_Name")
-
-For calculation of probabilistic stability index "safety_first_index", an additional parameter "lambda" is required.
-
-  * lambda:      minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait value. Under the assumption of trait is normally distributed, safety first index is calculated based on the probability of trait below lambda across the environments for each genotype.
-
-3. Function Features
-
-  Function “table_stability" generates the summary table containing all the stability indices in the package for every genotype, also including the mean yield and normality check results for the trait of each genotype across all the environments. 
-
-  User can specify the interested combination of environments by entering a vector with column names of environmental factors. See examples for more details.
-
-4. Equations for stability indices
-
-  The equation of each stability index can be found in vignette of the toolStability package.
-  
-  vignette("Vignette", package = "toolStability")
-
-## dataset description
-The default data set 'Data' is the subset of APSIM simulated wheat dataset, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 CO2 levels of treatments (Casadebaig et al., 2016).
-
-'Data' in this package is A data frame with 640 observations and 8 variables.
-
-Trait            Wheat yield (kg.ha-1). 
-Genotype     5   varieties.
-Environment  128 unique combination of environments for each genotype.
-Year         4   years.
-Sites        4   locations.
-Nitrogen     2   nitrogen application levels.
-CO2          2   CO2 concentration levels.
-Sowing       2   sowing dates.
-
-## Examples 
-
-```R
----
-author: marse
-date: 2021-12-10
-output: "reprex::reprex_document"
-title: grave-cobra_reprex.R
----
+The package can be installed from CRAN as follows:
 
 ``` r
-rm(list=ls())
-library(toolStability)
-### load data
-data("Data")
-### check the structure of sample dataset
-### be sure that the trait is numeric!!!
-dplyr::glimpse(Data)
-#> Rows: 640
-#> Columns: 8
-#> $ Genotype    <fct> 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864~
-#> $ Yield       <dbl> 1278.6, 1746.0, 1753.9, 1851.8, 2176.6, 2783.3, 3113.3, 27~
-#> $ Environment <fct> 1959 Emerald low control early, 1960 Emerald low control e~
-#> $ Years       <int> 1959, 1960, 1961, 1962, 1959, 1960, 1961, 1962, 1959, 1960~
-#> $ Sites       <fct> Emerald, Emerald, Emerald, Emerald, Yanco, Yanco, Yanco, Y~
-#> $ Nitrogen    <fct> low, low, low, low, low, low, low, low, low, low, low, low~
-#> $ CO2         <fct> control, control, control, control, control, control, cont~
-#> $ Sowing      <fct> early, early, early, early, early, early, early, early, ea~
-
-### calculate ecovalence for all genotypes
-single.index.ecovalence <- ecovalence(data = Data,
-                                      trait = 'Yield',
-                                      genotype = 'Genotype',
-                                      environment = 'Environment',
-                                      unit.correct = FALSE,
-                                      modify = FALSE)
-### check the structure of result
-dplyr::glimpse(single.index.ecovalence)
-#> Rows: 5
-#> Columns: 3
-#> $ Genotype   <fct> 1864, 2757, 2844, 3356, 4885
-#> $ Mean.trait <dbl> 2878.070, 1913.365, 2911.395, 3038.426, 2024.919
-#> $ ecovalence <dbl> 17802705, 27718900, 9365241, 12698454, 24133596
-
-### calculate modified ecovalence for all genotypes
-single.index.ecovalence.modified <- ecovalence(data = Data,
-                                               trait = 'Yield',
-                                               genotype = 'Genotype',
-                                               environment = 'Environment',
-                                               unit.correct = FALSE,
-                                               modify = TRUE)
-### check the structure of result
-dplyr::glimpse(single.index.ecovalence.modified)
-#> Rows: 5
-#> Columns: 3
-#> $ Genotype            <fct> 1864, 2757, 2844, 3356, 4885
-#> $ Mean.trait          <dbl> 2878.070, 1913.365, 2911.395, 3038.426, 2024.919
-#> $ ecovalence.modified <dbl> 139083.63, 216553.91, 73165.94, 99206.67, 188543.72
-
-### calculate all stability indices for all genotypes
-summary.table <- table_stability(data = Data,
-                                 trait = 'Yield',
-                                 genotype = 'Genotype',
-                                 environment = 'Environment',
-                                 lambda = median(Data$Yield),
-                                 normalize = FALSE,
-                                 unit.correct = FALSE)
-#> Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : 
-#> All of your genotypes didn't pass the Shapiro normality test!
-#>  Safety_first Index may not be accurate.
-#### warning message means your data structure is not distributed as normal distribution
-
-#### check the structure of result
-dplyr::glimpse(summary.table)
-#> Rows: 5
-#> Columns: 15
-#> $ Genotype                          <fct> 1864, 2757, 2844, 3356, 4885
-#> $ Mean.Yield                        <dbl> 2878.070, 1913.365, 2911.395, 3038.4~
-#> $ Normality                         <lgl> FALSE, FALSE, FALSE, FALSE, FALSE
-#> $ Safety.first.index                <dbl> 0.3523378, 0.6665326, 0.3242059, 0.2~
-#> $ Coefficient.of.determination      <dbl> 0.9398731, 0.8270000, 0.9485154, 0.9~
-#> $ Coefficient.of.regression         <dbl> 1.1596475, 0.8552736, 1.0316158, 1.1~
-#> $ Deviation.mean.squares            <dbl> 108789.28, 193280.79, 73052.65, 8677~
-#> $ Environmental.variance            <dbl> 1809327, 1117230, 1418923, 1630384, ~
-#> $ Genotypic.stability               <dbl> 29248135, 24360429, 14583562, 214768~
-#> $ Genotypic.superiority.measure     <dbl> 89307.69, 1004043.78, 70091.10, 3048~
-#> $ Variance.of.rank                  <dbl> 1.770116, 2.281250, 1.561946, 1.7913~
-#> $ Stability.variance                <dbl> 173448.30, 303582.09, 62720.42, 1064~
-#> $ Adjusted.coefficient.of.variation <dbl> 50.31578, 47.87130, 44.31829, 46.565~
-#> $ Ecovalence                        <dbl> 17802705, 27718900, 9365241, 1269845~
-#> $ Ecovalence.modified               <dbl> 139083.63, 216553.91, 73165.94, 9920~
-
-### calculate all stability indices for all genotypes
-normalized.summary.table <- table_stability(data = Data,
-                                            trait = 'Yield',
-                                            genotype = 'Genotype',
-                                            environment = 'Environment',
-                                            lambda = median(Data$Yield),
-                                            normalize = TRUE,
-                                            unit.correct = FALSE)
-#> Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : 
-#> All of your genotypes didn't pass the Shapiro normality test!
-#>  Safety_first Index may not be accurate.
-#### warning message means your data structure is not distributed as normal distribution
-
-#### check the structure of result
-dplyr::glimpse(normalized.summary.table)
-#> Rows: 5
-#> Columns: 15
-#> $ Genotype                          <fct> 1864, 2757, 2844, 3356, 4885
-#> $ Mean.Yield                        <dbl> 2878.070, 1913.365, 2911.395, 3038.4~
-#> $ Normality                         <lgl> FALSE, FALSE, FALSE, FALSE, FALSE
-#> $ Safety.first.index                <dbl> 0.85683453, 0.00000000, 0.93355270, ~
-#> $ Coefficient.of.determination      <dbl> 0.07112157, 1.00000000, 0.00000000, ~
-#> $ Coefficient.of.regression         <dbl> 0.0000000, 0.9787025, 0.4116811, 0.1~
-#> $ Deviation.mean.squares            <dbl> 0.7027599, 0.0000000, 1.0000000, 0.8~
-#> $ Environmental.variance            <dbl> 0.0000000, 0.9389617, 0.5296575, 0.2~
-#> $ Genotypic.stability               <dbl> 0.0000000, 0.3333003, 1.0000000, 0.5~
-#> $ Genotypic.superiority.measure     <dbl> 0.9395799, 0.0000000, 0.9593184, 1.0~
-#> $ Variance.of.rank                  <dbl> 0.8095988, 0.3420919, 1.0000000, 0.7~
-#> $ Stability.variance                <dbl> 0.5402844, 0.0000000, 1.0000000, 0.8~
-#> $ Adjusted.coefficient.of.variation <dbl> 0.0000000, 0.4075840, 1.0000000, 0.6~
-#> $ Ecovalence                        <dbl> 0.5402844, 0.0000000, 1.0000000, 0.8~
-#> $ Ecovalence.modified               <dbl> 0.5402844, 0.0000000, 1.0000000, 0.8~
-
-### compare the result from summary.table and normalized.summary.table
-
-
-### calculate the stability indices only based only on CO2 and Nitrogen environments
-summary.table2 <- table_stability(data = Data,
-                                  trait = 'Yield',
-                                  genotype = 'Genotype',
-                                  environment = c('CO2','Nitrogen'),
-                                  lambda = median(Data$Yield),
-                                  normalize = FALSE,
-                                  unit.correct = FALSE)
-#> Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : 
-#> All of your genotypes didn't pass the Shapiro normality test!
-#>  Safety_first Index may not be accurate.
-
-#### check the structure of result
-dplyr::glimpse(summary.table2)
-#> Rows: 5
-#> Columns: 15
-#> $ Genotype                          <fct> 1864, 2757, 2844, 3356, 4885
-#> $ Mean.Yield                        <dbl> 2878.070, 1913.365, 2911.395, 3038.4~
-#> $ Normality                         <lgl> FALSE, FALSE, FALSE, FALSE, FALSE
-#> $ Safety.first.index                <dbl> 0.3523378, 0.6665326, 0.3242059, 0.2~
-#> $ Coefficient.of.determination      <dbl> 0.161086973, 0.138169855, 0.28644744~
-#> $ Coefficient.of.regression         <dbl> 1.1791003, 0.8614393, 1.3780191, 1.3~
-#> $ Deviation.mean.squares            <dbl> 1517867.6, 962862.6, 1012476.1, 1269~
-#> $ Environmental.variance            <dbl> 1809327, 1117230, 1418923, 1630384, ~
-#> $ Genotypic.stability               <dbl> 213741097, 130745446, 161091101, 189~
-#> $ Genotypic.superiority.measure     <dbl> 3688981, 6251668, 3333615, 3180826, ~
-#> $ Variance.of.rank                  <dbl> 2644.454, 1623.286, 2007.764, 2479.2~
-#> $ Stability.variance                <dbl> 2025117, 1102709, 1229740, 1636649, ~
-#> $ Adjusted.coefficient.of.variation <dbl> 50.31578, 47.87130, 44.31829, 46.565~
-#> $ Ecovalence                        <dbl> 192140367, 121852817, 131532582, 162~
-#> $ Ecovalence.modified               <dbl> 1501096.6, 951975.1, 1027598.3, 1269~
-
-### compare the result from summary.table and summary.table2
-### see how the choice of environments affect the data
+if (!require('devtools')) install.packages('devtools')
+install.packages('toolStability', dependencies=TRUE)
 ```
 
-<sup>Created on 2021-12-10 by the [reprex package](https://reprex.tidyverse.org) (v2.0.0)</sup>
+The development version can be installed from github as follows:
 
-
+``` r
+devtools::install_github("Illustratien/toolStability")
 ```
 
-## Enjoy
-Hope you enjoy using this package when calculating the stability indices.
+## Detailed tutorial
+
+For a detailed tutorial (vignette) on how to used this package type:
+
+``` r
+browseVignettes(package = 'toolStability')
+```
+
+<!-- The vignette for the latest version is also available [online](https://Illustratien.github.io/toolStability/articles/Introduction.html). -->
+
+## What’s new
+
+To know whats new in this version type:
+
+``` r
+news(package='toolStability')
+```
+
+## Links
+
+[CRAN page](https://cran.r-project.org/package=toolStability)
+
+[Github page](https://github.com/Illustratien/toolStability)
+
+<!-- [Documentation website](https://Illustratien.github.io/toolStability/) -->
+
+[Zenodo DOI](https://zenodo.org/badge/latestdoi/203346020)
+
+## CRAN checks
+
+<!-- ```{r, echo = FALSE, results='asis'} -->
+<!-- library(kableExtra, warn.conflicts = FALSE) -->
+<!-- kosdf <- kbl(osdf[, c("Flavour", "CRAN check")], row.names = FALSE) -->
+<!-- kosdf2 <- kable_styling(kosdf, bootstrap_options = c("striped", "hover"), -->
+<!--               full_width = F, position = "left") -->
+<!-- # pack_rows(kosdf2, index = c("[![Linux](https://shields.io/badge/Linux--9cf?logo=Linux&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 6, -->
+<!-- #                             "[![Solaris](https://shields.io/badge/Solaris--9cf?logo=Oracle&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 1, -->
+<!-- #                             "[![Windows](https://shields.io/badge/Windows--9cf?logo=Windows&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 3, -->
+<!-- #                             "[![MacOS](https://shields.io/badge/MacOS--9cf?logo=Apple&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 2)) -->
+<!-- ``` -->
+
+## Citing `toolStability`
+
+To cite the methods in the package use:
+
+``` r
+citation("toolStability")
+```
+
+
+    To cite the R package 'toolStability' in publications use:
+
+      Wang, T-C. and Chen, T-W. ( 2021 ).  toolStability: Tool for
+      stability indices calculation.  R package version 0.1.0 ,
+      https://github.com/Illustratien/toolStability/
+      https://cran.r-project.org/package=toolStability .
+
+    A BibTeX entry for LaTeX users is
+
+      @Manual{,
+        title = {toolStability: Tool for Stability Indices Calculation},
+        author = {T.-C. Wang and T.-W. Chen},
+        year = {2021},
+        note = {R package version 0.1.0},
+        note = {https://github.com/Illustratien/toolStability/},
+        note = {https://cran.r-project.org/package=toolStability},
+      }
+
+    This free and open-source software implements academic research by the
+    authors and co-workers. If you use it, please support the project by
+    citing the package.
