@@ -45,7 +45,10 @@ Suggests:
     RCurl
 RdMacros:
     Rdpack
-URL: https://github.com/Illustratien/toolStability
+URL: https://github.com/Illustratien/toolStability,
+    https://Illustratien.github.io/toolStability/
+    https://CRAN.R-project.org/package=toolStability
+    https://doi.org/10.5281/zenodo.5804213
 BugReports: https://github.com/Illustratien/toolStability/issues
 License: GPL (>= 3)
 Encoding: UTF-8
