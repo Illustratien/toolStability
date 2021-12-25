@@ -46,8 +46,8 @@ cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
 [![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
 [![Website - pkgdown](https://img.shields.io/website-up-down-green-red/https/Illustratien.github.io/toolStability.svg)](https://Illustratien.github.io/toolStability/)
-[![.](https://pro-pulsar-193905.appspot.com/UA-116205606-1/welcome-page)](https://github.com/Illustratien/google-analytics-beacon)
->
+[![.](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)](https://github.com/Illustratien/google-analytics-beacon)
+
 
 ***
 
