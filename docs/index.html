@@ -5,21 +5,39 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tool for Stability Indices calculation • toolStability</title>
+<title>Tool for Stability Indices Calculation • toolStability</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Tool for Stability Indices calculation">
+<script src="pkgdown.js"></script><meta property="og:title" content="Tool for Stability Indices Calculation">
 <meta property="og:description" content='Tools to calculate stability indices with parametric,
- non-parametric and probabilistic approaches. The basic data format requirement for toolStability is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. Function "table_stability" offers the summary table of all stability indices in this package.'>
+ non-parametric and probabilistic approaches. The basic data format requirement for toolStability is a data frame with 3 columns including numeric trait values,
+ genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. 
+ Function "table_stability" offers the summary table of all stability indices in this package. 
+ Sample dataset in this package is from: 
+ Casadebaig P, Zheng B, Chapman S et al. (2016) &lt;doi: 10.1371/journal.pone.0146385&gt;. 
+ Indices used in this package are from:
+ Doering TF, Reckling M (2018) &lt;doi: 10.1016/j.eja.2018.06.007&gt;.
+ Eberhart SA, Russell WA (1966) &lt;doi: 10.2135/cropsci1966.0011183X000600010011x&gt;.
+ Eskridge KM (1990) &lt;doi: 10.2135/cropsci1990.0011183X003000020025x&gt;.
+ Finlay KW, Wilkinson GN (1963) &lt;doi: 10.1071/AR9630742&gt;.
+ Hanson WD (1970) Genotypic stability. &lt;doi: 10.1007/BF00285245&gt;.
+ Lin CS, Binns MR (1988) &lt;https://cdnsciencepub.com/doi/abs/10.4141/cjps88-018&gt;.
+ Nassar R, Huehn M (1987).
+ Pinthus MJ (1973) &lt;doi: 10.1007/BF00021563&gt;.
+ Roemer T (1917).
+ Shukla GK (1972). 
+ Wricke G (1962).'>
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +50,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">toolStability</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/toolStability.html">Get started</a>
 </li>
@@ -53,7 +65,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Illustratien/toolStability/">
+  <a href="https://github.com/Illustratien/toolStability/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -70,229 +82,160 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="toolstability" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#toolstability" class="anchor"></a>toolStability</h1></div>
-<p>This is an r package for calculating parametric, non-parametric, and probabilistic stability indices.</p>
-<p>##package structure overview</p>
-<p>toolStability contains different functions to calculate stability indices, including:</p>
-<ol>
-<li>adjusted coefficient of variation</li>
-<li>coefficient of determination</li>
-<li>coefficient of regression</li>
-<li>deviation mean squares</li>
-<li>ecovalence</li>
-<li>environmental variance</li>
-<li>genotypic stability</li>
-<li>genotypic superiority measure</li>
-<li>safety first index</li>
-<li>stability variance</li>
-<li>variance of rank</li>
-</ol>
-<p>##function input tutorial</p>
-<ol>
-<li>Data preparation</li>
-</ol>
-<p>In order to calculate stability index, you will need to prepare a data frame with 3 columns containing trait, genotype, and environment.</p>
-<ul>
-<li>trait: numeric and continuous, trait value to be analyzed.</li>
-<li>genotype: character or factor, labeling different genotypic varieties.</li>
-<li>environment: character or factor, labeling different environments.</li>
-</ul>
-<ol>
-<li>Input formats of function</li>
-</ol>
-<p>Most of the functions in the package work with the following format:</p>
-<p>function (data = Data, trait = “Trait_Column_Name”, genotype = “Genotype_Column_Name”, environment = “Environment_Column_Name”)</p>
-<p>For calculation of probabilistic stability index “safety_first_index”, an additional parameter “lambda” is required.</p>
-<ul>
-<li>lambda: minimal acceptable value of trait that the user expected from crop across environments. Lambda should between the ranges of trait value. Under the assumption of trait is normally distributed, safety first index is calculated based on the probability of trait below lambda across the environments for each genotype.</li>
-</ul>
-<ol>
-<li>Function Features</li>
-</ol>
-<p>Function “table_stability” generates the summary table containing all the stability indices in the package for every genotype, also including the mean yield and normality check results for the trait of each genotype across all the environments.</p>
-<p>User can specify the interested combination of environments by entering a vector with column names of environmental factors. See examples for more details.</p>
-<ol>
-<li>Equations for stability indices</li>
-</ol>
-<p>The equation of each stability index can be found in vignette of the toolStability package.</p>
-<p>vignette(“Vignette”, package = “toolStability”)</p>
-<div id="dataset-description" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dataset-description" class="anchor"></a>dataset description</h2>
-<p>The default data set ‘Data’ is the subset of APSIM simulated wheat dataset, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 CO2 levels of treatments (Casadebaig et al., 2016).</p>
-<p>‘Data’ in this package is A data frame with 640 observations and 8 variables.</p>
-<p>Trait Wheat yield (kg.ha-1). Genotype 5 varieties. Environment 128 unique combination of environments for each genotype. Year 4 years. Sites 4 locations. Nitrogen 2 nitrogen application levels. CO2 2 CO2 concentration levels. Sowing 2 sowing dates.</p>
+
+<div class="section level2">
+<h2 id="toolstability-tool-for-stability-indices-calculation-">
+<code>toolStability</code>: Tool for Stability Indices Calculation <img src="https://raw.githubusercontent.com/Illustratien/toolStability/master/inst/extdata/toolStability.png" align="right" alt="logo" width="200" height="200" style="padding: 10px; border: none; float: right;"><a class="anchor" aria-label="anchor" href="#toolstability-tool-for-stability-indices-calculation-"></a>
+</h2>
+<div class="section level6">
+<h6 id="version--010-license-gpl-3">Version : [0.1.0]; License: <a href="https://www.r-project.org/Licenses/" class="external-link">GPL-3</a>
+<a class="anchor" aria-label="anchor" href="#version--010-license-gpl-3"></a>
+</h6>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<div class="section level5">
+<h5 id="wang-t-c-and-chen-t-w">
+<em>Wang, T-C. and Chen, T-W.</em><a class="anchor" aria-label="anchor" href="#wang-t-c-and-chen-t-w"></a>
+</h5>
+<hr>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+</h2>
+<p>Tools to calculate stability indices with parametric, non-parametric and probabilistic approaches. The basic data format requirement for ‘toolStability’ is a data frame with 3 columns including numeric trait values, genotype,and environmental labels. Output format of each function is the dataframe with chosen stability index for each genotype. Function “table_stability” offers the summary table of all stability indices in this package. Sample dataset in this package is from: Casadebaig P, Zheng B, Chapman S et al. (2016) &lt;doi: 10.1371/journal.pone.0146385&gt;. Indices used in this package are from: Doering TF, Reckling M (2018) &lt;doi: 10.1016/j.eja.2018.06.007&gt;. Eberhart SA, Russell WA (1966) &lt;doi: 10.2135/cropsci1966.0011183X000600010011x&gt;. Eskridge KM (1990) &lt;doi: 10.2135/cropsci1990.0011183X003000020025x&gt;. Finlay KW, Wilkinson GN (1963) &lt;doi: 10.1071/AR9630742&gt;. Hanson WD (1970) Genotypic stability. &lt;doi: 10.1007/BF00285245&gt;. Lin CS, Binns MR (1988) <a href="https://cdnsciencepub.com/doi/abs/10.4141/cjps88-018" class="external-link uri">https://cdnsciencepub.com/doi/abs/10.4141/cjps88-018</a>. Nassar R, Huehn M (1987). Pinthus MJ (1973) &lt;doi: 10.1007/BF00021563&gt;. Roemer T (1917). Shukla GK (1972). Wricke G (1962).</p>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>The package can be installed from CRAN as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Illustratien/toolStability">toolStability</a></span><span class="op">)</span>
-<span class="co">### load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Data"</span><span class="op">)</span>
-<span class="co">### check the structure of sample dataset</span>
-<span class="co">### be sure that the trait is numeric!!!</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Data</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 640</span>
-<span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Genotype    &lt;fct&gt; 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 18...</span>
-<span class="co">#&gt; $ Yield       &lt;dbl&gt; 1278.6, 1746.0, 1753.9, 1851.8, 2176.6, 2783.3, 31...</span>
-<span class="co">#&gt; $ Environment &lt;fct&gt; 1959 Emerald low control early, 1960 Emerald low c...</span>
-<span class="co">#&gt; $ Years       &lt;int&gt; 1959, 1960, 1961, 1962, 1959, 1960, 1961, 1962, 19...</span>
-<span class="co">#&gt; $ Sites       &lt;fct&gt; Emerald, Emerald, Emerald, Emerald, Yanco, Yanco, ...</span>
-<span class="co">#&gt; $ Nitrogen    &lt;fct&gt; low, low, low, low, low, low, low, low, low, low, ...</span>
-<span class="co">#&gt; $ CO2         &lt;fct&gt; control, control, control, control, control, contr...</span>
-<span class="co">#&gt; $ Sowing      &lt;fct&gt; early, early, early, early, early, early, early, e...</span>
-
-<span class="co">### calculate ecovalence for all genotypes</span>
-<span class="va">single.index.ecovalence</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ecovalence.html">ecovalence</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
-                               trait <span class="op">=</span> <span class="st">'Yield'</span>,
-                               genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
-                               environment <span class="op">=</span> <span class="st">'Environment'</span><span class="op">)</span>
-<span class="co">### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">single.index.ecovalence</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 5</span>
-<span class="co">#&gt; Columns: 3</span>
-<span class="co">#&gt; $ Genotype   &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.426, 2024.919</span>
-<span class="co">#&gt; $ ecovalence &lt;dbl&gt; 139083.63, 216553.91, 73165.94, 99206.67, 188543.72</span>
-
-<span class="co">### calculate all stability indices for all genotypes</span>
-<span class="va">summary.table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
-                                 trait <span class="op">=</span> <span class="st">'Yield'</span>,
-                                 genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
-                                 environment <span class="op">=</span> <span class="st">'Environment'</span>,
-                                 lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
-                                 normalize <span class="op">=</span> <span class="cn">F</span>,
-                                 unit.correct <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : All of your genotypes didn't pass the Shapiro normality test!</span>
-<span class="co">#&gt;  Safety_first Index may not be accurate.</span>
-<span class="co">#### warning message is telling you that your data structure is not distributed as normal distribution</span>
-
-<span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">summary.table</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 5</span>
-<span class="co">#&gt; Columns: 14</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395...</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, ...</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.3523378, 0.6665326, 0.3242...</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.9398731, 0.8270000, 0.9485...</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 1.1596475, 0.8552736, 1.0316...</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 108789.28, 193280.79, 73052....</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 1809327, 1117230, 1418923, 1...</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 29248135, 24360429, 14583562...</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 89307.69, 1004043.78, 70091....</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 1.770116, 2.281250, 1.561946...</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 173448.30, 303582.09, 62720....</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 50.31578, 47.87130, 44.31829...</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 139083.63, 216553.91, 73165....</span>
-
-<span class="co">### calculate all stability indices for all genotypes</span>
-<span class="va">normalized.summary.table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
-                                 trait <span class="op">=</span> <span class="st">'Yield'</span>,
-                                 genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
-                                 environment <span class="op">=</span> <span class="st">'Environment'</span>,
-                                 lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
-                                 normalize <span class="op">=</span> <span class="cn">T</span>,
-                                 unit.correct <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : All of your genotypes didn't pass the Shapiro normality test!</span>
-<span class="co">#&gt;  Safety_first Index may not be accurate.</span>
-<span class="co">#### warning message is telling you that your data structure is not distributed as normal distribution</span>
-
-<span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">normalized.summary.table</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 5</span>
-<span class="co">#&gt; Columns: 14</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395...</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, ...</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.85683453, 0.00000000, 0.93...</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.07112157, 1.00000000, 0.00...</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 0.0000000, 0.9787025, 0.4116...</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 0.7027599, 0.0000000, 1.0000...</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 0.0000000, 0.9389617, 0.5296...</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 0.0000000, 0.3333003, 1.0000...</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 0.9395799, 0.0000000, 0.9593...</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 0.8095988, 0.3420919, 1.0000...</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 0.5402844, 0.0000000, 1.0000...</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 0.0000000, 0.4075840, 1.0000...</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 0.5402844, 0.0000000, 1.0000...</span>
-
-<span class="co">### compare the result from summary.table and normalized.summary.table</span>
-
-
-<span class="co">### calculate the stability indices only based only on CO2 and Nitrogen environments</span>
-<span class="va">summary.table2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
-                                 trait <span class="op">=</span> <span class="st">'Yield'</span>,
-                                 genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
-                                 environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'CO2'</span>,<span class="st">'Nitrogen'</span><span class="op">)</span>,
-                                 lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
-                                 normalize <span class="op">=</span> <span class="cn">F</span>,
-                                 unit.correct <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : All of your genotypes didn't pass the Shapiro normality test!</span>
-<span class="co">#&gt;  Safety_first Index may not be accurate.</span>
-
-<span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">summary.table2</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 5</span>
-<span class="co">#&gt; Columns: 14</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395...</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, ...</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.3523378, 0.6665326, 0.3242...</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.161086973, 0.138169855, 0....</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 1.1791003, 0.8614393, 1.3780...</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 1517867.6, 962862.6, 1012476...</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 1809327, 1117230, 1418923, 1...</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 213741097, 130745446, 161091...</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 3688981, 6251668, 3333615, 3...</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 2644.454, 1623.286, 2007.764...</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 2025117, 1102709, 1229740, 1...</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 50.31578, 47.87130, 44.31829...</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 1501096.6, 951975.1, 1027598...</span>
-
-<span class="co">### compare the result from summary.table and summary.table2</span>
-<span class="co">### see how the choice of environments affect the data</span></code></pre></div>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">'devtools'</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'toolStability'</span>, dependencies<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>The development version can be installed from github as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Illustratien/toolStability"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="enjoy" class="section level2">
-<h2 class="hasAnchor">
-<a href="#enjoy" class="anchor"></a>Enjoy</h2>
-<p>Hope you enjoy using this package when calculating the stability indices.</p>
+<div class="section level2">
+<h2 id="detailed-tutorial">Detailed tutorial<a class="anchor" aria-label="anchor" href="#detailed-tutorial"></a>
+</h2>
+<p>For a detailed tutorial (vignette) on how to used this package type:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html" class="external-link">browseVignettes</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">'toolStability'</span><span class="op">)</span></code></pre></div>
+<!-- The vignette for the latest version is also available [online](https://Illustratien.github.io/toolStability/articles/Introduction.html). -->
 </div>
+<div class="section level2">
+<h2 id="whats-new">What’s new<a class="anchor" aria-label="anchor" href="#whats-new"></a>
+</h2>
+<p>To know whats new in this version type:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/news.html" class="external-link">news</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">'toolStability'</span><span class="op">)</span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="links">Links<a class="anchor" aria-label="anchor" href="#links"></a>
+</h2>
+<p><a href="https://cran.r-project.org/package=toolStability" class="external-link">CRAN page</a></p>
+<p><a href="https://github.com/Illustratien/toolStability" class="external-link">Github page</a></p>
+<!-- [Documentation website](https://Illustratien.github.io/toolStability/) -->
+<p><a href="https://zenodo.org/badge/latestdoi/203346020" class="external-link">Zenodo DOI</a></p>
+</div>
+<div class="section level2">
+<h2 id="cran-checks">CRAN checks<a class="anchor" aria-label="anchor" href="#cran-checks"></a>
+</h2>
+<!-- ```{r, echo = FALSE, results='asis'} -->
+<!-- library(kableExtra, warn.conflicts = FALSE) -->
+<!-- kosdf <- kbl(osdf[, c("Flavour", "CRAN check")], row.names = FALSE) -->
+<!-- kosdf2 <- kable_styling(kosdf, bootstrap_options = c("striped", "hover"), -->
+<!--               full_width = F, position = "left") -->
+<!-- # pack_rows(kosdf2, index = c("[![Linux](https://shields.io/badge/Linux--9cf?logo=Linux&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 6, -->
+<!-- #                             "[![Solaris](https://shields.io/badge/Solaris--9cf?logo=Oracle&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 1, -->
+<!-- #                             "[![Windows](https://shields.io/badge/Windows--9cf?logo=Windows&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 3, -->
+<!-- #                             "[![MacOS](https://shields.io/badge/MacOS--9cf?logo=Apple&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 2)) -->
+<!-- ``` -->
+</div>
+<div class="section level2">
+<h2 id="citing-toolstability">Citing <code>toolStability</code>
+<a class="anchor" aria-label="anchor" href="#citing-toolstability"></a>
+</h2>
+<p>To cite the methods in the package use:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"toolStability"</span><span class="op">)</span></code></pre></div>
+<pre><code>
+To cite the R package 'toolStability' in publications use:
+
+  Wang, T-C. and Chen, T-W. ( 2021 ).  toolStability: Tool for
+  stability indices calculation.  R package version 0.1.0 ,
+  https://github.com/Illustratien/toolStability/
+  https://cran.r-project.org/package=toolStability .
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {toolStability: Tool for Stability Indices Calculation},
+    author = {T.-C. Wang and T.-W. Chen},
+    year = {2021},
+    note = {R package version 0.1.0},
+    note = {https://github.com/Illustratien/toolStability/},
+    note = {https://cran.r-project.org/package=toolStability},
+  }
+
+This free and open-source software implements academic research by the
+authors and co-workers. If you use it, please support the project by
+citing the package.</code></pre>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/Illustratien/toolStability/">https://​github.com/​Illustratien/​toolStability/​</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=toolStability" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/Illustratien/toolStability/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Illustratien/toolStability/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing toolStability</a></li>
+<li><a href="authors.html#citation">Citing toolStability</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Tien-Cheng Wang <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg?logo=R" alt="minimal R version"></a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPL v3"></a></li>
+<li><a href="https://cran.r-project.org/package=toolStability" class="external-link"><img src="https://www.r-pkg.org/badges/version-last-release/toolStability" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://cran.r-project.org/package=toolStability" class="external-link"><img src="https://tinyverse.netlify.com/badge/toolStability" alt="Dependencies"></a></li>
+<li><a href="https://CRAN.R-project.org/package=toolStability" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green" alt="rstudio mirror downloads"></a></li>
+<li><a href="https://github.com/Illustratien/toolStability" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.1.0-orange.svg" alt="develVersion"></a></li>
+<li><a href="https://github.com/Illustratien/toolStability" class="external-link"><img src="https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg" alt="Github Code Size"></a></li>
+<li><a href="https://github.com/Illustratien/toolStability/actions" class="external-link"><img src="https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
+<li><a href="https://github.com/Illustratien/toolStability/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--12--25-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/203346020" class="external-link"><img src="https://zenodo.org/badge/203346020.svg" alt="DOI"></a></li>
+<li><a href="https://github.com/Illustratien/google-analytics-beacon" class="external-link"><img src="https://pro-pulsar-193905.appspot.com/UA-116205606-1/welcome-page" alt="."></a></li>
 </ul>
 </div>
 
@@ -301,11 +244,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tien-Cheng Wang.</p>
+  <p></p>
+<p>Developed by Tien-Cheng Wang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -313,6 +258,8 @@
 
   
 
+
+  
 
   </body>
 </html>
