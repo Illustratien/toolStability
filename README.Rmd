@@ -18,7 +18,7 @@ devtools::load_all(".")
 
 ```
 
-###### Version : [`r getNamespaceVersion("toolStability")`]; License: [GPL-3](https://www.r-project.org/Licenses/)
+###### Version : [`r getNamespaceVersion("toolStability")`](https://aravind-j.github.io/germinationmetrics/articles/Introduction.html#version-history); License: [GPL-3](https://www.r-project.org/Licenses/)
 
 
 ##### *Wang, T-C. and Chen, T-W.*
@@ -45,11 +45,9 @@ cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
 [![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
-<!-- [![Website - pkgdown](https://img.shields.io/website-up-down-green-red/https/Illustratien.github.io/toolStability.svg)](https://Illustratien.github.io/toolStability/) -->
+[![Website - pkgdown](https://img.shields.io/website-up-down-green-red/https/Illustratien.github.io/toolStability.svg)](https://Illustratien.github.io/toolStability/)
 [![.](https://pro-pulsar-193905.appspot.com/UA-116205606-1/welcome-page)](https://github.com/Illustratien/google-analytics-beacon)
-<!-- [![packageversion](https://img.shields.io/badge/Package%20version-0.2.3.3-orange.svg)](https://github.com/Illustratien/toolStability) -->
-<!-- [![GitHub Download Count](https://github-basic-badges.herokuapp.com/downloads/Illustratien/toolStability/total.svg)] -->
-<!-- [![Rdoc](https://www.rdocumentation.org/badges/version/toolStability)](https://www.rdocumentation.org/packages/toolStability) -->
+>
 
 ***
 
@@ -77,7 +75,7 @@ For a detailed tutorial (vignette) on how to used this package type:
 browseVignettes(package = 'toolStability')
 ```
 
-<!-- The vignette for the latest version is also available [online](https://Illustratien.github.io/toolStability/articles/Introduction.html). -->
+The vignette for the latest version is also available [online](https://Illustratien.github.io/toolStability/articles/Introduction.html).
 
 ## What's new
 To know whats new in this version type:
@@ -92,7 +90,7 @@ news(package='toolStability')
 
 [Github page](https://github.com/Illustratien/toolStability)
 
-<!-- [Documentation website](https://Illustratien.github.io/toolStability/) -->
+[Documentation website](https://Illustratien.github.io/toolStability/)
 
 [Zenodo DOI](https://zenodo.org/badge/latestdoi/203346020)
 
@@ -129,20 +127,20 @@ osdf$`CRAN check` <- paste("[![CRAN check - ", osdf$Flavour, "]",
 ```
 
 
-<!-- ```{r, echo = FALSE, results='asis'} -->
-<!-- library(kableExtra, warn.conflicts = FALSE) -->
+```{r, echo = FALSE, results='asis'}
+library(kableExtra, warn.conflicts = FALSE)
 
-<!-- kosdf <- kbl(osdf[, c("Flavour", "CRAN check")], row.names = FALSE) -->
+kosdf <- kbl(osdf[, c("Flavour", "CRAN check")], row.names = FALSE)
 
-<!-- kosdf2 <- kable_styling(kosdf, bootstrap_options = c("striped", "hover"), -->
-<!--               full_width = F, position = "left") -->
+kosdf2 <- kable_styling(kosdf, bootstrap_options = c("striped", "hover"),
+              full_width = F, position = "left")
 
-<!-- # pack_rows(kosdf2, index = c("[![Linux](https://shields.io/badge/Linux--9cf?logo=Linux&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 6, -->
-<!-- #                             "[![Solaris](https://shields.io/badge/Solaris--9cf?logo=Oracle&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 1, -->
-<!-- #                             "[![Windows](https://shields.io/badge/Windows--9cf?logo=Windows&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 3, -->
-<!-- #                             "[![MacOS](https://shields.io/badge/MacOS--9cf?logo=Apple&style=social)](https://cran.r-project.org/web/checks/check_results_ammistability.html)" = 2)) -->
+pack_rows(kosdf2, index = c("[![Linux](https://shields.io/badge/Linux--9cf?logo=Linux&style=social)](https://cran.r-project.org/web/checks/check_results_toolStability.html)" = 6,
+                            "[![Solaris](https://shields.io/badge/Solaris--9cf?logo=Oracle&style=social)](https://cran.r-project.org/web/checks/check_results_toolStability.html)" = 1,
+                            "[![Windows](https://shields.io/badge/Windows--9cf?logo=Windows&style=social)](https://cran.r-project.org/web/checks/check_results_toolStability.html)" = 3,
+                            "[![MacOS](https://shields.io/badge/MacOS--9cf?logo=Apple&style=social)](https://cran.r-project.org/web/checks/check_results_toolStability.html)" = 2))
 
-<!-- ``` -->
+```
 
 ## Citing `toolStability`
 To cite the methods in the package use:
