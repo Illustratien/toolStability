@@ -1,5 +1,8 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+- name: Cache
+  uses: actions/cache@v2.1.7
+
 on:
   push:
     branches: [main, master]

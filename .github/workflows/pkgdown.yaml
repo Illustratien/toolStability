@@ -1,3 +1,5 @@
+- name: Cache
+  uses: actions/cache@v2.1.7
 on:
   repository_dispatch:
     types: [trigger-pkgdown-workflow]
