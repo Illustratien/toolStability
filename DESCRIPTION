@@ -1,7 +1,7 @@
 Package: toolStability
 Type: Package
 Title: Tool for Stability Indices Calculation
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person('Tien-Cheng','Wang', email ='wangtien@student.hu-berlin.de',
  role=c('aut','cre')),person('Tsu-Wei','Chen',email='tsu-wei.chen@hu-berlin.de',role='com'))
 Author: Tien-Cheng Wang [aut, cre],
