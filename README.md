@@ -79,7 +79,7 @@ browseVignettes(package = 'toolStability')
 ```
 
 The vignette for the latest version is also available
-[online](https://Illustratien.github.io/toolStability/articles/Introduction.html).
+[online](https://illustratien.github.io/toolStability/articles/toolStability.html).
 
 ## What’s new
 
@@ -95,7 +95,7 @@ news(package='toolStability')
 
 <!-- [Github page](https://github.com/Illustratien/toolStability) -->
 
-[Documentation website](https://Illustratien.github.io/toolStability/)
+[Documentation website](https://illustratien.github.io/toolStability/)
 
 [Zenodo DOI](https://zenodo.org/badge/latestdoi/203346020)
 
