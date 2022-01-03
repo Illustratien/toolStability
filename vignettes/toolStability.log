@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.15)  3 JAN 2022 22:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.15)  3 JAN 2022 22:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolStabil
-ity.tex
+**C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/toolStab
+ility.tex
 
-(c:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolStabili
-ty.tex
+(c:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/toolStabi
+lity.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (c:/Users/twang/AppData/Roaming/TinyTeX/texmf
 -dist/tex/latex/base/article.cls
@@ -677,20 +677,20 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  <c:/Users/twang/Documents/R/win-library/4.0/toolStability/extdata/toolStabilit
 y.png>]
-<C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolStabili
-ty_files/figure-latex/plot-1.pdf, id=166, 578.16pt x 289.08pt>
-File: C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolSt
-ability_files/figure-latex/plot-1.pdf Graphic file (type pdf)
-<use C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolSta
-bility_files/figure-latex/plot-1.pdf>
+<C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/toolStabi
+lity_files/figure-latex/plot-1.pdf, id=166, 578.16pt x 289.08pt>
+File: C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/tool
+Stability_files/figure-latex/plot-1.pdf Graphic file (type pdf)
+<use C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/toolS
+tability_files/figure-latex/plot-1.pdf>
 Package pdftex.def Info: C:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a
-343142ad.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line 28
-0.
+346da215ba.dir/toolStability_files/figure-latex/plot-1.pdf  used on input line 
+280.
 (pdftex.def)             Requested size: 469.75385pt x 234.8769pt.
 [3
 
- <c:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a343142ad.dir/toolStabil
-ity_files/figure-latex/plot-1.pdf>]
+ <c:/Users/twang/AppData/Local/Temp/RtmpSiOnYg/preview-a346da215ba.dir/toolStab
+ility_files/figure-latex/plot-1.pdf>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
 00.
 (c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
@@ -728,12 +728,12 @@ Package rerunfilecheck Info: File `toolStability.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  12231 strings out of 480313
- 193421 string characters out of 5895779
+ 193443 string characters out of 5895779
  497367 words of memory out of 5000000
  29781 multiletter control sequences out of 15000+600000
  458895 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,63p,443b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,63p,445b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}{c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/l
@@ -761,7 +761,7 @@ lm/lmtko10.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/p
 ublic/lm/lmtt10.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmtti10.pfb><c:/Users/twang/AppData/Roaming/TinyTeX/texmf-dist/fo
 nts/type1/public/lm/lmtto10.pfb>
-Output written on toolStability.pdf (20 pages, 479042 bytes).
+Output written on toolStability.pdf (20 pages, 479045 bytes).
 PDF statistics:
  436 PDF objects out of 1000 (max. 8388607)
  365 compressed objects within 4 object streams
