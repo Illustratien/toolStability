@@ -3,7 +3,7 @@
 
     Warning: package 'testthat' was built under R version 4.0.4
 
-###### Version : [0.1.1](https://aravind-j.github.io/germinationmetrics/articles/Introduction.html#version-history); License: [GPL-3](https://www.r-project.org/Licenses/)
+###### Version : [0.1.1](https://illustratien.github.io/toolStability/articles/toolStability.html#version-history); License: [GPL-3](https://www.r-project.org/Licenses/)
 
 ##### *Wang, T-C. and Chen, T-W.*
 
