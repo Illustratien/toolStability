@@ -58,14 +58,17 @@ cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver
 The package can be installed from CRAN as follows:
 
 ```{r, eval=FALSE}
-if (!require('devtools')) install.packages('devtools')
 install.packages('toolStability', dependencies=TRUE)
 ```
 
 The development version can be installed from github as follows:
 
 ```{r, eval=FALSE}
+if (!require('devtools')) install.packages('devtools')
 devtools::install_github("Illustratien/toolStability")
+# or
+if (!require('remotes')) install.packages('remotes')
+remotes::install_github("Illustratien/toolStability")
 ```
 
 ## Detailed tutorial
@@ -88,7 +91,7 @@ news(package='toolStability')
 
 [CRAN page](https://cran.r-project.org/package=toolStability)
 
-[Github page](https://github.com/Illustratien/toolStability)
+<!-- [Github page](https://github.com/Illustratien/toolStability) -->
 
 [Documentation website](https://Illustratien.github.io/toolStability/)
 
@@ -108,10 +111,11 @@ osdf <-
                        "r-devel-linux-x86_64-fedora-gcc", 
                        "r-patched-linux-x86_64",
                        "r-release-linux-x86_64")),
-data.frame(OS = "Solaris", 
+data.frame(OS = "Solaris",
            Flavour = c("r-patched-solaris-x86")),
 data.frame(OS = "Windows", 
-           Flavour = c("r-devel-windows-ix86+x86_64", 
+           Flavour = c(
+             "r-devel-windows-ix86+x86_64",
                        "r-release-windows-ix86+x86_64",
                        "r-oldrel-windows-ix86+x86_64")),
 data.frame(OS = "macOS", 

@@ -15,7 +15,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @param trait colname of a column containing a numeric vector of interested trait to be analysized.
 #' @param genotype colname of a column containing a character or factor vector labeling different genotypic varieties
 #' @param environment colname of a column containing a character or factor vector labeling different environments
-#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.#'
+#' @param unit.correct logical, default is \code{FALSE}, returning the stability index with unit equals to squared unit of trait; when \code{TRUE}, returning stability index with the unit as same as unit of trait.'
 #' @return a data table with genotypic stability
 #'
 #' @author Tien-Cheng Wang

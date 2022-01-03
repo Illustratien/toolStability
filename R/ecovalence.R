@@ -34,7 +34,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #'
 #' @examples
 #' data(Data)
-#' eco.valance <- ecovalence(
+#' eco.valence <- ecovalence(
 #'  data = Data,
 #'  trait = "Yield",
 #'  genotype = "Genotype",

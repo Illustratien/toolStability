@@ -40,7 +40,7 @@ Equation of ecovalence can be found in vignette file.
 }
 \examples{
 data(Data)
-eco.valance <- ecovalence(
+eco.valence <- ecovalence(
  data = Data,
  trait = "Yield",
  genotype = "Genotype",

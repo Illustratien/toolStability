@@ -1,5 +1,5 @@
 ---
-title: "The `toolStability` Package: A Brief Introduction"
+title: "Introduction to toolStability"
 author: 'Tien-Cheng Wang'
 date: "`r Sys.Date()`"
 output:
@@ -25,10 +25,10 @@ header-includes:
 - \newcommand{\blandscape}{\begin{landscape}}
 - \newcommand{\elandscape}{\end{landscape}}
 - \fancyhead[LO,RE]{The \texttt{toolStability} Package{:} A Brief Introduction}
-vignette: |
-  %\VignetteIndexEntry{toolStability}
-  %\usepackage[utf8]{inputenc}
-  %\VignetteEngine{knitr::rmarkdown_notangle}
+vignette: >
+  %\VignetteIndexEntry{Introduction to toolStability}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 bibliography: REFERENCES.bib
 link-citations: yes
 csl: https://tinyurl.com/apa6-meta-analysis
@@ -121,7 +121,7 @@ The default data set `Data` is the subset of $APSIM$ simulated wheat data set, w
 ggplot2::ggplot(Data,ggplot2::aes(x=Sites,y=Yield,col=Genotype))+
   ggplot2::geom_boxplot()+
   ggplot2::facet_grid(Sowing~Nitrogen,labeller =ggplot2::label_both)+
-  ggplot2::ylab(bquote('Wheat yield (ton' %.%'ha'^'-1'*')'))+
+  ggplot2::ylab(bquote('Wheat yield (kg' %.%'ha'^'-1'*')'))+
    ggplot2::theme_test()
 
 ```
