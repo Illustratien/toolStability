@@ -72,7 +72,7 @@
       <h1 data-toc-skip>Introduction to toolStability</h1>
                         <h4 data-toc-skip class="author">Tien-Cheng Wang</h4>
             
-            <h4 data-toc-skip class="date">2022-01-03</h4>
+            <h4 data-toc-skip class="date">2022-04-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Illustratien/toolStability/blob/HEAD/vignettes/toolStability.Rmd" class="external-link"><code>vignettes/toolStability.Rmd</code></a></small>
       <div class="hidden name"><code>toolStability.Rmd</code></div>
@@ -99,7 +99,8 @@
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Illustratien/toolStability"</span><span class="op">)</span></code></pre></div>
 <p>Then the package can be loaded using the function</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Illustratien/toolStability" class="external-link">toolStability</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Illustratien/toolStability" class="external-link">toolStability</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: package 'toolStability' was built under R version 4.0.5</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="welcome-to-toolstability">Welcome to toolStability<a class="anchor" aria-label="anchor" href="#welcome-to-toolstability"></a>
@@ -381,12 +382,13 @@ Example of environmental effects on wheat yield.
 <div class="section level2">
 <h2 id="equation-of-stability-indices">Equation of stability indices<a class="anchor" aria-label="anchor" href="#equation-of-stability-indices"></a>
 </h2>
+<p>Let <span class="math inline">\(X_{ij}\)</span> represent the observed mean value of the genoptype <span class="math inline">\(i\)</span> in environment <span class="math inline">\(j\)</span>, and let <span class="math inline">\(\bar{X_{i.}}\)</span>, <span class="math inline">\(\bar{X_{.j}}\)</span> and <span class="math inline">\(\bar{X_{..}}\)</span> denote the marginal means of genotype <span class="math inline">\(i\)</span>, environment <span class="math inline">\(j\)</span> and the overall mean, respectively.</p>
 <div class="section level3">
 <h3 id="adjusted-coefficient-variation">adjusted coefficient variation<a class="anchor" aria-label="anchor" href="#adjusted-coefficient-variation"></a>
 </h3>
 <p>Adjusted coefficient of variation <span class="citation">(<a href="#ref-doering2018" role="doc-biblioref">Döring &amp; Reckling, 2018</a>)</span> is calculated based on regression function. Variety with low adjusted coefficient of variation is considered as stable. Under the linear model</p>
 <p><span class="math display">\[v_{i} = a + b~m_{i}\]</span> where <span class="math inline">\(v_{i}\)</span> is the <span class="math inline">\(log_{10}\)</span> of phenotypic variance and <span class="math inline">\(m_{i}\)</span> is the <span class="math inline">\(log_{10}\)</span> of phenotypic mean. <span class="math display">\[\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
-10^{(2-b)~ m_{i} +(b-2)~ \overline{m}+v_{i}} 
+10^{(2-b)~ m_{i} +(b-2)~ \bar{m}+v_{i}} 
 \right ] ^{0.5} \times 100 \% \]</span></p>
 <div style="page-break-after: always;"></div>
 </div>
@@ -395,10 +397,9 @@ Example of environmental effects on wheat yield.
 </h3>
 <p>Coefficient of determination <span class="citation">(<a href="#ref-pinthus1973" role="doc-biblioref">Pinthus, 1973</a>)</span> is calculated based on regression function. Variety with low coefficient of determination is considered as stable. Under the linear model <span class="math display">\[Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}\]</span> where <span class="math inline">\(Y\)</span> is the predicted phenotypic values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and overall population mean, respectively.</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span> where <span class="math inline">\(\beta_{i}\)</span> is the coefficient of regression and <span class="math inline">\(d_{ij}\)</span> a deviation.</p>
-<p><span class="math inline">\(s^{2}_{di}\)</span>, see <span class="math inline">\(deviation~mean~squares\)</span> for formula.</p>
-<p>Environmental variance can be expressed as: <span class="math display">\[S_{xi}^{2} = \frac{\sum_{j}~(X_{ij} - \overline{X_{i.}})^{2}}{E-1} \]</span></p>
+<p>For <span class="math inline">\(s^{2}_{di}\)</span> and <span class="math inline">\(S_{xi}^{2}\)</span>, see <span class="math inline">\(deviation~mean~squares\)</span> and <span class="math inline">\(environmental~ variance\)</span> for details.</p>
 <p>Coefficient of determination may be expressed as: <span class="math display">\[r_{i}^{2} = 1 - \frac{s_{di}^{2}}{s_{xi}^{2}} \]</span></p>
-<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> and <span class="math inline">\(\overline{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\overline{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
+<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
@@ -406,9 +407,9 @@ Example of environmental effects on wheat yield.
 </h3>
 <p>Coefficient of regression <span class="citation">(<a href="#ref-finlay1963" role="doc-biblioref">Finlay &amp; Wilkinson, 1963</a>)</span> is calculated based on regression function. Variety with low coefficient of regression is considered as stable. Under the linear model <span class="math display">\[Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}\]</span> where <span class="math inline">\(Y\)</span> is the predicted phenotypic values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and overall population mean, respectively.</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span> where <span class="math inline">\(\beta_{i}\)</span> is the coefficient of regression and <span class="math inline">\(d_{ij}\)</span> a deviation.</p>
-<p>Coefficient of regression may be expressed as: <span class="math display">\[ b_{i}=1 + \frac{\sum_{j}(X_{ij} -\overline{X_{i.}}-\overline{X_{.j}}+\overline{X_{..}}) ~
-(\overline{X_{.j}}- \overline{X_{..}})}{\sum_{j}(\overline{X_{.j}}-\overline{X_{..}})^{2}}\]</span></p>
-<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> and <span class="math inline">\(\overline{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\overline{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span>is the estimation of <span class="math inline">\(\beta_{i}\)</span>.</p>
+<p>Coefficient of regression may be expressed as: <span class="math display">\[ b_{i}=1 + \frac{\sum_{j}(X_{ij} -\bar{X_{i.}}-\bar{X_{.j}}+\bar{X_{..}}) ~
+(\bar{X_{.j}}- \bar{X_{..}})}{\sum_{j}(\bar{X_{.j}}-\bar{X_{..}})^{2}}\]</span></p>
+<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span>is the estimation of <span class="math inline">\(\beta_{i}\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
@@ -417,24 +418,24 @@ Example of environmental effects on wheat yield.
 <p>Deviation mean squares <span class="citation">(<a href="#ref-eberhart1966" role="doc-biblioref">Eberhart &amp; Russell, 1966</a>)</span> is calculated based on regression function. Variety with low stability variance is considered as stable.</p>
 <p>Deviation mean squares may be expressed as: <span class="math display">\[
 s^{2}_{di} = \frac{1}{E-2} \left [
-\sum_{j}~(X_{ij} - \overline{X_{i.}}- \overline{X_{.j}} + \overline{X_{..}}^{2}) - (b_{i} - 1)^{2} ~
-(\overline{X_{.j}}- \overline{X_{..}})^{2} \right ]
+\sum_{j}~(X_{ij} - \bar{X_{i.}}- \bar{X_{.j}} + \bar{X_{..}}^{2}) - (b_{i} - 1)^{2} ~
+(\bar{X_{.j}}- \bar{X_{..}})^{2} \right ]
 \]</span></p>
-<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> and <span class="math inline">\(\overline{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\overline{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span> is the estimation of coefficient of regression.</p>
+<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span> is the estimation of coefficient of regression.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
 <h3 id="ecovalence">ecovalence<a class="anchor" aria-label="anchor" href="#ecovalence"></a>
 </h3>
 <p>Ecovalence <span class="citation">(<a href="#ref-wricke1962" role="doc-biblioref">Wricke, 1962</a>)</span> is calculated based on square and sum up the genotype–environment interaction all over the environment. Variety with low ecovalence is considered as stable. Ecovalence is expressed as: <span class="math display">\[W_{i} = \sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})\]</span> To let <span class="math inline">\(W_{i}\)</span> comparable between experiments, we also provide the modified ecovalence (<span class="math inline">\(W_{i}'\)</span>), whcih take the number of environments into account. User can get (<span class="math inline">\(W_{i}'\)</span>) by setting <code>modify = TRUE</code>.</p>
-<p><span class="math display">\[W_{i}' = \frac{\sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})}{E-1}\]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span>.</p>
+<p><span class="math display">\[W_{i}' = \frac{\sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})}{E-1}\]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
 <h3 id="environmental-variance">environmental variance<a class="anchor" aria-label="anchor" href="#environmental-variance"></a>
 </h3>
 <p>Environmental variance <span class="citation">(<a href="#ref-roemer1917" role="doc-biblioref">Römer, 1917</a>)</span> is calculated by squared and summing up all deviation from genotypic mean for each genotype. The larger the environmental variance of one genotype is, the lower the stability.</p>
-<p><span class="math display">\[S_{xi}^{2} = \frac{\sum_{j}~(X_{ij} - \overline{X_{i.}})^{2}}{E-1} \]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span>.</p>
+<p><span class="math display">\[S_{xi}^{2} = \frac{\sum_{j}~(X_{ij} - \bar{X_{i.}})^{2}}{E-1} \]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
@@ -442,8 +443,8 @@ s^{2}_{di} = \frac{1}{E-2} \left [
 </h3>
 <p>Genotypic stability <span class="citation">(<a href="#ref-hanson1970" role="doc-biblioref">Hanson, 1970</a>)</span> is calculated based on regression function. Variety with low stability variance is considered as stable. Under the linear model <span class="math display">\[Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}\]</span> where <span class="math inline">\(Y\)</span> is the predicted phenotypic values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and overall population mean, respectively.</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span> where <span class="math inline">\(\beta_{i}\)</span> is the coefficient of regression and <span class="math inline">\(d_{ij}\)</span> a deviation.</p>
-<p>Genotypic stability: <span class="math display">\[ D_{i}^{2} = \sum_{j}~(X_{ij} - \overline{X_{i.}}- b_{min}~ \overline{X_{.j}} + b_{min}~ \overline{X_{..}})^{2}\]</span></p>
-<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> and <span class="math inline">\(\overline{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\overline{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
+<p>Genotypic stability: <span class="math display">\[ D_{i}^{2} = \sum_{j}~(X_{ij} - \bar{X_{i.}}- b_{min}~ \bar{X_{.j}} + b_{min}~ \bar{X_{..}})^{2}\]</span></p>
+<p>where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
 <p><span class="math inline">\(b_{min}\)</span> is the minimum value of coefficient of regression over all environments.</p>
 <div style="page-break-after: always;"></div>
 </div>
@@ -470,9 +471,9 @@ s^{2}_{di} = \frac{1}{E-2} \left [
 <p>Stability variance <span class="citation">(<a href="#ref-shukla1972" role="doc-biblioref">Shukla, 1972</a>)</span> is calculated based on linear combination of ecovalence and mean square of genotype-environment interaction. Variety with low stability variance is considered as stable.</p>
 <p><span class="math display">\[
 \sigma^{2}_{i} = \frac{1}{(G-1) ~ (G-2) ~ (E-1)} \left [
-G ~(G-1)~ \sum_{j}~(X_{ij} - \overline{X_{i.}}-\overline{X_{.j}} + \overline{X_{..}})^{2}- \sum_{i} \sum_{j}~(X_{ij} - \overline{X_{i.}}-\overline{X_{.j}} + \overline{X_{..}})^{2}
+G ~(G-1)~ \sum_{j}~(X_{ij} - \bar{X_{i.}}-\bar{X_{.j}} + \bar{X_{..}})^{2}- \sum_{i} \sum_{j}~(X_{ij} - \bar{X_{i.}}-\bar{X_{.j}} + \bar{X_{..}})^{2}
 \right ]
-\]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\overline{X_{i.}}\)</span> and <span class="math inline">\(\overline{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\overline{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
+\]</span> where <span class="math inline">\(X_{ij}\)</span> is the observed phenotypic mean value of genotype <span class="math inline">\(i\)</span> (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j = 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of <span class="math inline">\(X\)</span>.</p>
 <p>Negative values of stability variance is replaced with 0.</p>
 <div style="page-break-after: always;"></div>
 </div>
@@ -480,15 +481,16 @@ G ~(G-1)~ \sum_{j}~(X_{ij} - \overline{X_{i.}}-\overline{X_{.j}} + \overline{X_{
 <h3 id="variance-of-rank">variance of rank<a class="anchor" aria-label="anchor" href="#variance-of-rank"></a>
 </h3>
 <p>Variance of rank <span class="citation">(<a href="#ref-nassar1987" role="doc-biblioref">Nassar &amp; Hühn, 1987</a>)</span> is calculated based on regression function. Variety with low variance of rank is considered as stable.</p>
-<p>Correction for each genotype <span class="math inline">\(i\)</span> was done by subtraction of marginal genotypic mean <span class="math inline">\(\overline{X_{i.}}\)</span> and the addition of overall mean <span class="math inline">\(\overline{X_{..}}\)</span>. <span class="math display">\[X_{corrected~ij} = X_{ij} - \overline{X_{i.}} + \overline{X_{..}}\]</span> Then calculated the rank all genotypes for each environment <span class="math inline">\(j\)</span> <span class="math display">\[r_{ij} = rank~(X_{correctedij})\]</span></p>
-<p>Variance of rank is calculated as the following equation. <span class="math display">\[S_{i}4 = \frac{\sum_{j}~(r_{ij}-\overline{r_{i.}})^{2}}{E-1}\]</span> where <span class="math inline">\(r_{ij}\)</span> is the rank of genotype <span class="math inline">\(i\)</span> in environment <span class="math inline">\(j\)</span> and <span class="math inline">\(\overline{r_{i.}}\)</span> is the marginal rank of genotype <span class="math inline">\(i\)</span> over environment, based on the corrected <span class="math inline">\(X_{ij}\)</span> values.</p>
+<p>Correction for each genotype <span class="math inline">\(i\)</span> was done by subtraction of marginal genotypic mean <span class="math inline">\(\bar{X_{i.}}\)</span> and the addition of overall mean <span class="math inline">\(\bar{X_{..}}\)</span>. <span class="math display">\[X_{corrected~ij} = X_{ij} - \bar{X_{i.}} + \bar{X_{..}}\]</span> Then calculated the rank all genotypes for each environment <span class="math inline">\(j\)</span> <span class="math display">\[r_{ij} = rank~(X_{correctedij})\]</span></p>
+<p>Variance of rank is calculated as the following equation. <span class="math display">\[S_{i}4 = \frac{\sum_{j}~(r_{ij}-\bar{r_{i.}})^{2}}{E-1}\]</span> where <span class="math inline">\(r_{ij}\)</span> is the rank of genotype <span class="math inline">\(i\)</span> in environment <span class="math inline">\(j\)</span> and <span class="math inline">\(\bar{r_{i.}}\)</span> is the marginal rank of genotype <span class="math inline">\(i\)</span> over environment, based on the corrected <span class="math inline">\(X_{ij}\)</span> values.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="citing-toolstability">Citing <code>toolStability</code><a class="anchor" aria-label="anchor" href="#citing-toolstability"></a>
 </h2>
-<pre><code><span class="co">#&gt; </span>
+<pre><code><span class="co">#&gt; Warning: package 'toolStability' was built under R version 4.0.5</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; To cite the R package 'toolStability' in publications use:</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Wang, T-C. and Chen, T-W. ( 2022 ).  toolStability: Tool for</span>

@@ -14,7 +14,7 @@ Useful links:
   \item \url{https://github.com/Illustratien/toolStability}
   \item \url{https://illustratien.github.io/toolStability/}
   \item \url{https://CRAN.R-project.org/package=toolStability}
-  \item \doi{10.5281/zenodo.5804213}
+  \item \url{https://doi.org/10.5281/zenodo.5804213}
   \item Report bugs at \url{https://github.com/Illustratien/toolStability/issues}
 }
 
