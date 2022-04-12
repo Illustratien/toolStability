@@ -263,8 +263,8 @@ $$\widetilde{c_{i}} = \frac{1}{\widetilde{\mu_{i}}}  \left [
 Coefficient of determination [@pinthus1973] is calculated based on regression function.
 Variety with low coefficient of determination is considered as stable.
 Under the linear model
-$$Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
-where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
+$$Y_{ij} =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
+where $Y_{ij}$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
@@ -292,8 +292,8 @@ $\overline{X_{..}}$ denote the overall mean of $X$.
 Coefficient of regression [@finlay1963] is calculated based on regression function.
 Variety with low coefficient of regression is considered as stable.
 Under the linear model
-$$Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
-where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
+$$Y_{ij} =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
+where $Y_{ij}$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
@@ -358,8 +358,8 @@ in environment $j$ (j = 1,...,E), with $\overline{X_{i.}}$ denoting marginal mea
 Genotypic stability [@hanson1970] is calculated based on regression function.
 Variety with low stability variance is considered as stable.
 Under the linear model
-$$Y =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
-where $Y$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
+$$Y_{ij} =\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}$$
+where $Y_{ij}$ is the predicted phenotypic values, $g_{i}$, $e_{j}$ and $\mu$ denoting
 genotypic, environmental and overall population mean, respectively.
 
 The effect of GE-interaction may be expressed as:
