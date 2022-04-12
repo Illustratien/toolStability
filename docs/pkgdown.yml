@@ -3,5 +3,9 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   toolStability: toolStability.html
+<<<<<<< HEAD
 last_built: 2022-04-12T13:59Z
+=======
+last_built: 2022-04-04T16:46Z
+>>>>>>> 8de6196f9803d4c0a3daad5e69540f54d8c70d99
 
