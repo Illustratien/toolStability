@@ -37,15 +37,15 @@ dver <- ifelse(test = gsub("(.\\.)(\\d+)(\\..)", "", getNamespaceVersion("toolSt
                yes = getNamespaceVersion("toolStability"),
                no = gsub("Version:\\s*", "", readLines(paste0("https://raw.githubusercontent.com/", "Illustratien/toolStability", "/master/DESCRIPTION"))[grep("Version:", readLines(paste0("https://raw.githubusercontent.com/", "Illustratien/toolStability", "/master/DESCRIPTION")))]))
 
-cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver, "-orange.svg)](https://github.com/Illustratien/toolStability)", sep = ""))
+# cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver, "-orange.svg)](https://github.com/Illustratien/toolStability)", sep = ""))
 ```
 [![Github Code Size](https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg)](https://github.com/Illustratien/toolStability)
 [![R-CMD-check](https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg)](https://github.com/Illustratien/toolStability/actions)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
+<!-- [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master) -->
 [![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
 [![Website - pkgdown](https://img.shields.io/badge/website-githubpage-green)](https://Illustratien.github.io/toolStability/)
-[![.](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)](https://github.com/Illustratien/google-analytics-beacon)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green)](https://CRAN.R-project.org/package=toolStability)
+<!-- [![.](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)](https://github.com/Illustratien/google-analytics-beacon) -->
+<!-- [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green)](https://CRAN.R-project.org/package=toolStability) -->
 [![Codecov test coverage](https://codecov.io/gh/Illustratien/toolStability/branch/master/graph/badge.svg)](https://codecov.io/gh/Illustratien/toolStability?branch=master)
 <!-- badges: end -->
 
@@ -86,6 +86,7 @@ news(package='toolStability')
 ```
 
 ## Links
+10.1007/s00122-023-04264-7
 
 [CRAN page](https://cran.r-project.org/package=toolStability)
 

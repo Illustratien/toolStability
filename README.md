@@ -18,12 +18,11 @@ v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org
 [![develVersion](https://img.shields.io/badge/devel%20version-0.1.1-orange.svg)](https://github.com/Illustratien/toolStability)
 [![Github Code
 Size](https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg)](https://github.com/Illustratien/toolStability)
-[![R-CMD-check](https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg)](https://github.com/Illustratien/toolStability/actions)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2022--11--02-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master)
+[![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
 [![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
 [![Website -
 pkgdown](https://img.shields.io/badge/website-githubpage-green)](https://Illustratien.github.io/toolStability/)
-[![.](https://raw.githubusercontent.com/vitr/google-analytics-beacon/master/static/badge-flat.gif)](https://github.com/Illustratien/google-analytics-beacon)
+
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/toolStability?color=green)](https://CRAN.R-project.org/package=toolStability)
 [![Codecov test
@@ -32,6 +31,7 @@ coverage](https://codecov.io/gh/Illustratien/toolStability/branch/master/graph/b
 
 ## Description
 
+This package was developed for the publication in TAAG (doi: 10.1007/s00122-023-04264-7).
 Tools to calculate stability indices with parametric, non-parametric and
 probabilistic approaches. The basic data format requirement for
 ‘toolStability’ is a data frame with 3 columns including numeric trait
