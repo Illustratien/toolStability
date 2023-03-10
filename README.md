@@ -100,14 +100,8 @@ remotes::install_github("Illustratien/toolStability")
 
 ## Detailed tutorial
 
-For a detailed tutorial (vignette) on how to used this package type:
-
-``` r
-browseVignettes(package = 'toolStability')
-```
-
-The vignette for the latest version is also available
-[online](https://illustratien.github.io/toolStability/articles/toolStability.html).
+A detailed tutorial with examples and references: [click
+here](https://illustratien.github.io/toolStability/articles/toolStability.html).
 
 ## What’s new
 
@@ -121,13 +115,13 @@ news(package='toolStability')
 
 [Publication](https://link.springer.com/article/10.1007/s00122-023-04264-7)
 
-[Documentation website](https://illustratien.github.io/toolStability/)
+[Zenodo documentation](https://doi.org/10.5281/zenodo.5804212)
 
 [CRAN page](https://cran.r-project.org/package=toolStability)
 
 ## Citing `toolStability`
 
-To cite the methods in the package use:
+To cite the methods in the package please use:
 
 ``` r
 Wang, TC., Casadebaig, P. & Chen, TW. More than 1000 genotypes are required to derive robust relationships between yield, yield stability and physiological parameters: a computational study on wheat crop. Theor Appl Genet 136, 34 (2023). https://doi.org/10.1007/s00122-023-04264-7

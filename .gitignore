@@ -5,3 +5,5 @@ docs
 inst/doc
 man_backup
 Meta
+/doc/
+/Meta/
