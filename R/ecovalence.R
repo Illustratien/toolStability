@@ -26,7 +26,7 @@ utils::globalVariables(c("Bi", "Bi1", "Bi2", "E", "Environment", "Genotype", "Me
 #' @references
 #' \insertRef{wricke1962}{toolStability}
 #'
-#' @importFrom dplyr group_by summarise mutate mutate_at select rename
+#' @importFrom dplyr group_by summarise mutate mutate_at select rename all_of
 #' @importFrom data.table data.table
 #' @importFrom Rdpack reprompt
 #'
@@ -78,7 +78,7 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE, m
           ),
           Mean.trait = mean(X),
           ecovalence.modified = mean(sqr, na.rm = TRUE)),
-        c('Genotype','Mean.trait',index.name))
+        all_of(c('Genotype','Mean.trait',index.name)))
   }else{
     index.name <- 'ecovalence'
     res <-dplyr::select(
@@ -96,7 +96,7 @@ ecovalence <- function(data, trait, genotype, environment, unit.correct=FALSE, m
         ),
         Mean.trait = mean(X),
         ecovalence = sum(sqr)),
-      c('Genotype','Mean.trait',index.name))
+      all_of(c('Genotype','Mean.trait',index.name)))
   }
 
   if (unit.correct==TRUE){

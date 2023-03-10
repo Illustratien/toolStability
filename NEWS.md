@@ -1,4 +1,4 @@
-# germinationmetrics  0.1.1
+# toolStability  0.1.1
 
 ## UPDATED FUNCTIONS:
 * `` - Fixed variable name in ecovalence example from "eco.valance" to "eco.valence".
@@ -11,8 +11,12 @@
 * Update Author's name
 * Added zenodo and rdocumentation badges.
 * Added CRAN installation instructions in Readme.
-* 
 
-# germinationmetrics  0.1.0
+# toolStability  0.1.1
 
-* First release
+## VIGNETTE:
+* rephrase the sentence.
+## OTHER NOTES:
+* add citation reference for main publication
+* link with analysis pipeline for main publication
+* link with dataset from main publication

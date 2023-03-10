@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">toolStability</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/toolStability.html">Get started</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Illustratien/toolStability/">
+  <a href="https://github.com/Illustratien/toolStability/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -70,56 +66,59 @@
 
       
 
-      </header><script src="toolStability_files/header-attrs-2.14/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to toolStability</h1>
-                        <h4 class="author">Tien-Cheng Wang</h4>
+                        <h4 data-toc-skip class="author">Tien-Cheng
+Wang</h4>
             
-            <h4 class="date">2022-11-02</h4>
+            <h4 data-toc-skip class="date">2023-03-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/Illustratien/toolStability/blob/master/vignettes/toolStability.Rmd"><code>vignettes/toolStability.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Illustratien/toolStability/blob/HEAD/vignettes/toolStability.Rmd" class="external-link"><code>vignettes/toolStability.Rmd</code></a></small>
       <div class="hidden name"><code>toolStability.Rmd</code></div>
 
     </div>
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
-<p>The package <code>toolStability</code> is a collection of functions
-which implements various methods for describing the
-<code>stability</code> of a <code>trait</code> in terms of
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>The package <code>toolStability</code> is part of the publication
+from <span class="citation">(<a href="#ref-wang2023" role="doc-biblioref">Wang, Casadebaig, &amp; Chen, 2023</a>)</span>. The
+package is a collection of functions which implements eleven methods for
+describing the <code>stability</code> of a <code>trait</code> in terms
+of <code>genotype</code> and <code>environment</code>.</p>
+<p>The goal of this vignette is to introduce users to these functions
+and get started in analyzing dataset with interaction between
 <code>genotype</code> and <code>environment</code>.</p>
-<p>The goal of this vignette is to introduce the users to these
-functions and get started in describing sequentially recorded
-germination count data. This document assumes a basic knowledge of
-<code>R</code> programming language.</p>
+<p>Further analysis for original publication using this package can be
+found in the link ( <a href="https://github.com/Illustratien/Wang_2023_TAAG" class="external-link">click</a>).</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The package can be installed using the following functions:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'toolStability'</span>, dependencies<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'toolStability'</span>, dependencies<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Install development version from Github</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"Illustratien/toolStability"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Illustratien/toolStability"</span><span class="op">)</span></code></pre></div>
 <p>Then the package can be loaded using the function</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Illustratien/toolStability">toolStability</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://illustratien.github.io/toolStability/" class="external-link">toolStability</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="welcome-to-toolstability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#welcome-to-toolstability" class="anchor"></a>Welcome to toolStability</h2>
+<div class="section level2">
+<h2 id="welcome-to-toolstability">Welcome to toolStability<a class="anchor" aria-label="anchor" href="#welcome-to-toolstability"></a>
+</h2>
 <p>This is an r package for calculating parametric, non-parametric, and
 probabilistic stability indices.</p>
 </div>
-<div id="structure-overview-of-toolstability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#structure-overview-of-toolstability" class="anchor"></a>Structure overview of toolStability</h2>
+<div class="section level2">
+<h2 id="structure-overview-of-toolstability">Structure overview of toolStability<a class="anchor" aria-label="anchor" href="#structure-overview-of-toolstability"></a>
+</h2>
 <p>toolStability contains different functions to calculate stability
 indices, including:</p>
 <ol style="list-style-type: decimal">
@@ -136,12 +135,13 @@ indices, including:</p>
 <li>variance of rank </li>
 </ol>
 </div>
-<div id="build-in-data-set" class="section level2">
-<h2 class="hasAnchor">
-<a href="#build-in-data-set" class="anchor"></a>Build-in data set</h2>
+<div class="section level2">
+<h2 id="build-in-data-set">Build-in data set<a class="anchor" aria-label="anchor" href="#build-in-data-set"></a>
+</h2>
 <p>The default data set <code>Data</code> is the subset of <span class="math inline">\(APSIM\)</span> simulated wheat data set, which
 includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen
-application rates, 2 sowing dates, and 2 <span class="math inline">\(CO_2\)</span> levels of treatments <span class="citation">(<a href="#ref-casadebaig2016" role="doc-biblioref">Casadebaig et al., 2016</a>)</span>.</p>
+application rates, 2 sowing dates, and 2 <span class="math inline">\(CO_2\)</span> levels of treatments <span class="citation">(<a href="#ref-casadebaig2016" role="doc-biblioref">Casadebaig et al., 2016</a>)</span>. Full dataset
+used in the publication see here <a href="https://zenodo.org/record/4729636" class="external-link">click</a>.</p>
 <p><code>Data</code> in this package is a data frame with 640
 observations and 8 variables.</p>
 <table class="table">
@@ -208,9 +208,9 @@ Example of environmental effects on wheat yield.
 </p>
 </div>
 </div>
-<div id="tutorial" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tutorial" class="anchor"></a>Tutorial</h2>
+<div class="section level2">
+<h2 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Data preparation</li>
 </ol>
@@ -267,30 +267,30 @@ value of stability indices which have the squared unit of
 and make <code>modified ecovalence</code> comparable between different
 number of environments.</p>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Illustratien/toolStability">toolStability</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://illustratien.github.io/toolStability/" class="external-link">toolStability</a></span><span class="op">)</span>
 <span class="co">### load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Data"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Data"</span><span class="op">)</span>
 <span class="co">### check the structure of sample dataset</span>
 <span class="co">### be sure that the trait is numeric!!!</span>
 
 
 
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Data</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Data</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 640</span>
 <span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Genotype    &lt;fct&gt; 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864~</span>
-<span class="co">#&gt; $ Yield       &lt;dbl&gt; 1278.6, 1746.0, 1753.9, 1851.8, 2176.6, 2783.3, 3113.3, 27~</span>
-<span class="co">#&gt; $ Environment &lt;fct&gt; 1959 Emerald low control early, 1960 Emerald low control e~</span>
-<span class="co">#&gt; $ Years       &lt;int&gt; 1959, 1960, 1961, 1962, 1959, 1960, 1961, 1962, 1959, 1960~</span>
-<span class="co">#&gt; $ Sites       &lt;fct&gt; Emerald, Emerald, Emerald, Emerald, Yanco, Yanco, Yanco, Y~</span>
-<span class="co">#&gt; $ Nitrogen    &lt;fct&gt; low, low, low, low, low, low, low, low, low, low, low, low~</span>
-<span class="co">#&gt; $ CO2         &lt;fct&gt; control, control, control, control, control, control, cont~</span>
-<span class="co">#&gt; $ Sowing      &lt;fct&gt; early, early, early, early, early, early, early, early, ea~</span>
+<span class="co">#&gt; $ Genotype    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864, 1864~</span>
+<span class="co">#&gt; $ Yield       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1278.6, 1746.0, 1753.9, 1851.8, 2176.6, 2783.3, 3113.3, 27~</span>
+<span class="co">#&gt; $ Environment <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1959 Emerald low control early, 1960 Emerald low control e~</span>
+<span class="co">#&gt; $ Years       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1959, 1960, 1961, 1962, 1959, 1960, 1961, 1962, 1959, 1960~</span>
+<span class="co">#&gt; $ Sites       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Emerald, Emerald, Emerald, Emerald, Yanco, Yanco, Yanco, Y~</span>
+<span class="co">#&gt; $ Nitrogen    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> low, low, low, low, low, low, low, low, low, low, low, low~</span>
+<span class="co">#&gt; $ CO2         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> control, control, control, control, control, control, cont~</span>
+<span class="co">#&gt; $ Sowing      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> early, early, early, early, early, early, early, early, ea~</span>
 
 <span class="co">### calculate ecovalence for all genotypes</span>
 <span class="va">single.index.ecovalence</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ecovalence.html">ecovalence</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
@@ -300,12 +300,12 @@ number of environments.</p>
                                       unit.correct <span class="op">=</span> <span class="cn">FALSE</span>,
                                       modify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">single.index.ecovalence</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">single.index.ecovalence</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 5</span>
 <span class="co">#&gt; Columns: 3</span>
-<span class="co">#&gt; $ Genotype   &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.426, 2024.919</span>
-<span class="co">#&gt; $ ecovalence &lt;dbl&gt; 17802705, 27718900, 9365241, 12698454, 24133596</span>
+<span class="co">#&gt; $ Genotype   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 2757, 2844, 3356, 4885</span>
+<span class="co">#&gt; $ Mean.Yield <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2878.070, 1913.365, 2911.395, 3038.426, 2024.919</span>
+<span class="co">#&gt; $ ecovalence <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17802705, 27718900, 9365241, 12698454, 24133596</span>
 
 <span class="co">### calculate modified ecovalence for all genotypes</span>
 <span class="va">single.index.ecovalence.modified</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ecovalence.html">ecovalence</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
@@ -315,19 +315,19 @@ number of environments.</p>
                                       unit.correct <span class="op">=</span> <span class="cn">FALSE</span>,
                                       modify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">single.index.ecovalence.modified</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">single.index.ecovalence.modified</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 5</span>
 <span class="co">#&gt; Columns: 3</span>
-<span class="co">#&gt; $ Genotype            &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield          &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.426, 2024.919</span>
-<span class="co">#&gt; $ ecovalence.modified &lt;dbl&gt; 139083.63, 216553.91, 73165.94, 99206.67, 188543.72</span></code></pre></div>
+<span class="co">#&gt; $ Genotype            <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 2757, 2844, 3356, 4885</span>
+<span class="co">#&gt; $ Mean.Yield          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2878.070, 1913.365, 2911.395, 3038.426, 2024.919</span>
+<span class="co">#&gt; $ ecovalence.modified <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 139083.63, 216553.91, 73165.94, 99206.67, 188543.72</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### calculate all stability indices for all genotypes</span>
 <span class="va">summary.table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
                                  trait <span class="op">=</span> <span class="st">'Yield'</span>,
                                  genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
                                  environment <span class="op">=</span> <span class="st">'Environment'</span>,
-                                 lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
+                                 lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
                                  normalize <span class="op">=</span> <span class="cn">FALSE</span>,
                                  unit.correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : </span>
@@ -336,31 +336,31 @@ number of environments.</p>
 <span class="co">#### warning message means your data structure is not distributed as normal distribution</span>
 
 <span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">summary.table</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">summary.table</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 5</span>
 <span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.4~</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.3523378, 0.6665326, 0.3242059, 0.2~</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.9398731, 0.8270000, 0.9485154, 0.9~</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 1.1596475, 0.8552736, 1.0316158, 1.1~</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 108789.28, 193280.79, 73052.65, 8677~</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 1809327, 1117230, 1418923, 1630384, ~</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 29248135, 24360429, 14583562, 214768~</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 89307.69, 1004043.78, 70091.10, 3048~</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 1.770116, 2.281250, 1.561946, 1.7913~</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 173448.30, 303582.09, 62720.42, 1064~</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 50.31578, 47.87130, 44.31829, 46.565~</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 17802705, 27718900, 9365241, 1269845~</span>
-<span class="co">#&gt; $ Ecovalence.modified               &lt;dbl&gt; 139083.63, 216553.91, 73165.94, 9920~</span>
+<span class="co">#&gt; $ Genotype                          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 2757, 2844, 3356, 4885</span>
+<span class="co">#&gt; $ Mean.Yield                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2878.070, 1913.365, 2911.395, 3038.4~</span>
+<span class="co">#&gt; $ Normality                         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE</span>
+<span class="co">#&gt; $ Safety.first.index                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3523378, 0.6665326, 0.3242059, 0.2~</span>
+<span class="co">#&gt; $ Coefficient.of.determination      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.9398731, 0.8270000, 0.9485154, 0.9~</span>
+<span class="co">#&gt; $ Coefficient.of.regression         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.1596475, 0.8552736, 1.0316158, 1.1~</span>
+<span class="co">#&gt; $ Deviation.mean.squares            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 108789.28, 193280.79, 73052.65, 8677~</span>
+<span class="co">#&gt; $ Environmental.variance            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1809327, 1117230, 1418923, 1630384, ~</span>
+<span class="co">#&gt; $ Genotypic.stability               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 29248135, 24360429, 14583562, 214768~</span>
+<span class="co">#&gt; $ Genotypic.superiority.measure     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 89307.69, 1004043.78, 70091.10, 3048~</span>
+<span class="co">#&gt; $ Variance.of.rank                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.770116, 2.281250, 1.561946, 1.7913~</span>
+<span class="co">#&gt; $ Stability.variance                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 173448.30, 303582.09, 62720.42, 1064~</span>
+<span class="co">#&gt; $ Adjusted.coefficient.of.variation <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 50.31578, 47.87130, 44.31829, 46.565~</span>
+<span class="co">#&gt; $ Ecovalence                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17802705, 27718900, 9365241, 1269845~</span>
+<span class="co">#&gt; $ Ecovalence.modified               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 139083.63, 216553.91, 73165.94, 9920~</span>
 
 <span class="co">### calculate all stability indices for all genotypes</span>
 <span class="va">normalized.summary.table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
                                             trait <span class="op">=</span> <span class="st">'Yield'</span>,
                                             genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
                                             environment <span class="op">=</span> <span class="st">'Environment'</span>,
-                                            lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
+                                            lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
                                             normalize <span class="op">=</span> <span class="cn">TRUE</span>,
                                             unit.correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : </span>
@@ -369,24 +369,24 @@ number of environments.</p>
 <span class="co">#### warning message means your data structure is not distributed as normal distribution</span>
 
 <span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">normalized.summary.table</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">normalized.summary.table</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 5</span>
 <span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.4~</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.85683453, 0.00000000, 0.93355270, ~</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.07112157, 1.00000000, 0.00000000, ~</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 0.0000000, 0.9787025, 0.4116811, 0.1~</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 0.7027599, 0.0000000, 1.0000000, 0.8~</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 0.0000000, 0.9389617, 0.5296575, 0.2~</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 0.0000000, 0.3333003, 1.0000000, 0.5~</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 0.9395799, 0.0000000, 0.9593184, 1.0~</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 0.8095988, 0.3420919, 1.0000000, 0.7~</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 0.0000000, 0.4075840, 1.0000000, 0.6~</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
-<span class="co">#&gt; $ Ecovalence.modified               &lt;dbl&gt; 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
+<span class="co">#&gt; $ Genotype                          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 2757, 2844, 3356, 4885</span>
+<span class="co">#&gt; $ Mean.Yield                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2878.070, 1913.365, 2911.395, 3038.4~</span>
+<span class="co">#&gt; $ Normality                         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE</span>
+<span class="co">#&gt; $ Safety.first.index                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85683453, 0.00000000, 0.93355270, ~</span>
+<span class="co">#&gt; $ Coefficient.of.determination      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.07112157, 1.00000000, 0.00000000, ~</span>
+<span class="co">#&gt; $ Coefficient.of.regression         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0000000, 0.9787025, 0.4116811, 0.1~</span>
+<span class="co">#&gt; $ Deviation.mean.squares            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.7027599, 0.0000000, 1.0000000, 0.8~</span>
+<span class="co">#&gt; $ Environmental.variance            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0000000, 0.9389617, 0.5296575, 0.2~</span>
+<span class="co">#&gt; $ Genotypic.stability               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0000000, 0.3333003, 1.0000000, 0.5~</span>
+<span class="co">#&gt; $ Genotypic.superiority.measure     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.9395799, 0.0000000, 0.9593184, 1.0~</span>
+<span class="co">#&gt; $ Variance.of.rank                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.8095988, 0.3420919, 1.0000000, 0.7~</span>
+<span class="co">#&gt; $ Stability.variance                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
+<span class="co">#&gt; $ Adjusted.coefficient.of.variation <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0000000, 0.4075840, 1.0000000, 0.6~</span>
+<span class="co">#&gt; $ Ecovalence                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
+<span class="co">#&gt; $ Ecovalence.modified               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.5402844, 0.0000000, 1.0000000, 0.8~</span>
 
 <span class="co">### compare the result from summary.table and normalized.summary.table</span>
 
@@ -395,8 +395,8 @@ number of environments.</p>
 <span class="va">summary.table2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/table_stability.html">table_stability</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Data</span>,
                                   trait <span class="op">=</span> <span class="st">'Yield'</span>,
                                   genotype <span class="op">=</span> <span class="st">'Genotype'</span>,
-                                  environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'CO2'</span>,<span class="st">'Nitrogen'</span><span class="op">)</span>,
-                                  lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
+                                  environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'CO2'</span>,<span class="st">'Nitrogen'</span><span class="op">)</span>,
+                                  lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Data</span><span class="op">$</span><span class="va">Yield</span><span class="op">)</span>,
                                   normalize <span class="op">=</span> <span class="cn">FALSE</span>,
                                   unit.correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Warning in table_stability(data = Data, trait = "Yield", genotype = "Genotype", : </span>
@@ -404,38 +404,38 @@ number of environments.</p>
 <span class="co">#&gt;  Safety_first Index may not be accurate.</span>
 
 <span class="co">#### check the structure of result</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">summary.table2</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">summary.table2</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 5</span>
 <span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ Genotype                          &lt;fct&gt; 1864, 2757, 2844, 3356, 4885</span>
-<span class="co">#&gt; $ Mean.Yield                        &lt;dbl&gt; 2878.070, 1913.365, 2911.395, 3038.4~</span>
-<span class="co">#&gt; $ Normality                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE</span>
-<span class="co">#&gt; $ Safety.first.index                &lt;dbl&gt; 0.3523378, 0.6665326, 0.3242059, 0.2~</span>
-<span class="co">#&gt; $ Coefficient.of.determination      &lt;dbl&gt; 0.161086973, 0.138169855, 0.28644744~</span>
-<span class="co">#&gt; $ Coefficient.of.regression         &lt;dbl&gt; 1.1791003, 0.8614393, 1.3780191, 1.3~</span>
-<span class="co">#&gt; $ Deviation.mean.squares            &lt;dbl&gt; 1517867.6, 962862.6, 1012476.1, 1269~</span>
-<span class="co">#&gt; $ Environmental.variance            &lt;dbl&gt; 1809327, 1117230, 1418923, 1630384, ~</span>
-<span class="co">#&gt; $ Genotypic.stability               &lt;dbl&gt; 213741097, 130745446, 161091101, 189~</span>
-<span class="co">#&gt; $ Genotypic.superiority.measure     &lt;dbl&gt; 3688981, 6251668, 3333615, 3180826, ~</span>
-<span class="co">#&gt; $ Variance.of.rank                  &lt;dbl&gt; 2644.454, 1623.286, 2007.764, 2479.2~</span>
-<span class="co">#&gt; $ Stability.variance                &lt;dbl&gt; 2025117, 1102709, 1229740, 1636649, ~</span>
-<span class="co">#&gt; $ Adjusted.coefficient.of.variation &lt;dbl&gt; 50.31578, 47.87130, 44.31829, 46.565~</span>
-<span class="co">#&gt; $ Ecovalence                        &lt;dbl&gt; 192140367, 121852817, 131532582, 162~</span>
-<span class="co">#&gt; $ Ecovalence.modified               &lt;dbl&gt; 1501096.6, 951975.1, 1027598.3, 1269~</span>
+<span class="co">#&gt; $ Genotype                          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1864, 2757, 2844, 3356, 4885</span>
+<span class="co">#&gt; $ Mean.Yield                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2878.070, 1913.365, 2911.395, 3038.4~</span>
+<span class="co">#&gt; $ Normality                         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE</span>
+<span class="co">#&gt; $ Safety.first.index                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3523378, 0.6665326, 0.3242059, 0.2~</span>
+<span class="co">#&gt; $ Coefficient.of.determination      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.161086973, 0.138169855, 0.28644744~</span>
+<span class="co">#&gt; $ Coefficient.of.regression         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.1791003, 0.8614393, 1.3780191, 1.3~</span>
+<span class="co">#&gt; $ Deviation.mean.squares            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1517867.6, 962862.6, 1012476.1, 1269~</span>
+<span class="co">#&gt; $ Environmental.variance            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1809327, 1117230, 1418923, 1630384, ~</span>
+<span class="co">#&gt; $ Genotypic.stability               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 213741097, 130745446, 161091101, 189~</span>
+<span class="co">#&gt; $ Genotypic.superiority.measure     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3688981, 6251668, 3333615, 3180826, ~</span>
+<span class="co">#&gt; $ Variance.of.rank                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2644.454, 1623.286, 2007.764, 2479.2~</span>
+<span class="co">#&gt; $ Stability.variance                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2025117, 1102709, 1229740, 1636649, ~</span>
+<span class="co">#&gt; $ Adjusted.coefficient.of.variation <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 50.31578, 47.87130, 44.31829, 46.565~</span>
+<span class="co">#&gt; $ Ecovalence                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 192140367, 121852817, 131532582, 162~</span>
+<span class="co">#&gt; $ Ecovalence.modified               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1501096.6, 951975.1, 1027598.3, 1269~</span>
 
 <span class="co">### compare the result from summary.table and summary.table2</span>
 <span class="co">### see how the choice of environments affect the data</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="equation-of-stability-indices" class="section level2">
-<h2 class="hasAnchor">
-<a href="#equation-of-stability-indices" class="anchor"></a>Equation of stability indices</h2>
+<div class="section level2">
+<h2 id="equation-of-stability-indices">Equation of stability indices<a class="anchor" aria-label="anchor" href="#equation-of-stability-indices"></a>
+</h2>
 <p>Let <span class="math inline">\(X_{ij}\)</span> represent the
 observed mean value of the genoptype <span class="math inline">\(i\)</span> in environment <span class="math inline">\(j\)</span>, and let <span class="math inline">\(\bar{X_{i.}}\)</span>, <span class="math inline">\(\bar{X_{.j}}\)</span> and <span class="math inline">\(\bar{X_{..}}\)</span> denote the marginal means of
 genotype <span class="math inline">\(i\)</span>, environment <span class="math inline">\(j\)</span> and the overall mean, respectively.</p>
-<div id="adjusted-coefficient-variation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#adjusted-coefficient-variation" class="anchor"></a>adjusted coefficient variation</h3>
+<div class="section level3">
+<h3 id="adjusted-coefficient-variation">adjusted coefficient variation<a class="anchor" aria-label="anchor" href="#adjusted-coefficient-variation"></a>
+</h3>
 <p>Adjusted coefficient of variation <span class="citation">(<a href="#ref-doering2018" role="doc-biblioref">Döring &amp; Reckling,
 2018</a>)</span> is calculated based on regression function. Variety
 with low adjusted coefficient of variation is considered as stable.
@@ -446,20 +446,23 @@ Under the linear model</p>
 \right ] ^{0.5} \times 100 \% \]</span></p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="coefficient-of-determination" class="section level3">
-<h3 class="hasAnchor">
-<a href="#coefficient-of-determination" class="anchor"></a>coefficient of determination</h3>
+<div class="section level3">
+<h3 id="coefficient-of-determination">coefficient of determination<a class="anchor" aria-label="anchor" href="#coefficient-of-determination"></a>
+</h3>
 <p>Coefficient of determination <span class="citation">(<a href="#ref-pinthus1973" role="doc-biblioref">Pinthus, 1973</a>)</span>
 is calculated based on regression function. Variety with low coefficient
 of determination is considered as stable. Under the linear model <span class="math display">\[Y_{ij} =\mu + \beta_{i}~ e_{j} + g_{i} +
-d_{ij}\]</span> where <span class="math inline">\(Y_{ij}\)</span> is the
-predicted phenotypic values, <span class="math inline">\(g_{i}\)</span>,
-<span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and
-overall population mean, respectively.</p>
+d_{ij}\]</span> &lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream where
+<span class="math inline">\(Y_{ij}\)</span> is the predicted phenotypic
+values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and
+overall population mean, respectively. ======= where <span class="math inline">\(Y_{ij}\)</span> is the observed mean value of
+<span class="math inline">\(i^{th}\)</span> genotype in the <span class="math inline">\(j^{th}\)</span> environment; <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic mean,
+environmental mean and overall population mean, respectively.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span>
-where <span class="math inline">\(\beta_{i}\)</span> is the coefficient
-of regression and <span class="math inline">\(d_{ij}\)</span> a
-deviation.</p>
+where <span class="math inline">\(\beta_{i}\)</span> is coefficient of
+regression and <span class="math inline">\(d_{ij}\)</span> is deviation
+from regression.</p>
 <p>For <span class="math inline">\(s^{2}_{di}\)</span> and <span class="math inline">\(S_{xi}^{2}\)</span>, see <span class="math inline">\(deviation~mean~squares\)</span> and <span class="math inline">\(environmental~ variance\)</span> for details.</p>
 <p>Coefficient of determination may be expressed as: <span class="math display">\[r_{i}^{2} = 1 - \frac{s_{di}^{2}}{s_{xi}^{2}}
 \]</span></p>
@@ -471,20 +474,24 @@ genotype <span class="math inline">\(i\)</span> and environment <span class="mat
 <span class="math inline">\(X\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="coefficient-of-regression" class="section level3">
-<h3 class="hasAnchor">
-<a href="#coefficient-of-regression" class="anchor"></a>coefficient of regression</h3>
+<div class="section level3">
+<h3 id="coefficient-of-regression">coefficient of regression<a class="anchor" aria-label="anchor" href="#coefficient-of-regression"></a>
+</h3>
 <p>Coefficient of regression <span class="citation">(<a href="#ref-finlay1963" role="doc-biblioref">Finlay &amp; Wilkinson,
 1963</a>)</span> is calculated based on regression function. Variety
 with low coefficient of regression is considered as stable. Under the
 linear model <span class="math display">\[Y_{ij} =\mu + \beta_{i}~ e_{j}
-+ g_{i} + d_{ij}\]</span> where <span class="math inline">\(Y_{ij}\)</span> is the predicted phenotypic
-values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and
-overall population mean, respectively.</p>
++ g_{i} + d_{ij}\]</span> &lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+where <span class="math inline">\(Y_{ij}\)</span> is the predicted
+phenotypic values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and
+overall population mean, respectively. ======= where <span class="math inline">\(Y_{ij}\)</span> is the observed mean value of
+<span class="math inline">\(i^{th}\)</span> genotype in the <span class="math inline">\(j^{th}\)</span> environment; <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic mean,
+environmental mean and overall population mean, respectively.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span>
-where <span class="math inline">\(\beta_{i}\)</span> is the coefficient
-of regression and <span class="math inline">\(d_{ij}\)</span> a
-deviation.</p>
+where <span class="math inline">\(\beta_{i}\)</span> is coefficient of
+regression and <span class="math inline">\(d_{ij}\)</span> is deviation
+from regression.</p>
 <p>Coefficient of regression may be expressed as: <span class="math display">\[ b_{i}=1 + \frac{\sum_{j}(X_{ij}
 -\bar{X_{i.}}-\bar{X_{.j}}+\bar{X_{..}}) ~
 (\bar{X_{.j}}-
@@ -494,12 +501,12 @@ phenotypic mean value of genotype <span class="math inline">\(i\)</span>
 (i = 1,…, G) in environment <span class="math inline">\(j\)</span> (j =
 1,…,E), with <span class="math inline">\(\bar{X_{i.}}\)</span> and <span class="math inline">\(\bar{X_{.j}}\)</span> denoting marginal means of
 genotype <span class="math inline">\(i\)</span> and environment <span class="math inline">\(j\)</span>, respectively. <span class="math inline">\(\bar{X_{..}}\)</span> denote the overall mean of
-<span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span>is the estimation of <span class="math inline">\(\beta_{i}\)</span>.</p>
+<span class="math inline">\(X\)</span>. <span class="math inline">\(b_{i}\)</span>is the estimator of <span class="math inline">\(\beta_{i}\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="deviation-mean-squares" class="section level3">
-<h3 class="hasAnchor">
-<a href="#deviation-mean-squares" class="anchor"></a>deviation mean squares</h3>
+<div class="section level3">
+<h3 id="deviation-mean-squares">deviation mean squares<a class="anchor" aria-label="anchor" href="#deviation-mean-squares"></a>
+</h3>
 <p>Deviation mean squares <span class="citation">(<a href="#ref-eberhart1966" role="doc-biblioref">Eberhart &amp; Russell,
 1966</a>)</span> is calculated based on regression function. Variety
 with low stability variance is considered as stable.</p>
@@ -518,9 +525,9 @@ genotype <span class="math inline">\(i\)</span> and environment <span class="mat
 regression.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="ecovalence" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ecovalence" class="anchor"></a>ecovalence</h3>
+<div class="section level3">
+<h3 id="ecovalence">ecovalence<a class="anchor" aria-label="anchor" href="#ecovalence"></a>
+</h3>
 <p>Ecovalence <span class="citation">(<a href="#ref-wricke1962" role="doc-biblioref">Wricke, 1962</a>)</span> is calculated based on
 square and sum up the genotype–environment interaction all over the
 environment. Variety with low ecovalence is considered as stable.
@@ -539,9 +546,9 @@ with <span class="math inline">\(\bar{X_{i.}}\)</span> denoting marginal
 means of genotype <span class="math inline">\(i\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="environmental-variance" class="section level3">
-<h3 class="hasAnchor">
-<a href="#environmental-variance" class="anchor"></a>environmental variance</h3>
+<div class="section level3">
+<h3 id="environmental-variance">environmental variance<a class="anchor" aria-label="anchor" href="#environmental-variance"></a>
+</h3>
 <p>Environmental variance <span class="citation">(<a href="#ref-roemer1917" role="doc-biblioref">Römer, 1917</a>)</span> is
 calculated by squared and summing up all deviation from genotypic mean
 for each genotype. The larger the environmental variance of one genotype
@@ -554,19 +561,23 @@ environment <span class="math inline">\(j\)</span> (j = 1,…,E), with
 means of genotype <span class="math inline">\(i\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="genotypic-stability" class="section level3">
-<h3 class="hasAnchor">
-<a href="#genotypic-stability" class="anchor"></a>genotypic stability</h3>
+<div class="section level3">
+<h3 id="genotypic-stability">genotypic stability<a class="anchor" aria-label="anchor" href="#genotypic-stability"></a>
+</h3>
 <p>Genotypic stability <span class="citation">(<a href="#ref-hanson1970" role="doc-biblioref">Hanson, 1970</a>)</span> is calculated based on
 regression function. Variety with low stability variance is considered
 as stable. Under the linear model <span class="math display">\[Y_{ij}
-=\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}\]</span> where <span class="math inline">\(Y_{ij}\)</span> is the predicted phenotypic
+=\mu + \beta_{i}~ e_{j} + g_{i} + d_{ij}\]</span>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream where <span class="math inline">\(Y_{ij}\)</span> is the predicted phenotypic
 values, <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic, environmental and
-overall population mean, respectively.</p>
+overall population mean, respectively. ======= where <span class="math inline">\(Y_{ij}\)</span> is the observed mean value of
+<span class="math inline">\(i^{th}\)</span> genotype in the <span class="math inline">\(j^{th}\)</span> environment; <span class="math inline">\(g_{i}\)</span>, <span class="math inline">\(e_{j}\)</span> and <span class="math inline">\(\mu\)</span> denoting genotypic mean,
+environmental mean and overall population mean, respectively.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
 <p>The effect of GE-interaction may be expressed as: <span class="math display">\[(ge)_{ij} = \beta_{i}~ e_{j} + d_{ij}\]</span>
-where <span class="math inline">\(\beta_{i}\)</span> is the coefficient
-of regression and <span class="math inline">\(d_{ij}\)</span> a
-deviation.</p>
+where <span class="math inline">\(\beta_{i}\)</span> is coefficient of
+regression and <span class="math inline">\(d_{ij}\)</span> is deviation
+from regression.</p>
 <p>Genotypic stability: <span class="math display">\[ D_{i}^{2} =
 \sum_{j}~(X_{ij} - \bar{X_{i.}}- b_{min}~ \bar{X_{.j}} + b_{min}~
 \bar{X_{..}})^{2}\]</span></p>
@@ -580,9 +591,9 @@ genotype <span class="math inline">\(i\)</span> and environment <span class="mat
 coefficient of regression over all environments.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="genotypic-superiority-measure" class="section level3">
-<h3 class="hasAnchor">
-<a href="#genotypic-superiority-measure" class="anchor"></a>genotypic superiority measure</h3>
+<div class="section level3">
+<h3 id="genotypic-superiority-measure">genotypic superiority measure<a class="anchor" aria-label="anchor" href="#genotypic-superiority-measure"></a>
+</h3>
 <p>Genotypic superiority measure <span class="citation">(<a href="#ref-lin1988" role="doc-biblioref">Lin &amp; Binns,
 1988</a>)</span> is calculatd based on means square distance between
 maximum value of environment j and genotype i. Variety with low
@@ -594,9 +605,9 @@ among all genotypes in the <span class="math inline">\(j^{th}\)</span>
 location.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="safety-first-index" class="section level3">
-<h3 class="hasAnchor">
-<a href="#safety-first-index" class="anchor"></a>safety first index</h3>
+<div class="section level3">
+<h3 id="safety-first-index">safety first index<a class="anchor" aria-label="anchor" href="#safety-first-index"></a>
+</h3>
 <p>Safety-first index <span class="citation">(<a href="#ref-eskridge1990" role="doc-biblioref">Eskridge, 1990</a>)</span>
 is calculated based on the normality assumption of trait over the
 environments. Among different environments, trait below a given critical
@@ -616,9 +627,9 @@ safety first index is calculated based on the probability of trait below
 lambda across the environments for each genotype.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="stability-variance" class="section level3">
-<h3 class="hasAnchor">
-<a href="#stability-variance" class="anchor"></a>stability variance</h3>
+<div class="section level3">
+<h3 id="stability-variance">stability variance<a class="anchor" aria-label="anchor" href="#stability-variance"></a>
+</h3>
 <p>Stability variance <span class="citation">(<a href="#ref-shukla1972" role="doc-biblioref">Shukla, 1972</a>)</span> is calculated based on
 linear combination of ecovalence and mean square of genotype-environment
 interaction. Variety with low stability variance is considered as
@@ -636,9 +647,9 @@ genotype <span class="math inline">\(i\)</span> and environment <span class="mat
 <p>Negative values of stability variance is replaced with 0.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="variance-of-rank" class="section level3">
-<h3 class="hasAnchor">
-<a href="#variance-of-rank" class="anchor"></a>variance of rank</h3>
+<div class="section level3">
+<h3 id="variance-of-rank">variance of rank<a class="anchor" aria-label="anchor" href="#variance-of-rank"></a>
+</h3>
 <p>Variance of rank <span class="citation">(<a href="#ref-nassar1987" role="doc-biblioref">Nassar &amp; Hühn, 1987</a>)</span> is calculated
 based on regression function. Variety with low variance of rank is
 considered as stable.</p>
@@ -654,37 +665,31 @@ on the corrected <span class="math inline">\(X_{ij}\)</span> values.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="citing-toolstability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citing-toolstability" class="anchor"></a>Citing <code>toolStability</code>
+<div class="section level2">
+<h2 id="citing-toolstability">Citing <code>toolStability</code><a class="anchor" aria-label="anchor" href="#citing-toolstability"></a>
 </h2>
-<pre><code>#&gt; 
-#&gt; To cite the R package 'toolStability' in publications use:
-#&gt; 
-#&gt;   Wang, T-C. and Chen, T-W. ( 2022 ).  toolStability: Tool for
-#&gt;   stability indices calculation.  R package version 0.1.1 ,
-#&gt;   https://github.com/Illustratien/toolStability/
-#&gt;   https://cran.r-project.org/package=toolStability .
-#&gt; 
-#&gt; A BibTeX entry for LaTeX users is
-#&gt; 
-#&gt;   @Manual{,
-#&gt;     title = {toolStability: Tool for Stability Indices Calculation},
-#&gt;     author = {T.-C. Wang and T.-W. Chen},
-#&gt;     year = {2022},
-#&gt;     note = {R package version 0.1.1},
-#&gt;     note = {https://github.com/Illustratien/toolStability/},
-#&gt;     note = {https://cran.r-project.org/package=toolStability},
-#&gt;   }
-#&gt; 
-#&gt; This free and open-source software implements academic research by the
-#&gt; authors and co-workers. If you use it, please support the project by
-#&gt; citing the package.</code></pre>
+<p>Wang, TC., Casadebaig, P. &amp; Chen, TW. More than 1000 genotypes
+are required to derive robust relationships between yield, yield
+stability and physiological parameters: a computational study on wheat
+crop. Theor Appl Genet 136, 34 (2023). <a href="https://doi.org/10.1007/s00122-023-04264-7" class="external-link uri">https://doi.org/10.1007/s00122-023-04264-7</a></p>
+</div>
+<div class="section level2">
+<h2 id="relavant-links">relavant links<a class="anchor" aria-label="anchor" href="#relavant-links"></a>
+</h2>
+<pre><code>* Reproducible R code for publication https://github.com/Illustratien/Wang_2023_TAAG
+* Data https://doi.org/10.5281/zenodo.4729636</code></pre>
+<!-- # ```{r, echo = FALSE, collapse = TRUE} -->
+<!-- # # detach("package:toolStability", unload=TRUE) -->
+<!-- # # suppressPackageStartupMessages(library(toolStability)) -->
+<!-- # # cit <- citation("toolStability") -->
+<!-- # #  -->
+<!-- # # cit -->
+<!-- # ``` -->
 <div style="page-break-after: always;"></div>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-casadebaig2016" class="csl-entry">
 Casadebaig, P., Zheng, B., Chapman, S., Huth, N., Faivre, R., &amp;
@@ -693,37 +698,37 @@ Chenu, K. (2016). Assessment of the <span>P</span>otential
 <span>T</span>raits across <span>E</span>nvironments by
 <span>C</span>ombining <span>C</span>rop <span>M</span>odeling and
 <span>G</span>lobal <span>S</span>ensitivity <span>A</span>nalysis.
-<em>PLOS ONE</em>, <em>11</em>(1), e0146385. <a href="https://doi.org/10.1371/journal.pone.0146385">https://doi.org/10.1371/journal.pone.0146385</a>
+<em>PLOS ONE</em>, <em>11</em>(1), e0146385. <a href="https://doi.org/10.1371/journal.pone.0146385" class="external-link">https://doi.org/10.1371/journal.pone.0146385</a>
 </div>
 <div id="ref-doering2018" class="csl-entry">
 Döring, T. F., &amp; Reckling, M. (2018). Detecting global trends of
 cereal yield stability by adjusting the coefficient of variation.
-<em>European Journal of Agronomy</em>, <em>99</em>, 30–36. <a href="https://doi.org/10.1016/j.eja.2018.06.007">https://doi.org/10.1016/j.eja.2018.06.007</a>
+<em>European Journal of Agronomy</em>, <em>99</em>, 30–36. <a href="https://doi.org/10.1016/j.eja.2018.06.007" class="external-link">https://doi.org/10.1016/j.eja.2018.06.007</a>
 </div>
 <div id="ref-eberhart1966" class="csl-entry">
 Eberhart, S. A., &amp; Russell, W. A. (1966). Stability parameters for
-comparing varieties. <em>Crop Science</em>, <em>6</em>(1), 36–40. <a href="https://doi.org/10.2135/cropsci1966.0011183X000600010011x">https://doi.org/10.2135/cropsci1966.0011183X000600010011x</a>
+comparing varieties. <em>Crop Science</em>, <em>6</em>(1), 36–40. <a href="https://doi.org/10.2135/cropsci1966.0011183X000600010011x" class="external-link">https://doi.org/10.2135/cropsci1966.0011183X000600010011x</a>
 </div>
 <div id="ref-eskridge1990" class="csl-entry">
 Eskridge, K. M. (1990). Selection of <span>S</span>table
 <span>C</span>ultivars <span>U</span>sing a
 <span>S</span>afety-<span>F</span>irst <span>R</span>ule. <em>Crop
-Science</em>, <em>30</em>(2), 369. <a href="https://doi.org/10.2135/cropsci1990.0011183X003000020025x">https://doi.org/10.2135/cropsci1990.0011183X003000020025x</a>
+Science</em>, <em>30</em>(2), 369. <a href="https://doi.org/10.2135/cropsci1990.0011183X003000020025x" class="external-link">https://doi.org/10.2135/cropsci1990.0011183X003000020025x</a>
 </div>
 <div id="ref-finlay1963" class="csl-entry">
 Finlay, K. W., &amp; Wilkinson, G. N. (1963). The analysis of adaptation
 in a plant-breeding programme. <em>Australian Journal of Agricultural
-Research</em>, <em>14</em>(6), 742–754. <a href="https://doi.org/10.1071/AR9630742">https://doi.org/10.1071/AR9630742</a>
+Research</em>, <em>14</em>(6), 742–754. <a href="https://doi.org/10.1071/AR9630742" class="external-link">https://doi.org/10.1071/AR9630742</a>
 </div>
 <div id="ref-hanson1970" class="csl-entry">
 Hanson, W. D. (1970). Genotypic stability. <em>Theoretical and Applied
-Genetics</em>, <em>40</em>(5), 226–231. <a href="https://doi.org/10.1007/BF00285245">https://doi.org/10.1007/BF00285245</a>
+Genetics</em>, <em>40</em>(5), 226–231. <a href="https://doi.org/10.1007/BF00285245" class="external-link">https://doi.org/10.1007/BF00285245</a>
 </div>
 <div id="ref-lin1988" class="csl-entry">
 Lin, C. S., &amp; Binns, M. R. (1988). A superiority measure of cultivar
 performance for cultivar <span class="math inline">\(\times\)</span>
 location data. <em>Canadian Journal of Plant Science</em>,
-<em>68</em>(1), 193–198. Retrieved from <a href="https://cdnsciencepub.com/doi/10.4141/cjps88-018">https://cdnsciencepub.com/doi/10.4141/cjps88-018</a>
+<em>68</em>(1), 193–198. Retrieved from <a href="https://cdnsciencepub.com/doi/10.4141/cjps88-018" class="external-link">https://cdnsciencepub.com/doi/10.4141/cjps88-018</a>
 </div>
 <div id="ref-nassar1987" class="csl-entry">
 Nassar, R., &amp; Hühn, M. (1987). Studies on estimation of phenotypic
@@ -732,7 +737,7 @@ phenotypic stability. <em>Biometrics</em>, <em>43</em>(1), 45–53.
 </div>
 <div id="ref-pinthus1973" class="csl-entry">
 Pinthus, M. J. (1973). Estimate of genotypic value: A proposed method.
-<em>Euphytica</em>, <em>22</em>(1), 121–123. <a href="https://doi.org/10.1007/BF00021563">https://doi.org/10.1007/BF00021563</a>
+<em>Euphytica</em>, <em>22</em>(1), 121–123. <a href="https://doi.org/10.1007/BF00021563" class="external-link">https://doi.org/10.1007/BF00021563</a>
 </div>
 <div id="ref-roemer1917" class="csl-entry">
 Römer, T. (1917). Sind die ertragdreichen <span>S</span>orten
@@ -743,6 +748,12 @@ Gesellschaft</em>, <em>32</em>(1), 87–89.
 Shukla, G. K. (1972). Some statistical aspects of partitioning genotype
 environmental components of variability. <em>Heredity</em>,
 <em>29</em>(2), 237–245.
+</div>
+<div id="ref-wang2023" class="csl-entry">
+Wang, T.-C., Casadebaig, P., &amp; Chen, T.-W. (2023). More than 1000
+genotypes are required to derive robust relationships between yield,
+yield stability and physiological parameters: A computational study on
+wheat crop. <em>Theoretical and Applied Genetics</em>, <em>136</em>, 34.
 </div>
 <div id="ref-wricke1962" class="csl-entry">
 Wricke, G. (1962). Über eine <span>M</span>ethode zur
@@ -765,11 +776,13 @@ Wricke, G. (1962). Über eine <span>M</span>ethode zur
 
 
       <footer><div class="copyright">
-  <p>Developed by Tien-Cheng Wang.</p>
+  <p></p>
+<p>Developed by Tien-Cheng Wang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -777,6 +790,8 @@ Wricke, G. (1962). Über eine <span>M</span>ethode zur
 
   
 
+
+  
 
   </body>
 </html>

@@ -53,9 +53,13 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The package `toolStability` is a collection of functions which implements various methods for describing the `stability` of a `trait` in terms of `genotype` and `environment`.
 
-The goal of this vignette is to introduce the users to these functions and get started in describing sequentially recorded germination count data. This document assumes a basic knowledge of `R` programming language.
+The package `toolStability` is part of the publication from [@wang2023]. The package is a collection of functions which implements eleven methods for describing the `stability` of a `trait` in terms of `genotype` and `environment`. 
+
+
+The goal of this vignette is to introduce users to these functions and get started in analyzing dataset with interaction between `genotype` and `environment`. 
+
+Further analysis for original publication using this package can be found in the link ( [click](https://github.com/Illustratien/Wang_2023_TAAG)).
 
 ## Installation
 The package can be installed using the following functions:
@@ -73,8 +77,6 @@ Then the package can be loaded using the function
 ```{r}
 library(toolStability)
 ```
-
-
 
 
 ## Welcome to toolStability
@@ -99,7 +101,7 @@ toolStability contains different functions to calculate stability indices, inclu
 
 ## Build-in data set
 
-The default data set `Data` is the subset of $APSIM$ simulated wheat data set, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 $CO_2$ levels of treatments [@casadebaig2016].
+The default data set `Data` is the subset of $APSIM$ simulated wheat data set, which includes 5 genotypes in 4 locations for 4 years, with 2 nitrogen application rates, 2 sowing dates, and 2 $CO_2$ levels of treatments [@casadebaig2016]. Full dataset used in the publication see here [click](https://zenodo.org/record/4729636).
 
 `Data` in this package is a data frame with 640 observations and 8 variables.
 
@@ -448,14 +450,18 @@ based on the corrected $X_{ij}$ values.
 
 \newpage
 ## Citing `toolStability`
+Wang, TC., Casadebaig, P. & Chen, TW. More than 1000 genotypes are required to derive robust relationships between yield, yield stability and physiological parameters: a computational study on wheat crop. Theor Appl Genet 136, 34 (2023). https://doi.org/10.1007/s00122-023-04264-7
 
-```{r, echo = FALSE, collapse = TRUE}
-detach("package:toolStability", unload=TRUE)
-suppressPackageStartupMessages(library(toolStability))
-cit <- citation("toolStability")
-
-cit
-```
+## relavant links
+    * Reproducible R code for publication https://github.com/Illustratien/Wang_2023_TAAG
+    * Data https://doi.org/10.5281/zenodo.4729636
+<!-- # ```{r, echo = FALSE, collapse = TRUE} -->
+<!-- # # detach("package:toolStability", unload=TRUE) -->
+<!-- # # suppressPackageStartupMessages(library(toolStability)) -->
+<!-- # # cit <- citation("toolStability") -->
+<!-- # #  -->
+<!-- # # cit -->
+<!-- # ``` -->
 
 \newpage
 ## References
