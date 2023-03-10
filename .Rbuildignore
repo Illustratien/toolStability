@@ -25,3 +25,4 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^codecov\.yml$
+^man_backup
