@@ -16,7 +16,10 @@ knitr::opts_chunk$set(
 
 ```{r,echo = FALSE, message = FALSE}
 suppressWarnings(devtools::load_all("."))
-
+wholetext <-  packageDescription("toolStability", fields = "Description")
+Section<- strsplit(wholetext,"This R")
+text1 <- Section[[1]][1]
+text2 <- unlist(strsplit(paste0("This R",Section[[1]][2]),"\n"))
 ```
 
 ###### License: [GPL-3](https://www.r-project.org/Licenses/)
@@ -52,7 +55,40 @@ suppressWarnings(devtools::load_all("."))
 
 ## Description
 <!-- `r packageDescription("toolStability", fields = "Description")` -->
-`r gsub("\\n", "  ", packageDescription("toolStability", fields = "Description"))`
+<!-- `r gsub("\\n", "  ", packageDescription("toolStability", fields = "Description"))` -->
+`r text1` `r "There are 11 stability indices in this package."`
+
+`r text2[1]`
+`r text2[2]`
+`r text2[3]`
+
+`r text2[4]`
+`r text2[5]`
+`r text2[6]`
+
+<!-- `r text2[7]``r " (see tutorial for detailed information)"` -->
+
+<!-- `r text2[8]` -->
+
+<!-- `r text2[9]` -->
+
+<!-- `r text2[10]` -->
+
+<!-- `r text2[11]` -->
+
+<!-- `r text2[12]`  -->
+
+<!-- `r text2[13]` -->
+
+<!-- `r text2[14]` `r " https://www.jstor.org/stable/2531698"` -->
+
+<!-- `r text2[15]`  -->
+
+<!-- `r text2[16]` `r " https://www.nature.com/articles/hdy197287"` -->
+
+<!-- `r text2[17]` -->
+
+<!-- `r text2[18]` -->
 ## Installation
 The package can be installed from CRAN as follows:
 
@@ -70,8 +106,8 @@ if (!require('remotes')) install.packages('remotes')
 remotes::install_github("Illustratien/toolStability")
 ```
 
-## Detailed tutorial
-A detailed tutorial with examples and references:
+## Tutorial
+There are 11 stability indices in this package. A detailed tutorial with examples and references:
  [click here](https://illustratien.github.io/toolStability/articles/toolStability.html).
 
 ## What's new
@@ -82,11 +118,15 @@ news(package='toolStability')
 ```
 
 ## Links
-[Publication](https://link.springer.com/article/10.1007/s00122-023-04264-7)
+[Main publication](https://link.springer.com/article/10.1007/s00122-023-04264-7)
 
-[Zenodo documentation](https://doi.org/10.5281/zenodo.5804212)
+[Main publication analysis pipeline](https://github.com/Illustratien/Wang_2023_TAAG/tree/V1.0.0)
+
+[Dataset documentation](https://doi.org/10.5281/zenodo.4729636)
 
 [CRAN page](https://cran.r-project.org/package=toolStability)
+
+[Package documentation](https://doi.org/10.5281/zenodo.5804212)
 
 ## Citing `toolStability`
 To cite the methods in the package please use:
