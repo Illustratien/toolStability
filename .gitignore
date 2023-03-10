@@ -1,6 +1,8 @@
-/doc/
-/Meta/
-.Rproj.user/
 docs
+.Rproj.user
+.Rhistory
+.RData
 inst/doc
-
+man_backup
+doc
+Meta
