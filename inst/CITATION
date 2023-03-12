@@ -1,30 +1,3 @@
 citHeader("To cite the R package 'toolStability' in publications use:")
 
-if(!exists("meta") || is.null(meta)) meta <- packageDescription("toolStability")
-year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
-if (!length(year)) {
- year <- format(packageDate("toolStability"), "%Y")
-}
-vers <- paste("R package version", meta$Version)
-
-citEntry(entry  = "Manual",
-         title  = "toolStability: Tool for Stability Indices Calculation",
-         author = personList(person(given = "T.-C.", family = "Wang",
-                                    email = "wangtien@student.hu-berlin.de",
-                                    role = c("aut", "cre"),
-				    comment = c(ORCID = "0000-0001-7952-1404")),
-				    person(given = "T.-W.", family = "Chen",
-                                    email = "tsu-wei.chen@hu-berlin.de",
-				    comment = c(ORCID = "0000-0001-7952-1404"),
-			            role = "com")),
-         year = year,
-         textVersion = paste(
-           "Wang, T-C. and Chen, T-W. (",
-           year, ").  toolStability: Tool for stability indices calculation. ",
-           vers, ", ", "https://github.com/Illustratien/toolStability/", "https://cran.r-project.org/package=toolStability",
-           ".", sep="\n"),
-         note = {c(paste(vers), "https://github.com/Illustratien/toolStability/", "https://cran.r-project.org/package=toolStability")})
-
-citFooter("This free and open-source software implements academic
-research by the authors and co-workers. If you use it, please support
-the project by citing the package.")
+citFooter("Wang, TC., Casadebaig, P. & Chen, TW. More than 1000 genotypes are required to derive robust relationships between yield, yield stability and physiological parameters: a computational study on wheat crop. Theor Appl Genet 136, 34 (2023). https://doi.org/10.1007/s00122-023-04264-7")

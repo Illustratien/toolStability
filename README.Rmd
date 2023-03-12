@@ -43,7 +43,7 @@ text2 <- unlist(strsplit(paste0("This R",Section[[1]][2]),"\n"))
 <!-- # # cat(paste("[![develVersion](https://img.shields.io/badge/devel%20version-", dver, "-orange.svg)](https://github.com/Illustratien/toolStability)", sep = "")) -->
 <!-- # ``` -->
 [![Github Code Size](https://img.shields.io/github/languages/code-size/Illustratien/toolStability.svg)](https://github.com/Illustratien/toolStability)
-[![Codecov test coverage](https://codecov.io/gh/Illustratien/toolStability/branch/master/graph/badge.svg)](https://codecov.io/gh/Illustratien/toolStability?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/Illustratien/toolStability/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Illustratien/toolStability?branch=master)
 [![R-CMD-check](https://github.com/Illustratien/toolStability/workflows/R-CMD-check/badge.svg)](https://github.com/Illustratien/toolStability/actions)
 <!-- [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/Illustratien/toolStability/commits/master) -->
 
