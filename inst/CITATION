@@ -1,3 +1,2 @@
-citHeader("To cite the R package 'toolStability' in publications use:")
-
-citFooter("Wang, TC., Casadebaig, P. & Chen, TW. More than 1000 genotypes are required to derive robust relationships between yield, yield stability and physiological parameters: a computational study on wheat crop. Theor Appl Genet 136, 34 (2023). https://doi.org/10.1007/s00122-023-04264-7")
+"To cite the R package 'toolStability' in publications use:
+Wang, TC., Casadebaig, P. & Chen, TW. More than 1000 genotypes are required to derive robust relationships between yield, yield stability and physiological parameters: a computational study on wheat crop. Theor Appl Genet 136, 34 (2023). https://doi.org/10.1007/s00122-023-04264-7"
