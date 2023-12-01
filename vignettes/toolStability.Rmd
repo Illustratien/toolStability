@@ -335,10 +335,10 @@ Ecovalence [@wricke1962] is calculated based on square and sum up the genotypeâ€
 interaction all over the environment.
 Variety with low ecovalence is considered as stable.
 Ecovalence is expressed as:
-$$W_{i} = \sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})$$
+$$W_{i} = \sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}})^{2}$$
 To let $W_{i}$ comparable between experiments, we also provide the modified ecovalence ($W_{i}'$), whcih take the number of environments into account. User can get ($W_{i}'$) by setting `modify = TRUE`.
 
-$$W_{i}' = \frac{\sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}}^{2})}{E-1}$$
+$$W_{i}' = \frac{\sum_{j}~(X_{ij} - \bar{X_{i.}} - \bar{X_{.j}} + \bar{X_{..}})^{2}}{E-1}$$
 where $X_{ij}$ is the observed phenotypic mean value of genotype $i$ (i = 1,..., G)
 in environment $j$ (j = 1,...,E), with $\bar{X_{i.}}$ denoting marginal means of genotype $i$.
 
