@@ -108,12 +108,21 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
     stop("Environment number must above 3")
   } else if (sample_number <= 5000 & sample_number >= 3) {
     normtest <- function(x){
-      return(shapiro.test(x)$p.value > 0.05)
+      res.ntest <- tryCatch({shapiro.test(x)},
+                            error=function(cond){
+                              return(list(p.value=0.01))
+                            })
+      return(res.ntest$p.value > 0.05)
     }
     norm.test.name <- "Shapiro"
   } else if (sample_number > 5000) {
+
     normtest <- function(x){
-      return(ad.test(x)$p.value > 0.05)
+      res.ntest <- tryCatch({ad.test(x)},
+                            error=function(cond){
+                              return(list(p.value=0.01))
+                            })
+      return(res.ntest$p.value > 0.05)
     }
     norm.test.name <- "Anderson-Darling"
   }
@@ -209,7 +218,7 @@ table_stability <- function(data, trait, genotype, environment, lambda, normaliz
                      "Variance.of.rank",
                      "Deviation.mean.squares",
                      "Genotypic.superiority.measure"
-                     )
+  )
   if (unit.correct==TRUE){
     res <- mutate_at(res,need.squared.si, sqrt)
   }
