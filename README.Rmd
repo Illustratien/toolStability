@@ -29,6 +29,8 @@ text2 <- unlist(strsplit(paste0("This R",Section[[1]][2]),"\n"))
 
 <!-- badges: start -->
 [![citation](https://img.shields.io/badge/Publication-Wang_et_al_2023-20639b)](https://link.springer.com/article/10.1007/s00122-023-04264-7)
+[![citation](https://img.shields.io/badge/Publication-Wang_et_al_2025-darkred)](https://www.nature.com/articles/s41597-024-04332-7)
+
 [![Website - pkgdown](https://img.shields.io/badge/website-githubpage-green)](https://Illustratien.github.io/toolStability/)
 [![DOI](https://zenodo.org/badge/203346020.svg)](https://zenodo.org/badge/latestdoi/203346020)
 [![minimal R version](https://img.shields.io/badge/R>%3D-3.5.0-6666ff.svg?logo=R)](https://cran.r-project.org/)
@@ -118,15 +120,16 @@ news(package='toolStability')
 ```
 
 ## Links
-[Main publication](https://link.springer.com/article/10.1007/s00122-023-04264-7)
+[Main publication on TAAG](https://link.springer.com/article/10.1007/s00122-023-04264-7)
 
-[Main publication analysis pipeline](https://github.com/Illustratien/Wang_2023_TAAG/tree/V1.0.0)
+[Main publication analysis and visualization pipeline](https://github.com/Illustratien/Wang_2023_TAAG)
 
-[Dataset documentation](https://doi.org/10.5281/zenodo.4729636)
+[Dataset documentation on Zenodo](https://doi.org/10.5281/zenodo.4729636)
+
+[Package documentation on Zenodo](https://doi.org/10.5281/zenodo.5804212)
 
 [CRAN page](https://cran.r-project.org/package=toolStability)
 
-[Package documentation](https://doi.org/10.5281/zenodo.5804212)
 
 ## Citing `toolStability`
 To cite the methods in the package please use:

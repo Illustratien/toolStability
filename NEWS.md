@@ -12,7 +12,7 @@
 * Added zenodo and rdocumentation badges.
 * Added CRAN installation instructions in Readme.
 
-# toolStability  0.1.1
+# toolStability  0.1.2
 
 ## VIGNETTE:
 * rephrase the sentence.
@@ -20,3 +20,6 @@
 * add citation reference for main publication
 * link with analysis pipeline for main publication
 * link with dataset from main publication
+
+# toolStability 0.1.3
+*remove html link of Superiority index
