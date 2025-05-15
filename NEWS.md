@@ -23,3 +23,4 @@
 
 # toolStability 0.1.3
 *remove html link of Superiority index
+*correct the umlaut 

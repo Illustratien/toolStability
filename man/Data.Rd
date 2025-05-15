@@ -7,14 +7,14 @@
 \format{
 A dataframe with 640 observations on the following 8 variables.
 \itemize{
-\item{\code{Yield}}{       unit: kg*ha^-1.}
-\item{\code{Genotype}}{    genotypes, 5 varieties.}
-\item{\code{Environment}}{ 128 unique combination of environments for each genotype.}
-\item{\code{Year}}{        4 years.}
-\item{\code{Sites}}{      4 locations.}
-\item{\code{Nitrogen}}{    2 nitrogen application levels.}
-\item{\code{CO2}}{         2 CO2 concentration levels.}
-\item{\code{Sowing}}{      2 sowing dates.}
+\item{Yield:       kg*ha^-1.}
+\item{Genotype:    genotypes, 5 varieties.}
+\item{Environment: 128 unique combination of environments for each genotype.}
+\item{Year:        4 years.}
+\item{Sites:     4 locations.}
+\item{Nitrogen:    2 nitrogen application levels.}
+\item{CO2:        2 CO2 concentration levels.}
+\item{Sowing:     2 sowing dates.}
  }
 }
 \usage{
